@@ -1,4 +1,4 @@
-import { Navigation } from "../components/nav/Navigation";
+import { Navigation } from "../components/Navigation/Navigation";
 import { Routing } from "../routes/Routing"
 import styles from "./Layout.module.scss";
 export const Layout = ():JSX.Element => {
