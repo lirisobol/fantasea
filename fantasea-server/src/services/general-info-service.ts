@@ -24,11 +24,15 @@ class GeneralInfoService {
             // Fetch fixtures
             const fixtures = await this.fetchFixtures();
 
-            // Populate fixtures in GeneralInfo
+            // Populate fixtures in Events
             this.populateFixturesInEvents(generalInfo, fixtures);
 
+            // Populate fixtures in Teams
+            this.populateFixturesInTeams(generalInfo, fixtures);
+
             return generalInfo;
-        } catch (err) {
+        } 
+        catch (err) {
             handleError(err);
         }
     }
@@ -41,7 +45,8 @@ class GeneralInfoService {
                 throw new ResourceNotFoundError("Fixture Data is missing.");
             }
             return response.data as Fixture[];
-        } catch (err) {
+        } 
+        catch (err) {
             handleError(err);
         }
     }
@@ -63,6 +68,33 @@ class GeneralInfoService {
         generalInfo.events.forEach((event) => {
             // Default to null if no fixtures found
             event.fixtures = eventMap.get(event.id) ?? null;
+        });
+    }
+    // Populate fixtures in each team based on team_h and team_a
+    private populateFixturesInTeams(generalInfo: GeneralInfo, fixtures: Fixture[]): void {
+        const teamMap = new Map<number, Fixture[]>();
+
+        // Initialize map with empty arrays for each team
+        generalInfo.teams.forEach((team) => {
+            teamMap.set(team.id, []);
+        });
+
+        // Map fixtures to the corresponding teams
+        fixtures.forEach((fixture) => {
+            // Add fixture to the home team
+            if (teamMap.has(fixture.team_h)) {
+                teamMap.get(fixture.team_h)!.push(fixture);
+            }
+
+            // Add fixture to the away team
+            if (teamMap.has(fixture.team_a)) {
+                teamMap.get(fixture.team_a)!.push(fixture);
+            }
+        });
+
+        // Assign the mapped fixtures to each team in GeneralInfo
+        generalInfo.teams.forEach((team) => {
+            team.fixtures = teamMap.get(team.id) ?? null;
         });
     }
 }
