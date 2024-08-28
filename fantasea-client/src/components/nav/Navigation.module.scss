@@ -1,0 +1,39 @@
+@import "./../../assets/styles/variables";
+.NavWrapper{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    .NavContainer{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .NavBrand {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        @media(min-width:$breakpoint-xs) {
+            font-size: 1.5rem;
+        }
+    }
+}
+.NavLink {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 200;
+    @media(min-width:$breakpoint-xs) {
+        font-size: 2rem;
+    }
+
+    .NavArrowIcon {
+        @media(min-width:$breakpoint-xs) {
+            width: 10px;
+            margin: 5px 10%;
+        }
+    }
+}
