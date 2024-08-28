@@ -1,3 +1,5 @@
+import { Fixture } from "./Fixture";
+
 export interface Event {
     id: number; // Event ID
     name: string; // Event name, e.g., "Gameweek 3"
@@ -24,4 +26,5 @@ export interface Event {
     transfers_made: number; // Number of transfers made
     most_captained: number | null; // ID of the most captained player, possibly null
     most_vice_captained: number | null; // ID of the most vice-captained player, possibly null
+    fixtures: Fixture[] | null;
 }
