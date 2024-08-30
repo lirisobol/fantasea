@@ -1,5 +1,5 @@
 import { Tab, Tabs } from "react-bootstrap"
-
+import { LeagueTable } from "../Tables/LeagueTable/LeagueTable"
 export const ResearchTabs = ():JSX.Element => {
     return (
         <Tabs
@@ -12,7 +12,7 @@ export const ResearchTabs = ():JSX.Element => {
                 Players
             </Tab>
             <Tab eventKey="teams" title="Teams">
-                Teams
+                <LeagueTable/>
             </Tab>
             <Tab eventKey="compare" title="Compare">
                 Compare

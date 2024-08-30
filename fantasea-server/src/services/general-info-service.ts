@@ -4,6 +4,7 @@ import GeneralInfo from "../models/general-info/general-info";
 import { ResourceNotFoundError } from "../models/client-errors";
 import { handleError } from "../utils/error-handler";
 import { Fixture } from "../models/general-info/Fixture";
+import { Event } from "../models/general-info/Event";
 
 class GeneralInfoService {
     private generalInfoEndpoint = "https://fantasy.premierleague.com/api/bootstrap-static/";
@@ -30,12 +31,25 @@ class GeneralInfoService {
             // Populate fixtures in Teams
             this.populateFixturesInTeams(generalInfo, fixtures);
 
+            // Find Current Game week 
+            generalInfo.currentGameWeekId = this.getCurrentGameWeekId(generalInfo.events);
+            // Find Next Game week
+            generalInfo.nextGameWeekId = this.getNextGameWeekId(generalInfo.events);
+
             return generalInfo;
         } 
         catch (err) {
             handleError(err);
         }
-    }
+    };
+    private getCurrentGameWeekId(events: Event[]):number {
+        const currentGameWeekId = events.find(event => event.is_current === true)?.id;
+        return currentGameWeekId as number;
+    };
+    private getNextGameWeekId(events: Event[]):number {
+        const nextGameWeekId = events.find(event => event.is_next === true)?.id;
+        return nextGameWeekId as number;
+    };
 
     // Fetch fixtures from the API
     private async fetchFixtures(): Promise<Fixture[]> {
