@@ -20,7 +20,7 @@ export const LeagueTable = ():JSX.Element => {
     },[])
 
     return (
-        <div className="ag-theme-quartz-dark" style={{ height: "100%", width: '100%', fontSize: "1rem" }}>
+        <div className="ag-theme-quartz" style={{ height: "100%", width: '100%', fontSize: "1rem" }}>
             <AgGridReact 
                 columnDefs={columnDefs}
                 rowData={teams}

@@ -12,7 +12,7 @@ export function Navigation() {
 
   return (
     <div className={styles.NavWrapper}>
-        <Navbar expand="xs" className="p-1 w-100" bg="dark" data-bs-theme="dark">
+        <Navbar expand="xs" className="p-1 w-100" bg="light" data-bs-theme="light">
             <Container className={styles.NavContainer}>
                 <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
                 <Navbar.Offcanvas
@@ -21,7 +21,7 @@ export function Navigation() {
                     placement="start"
                     show={show}
                     onHide={handleClose}
-                    data-bs-theme="dark"
+                    data-bs-theme="light"
                 >
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title id="offcanvasNavbarLabel">

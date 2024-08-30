@@ -1,11 +1,19 @@
 import { ColDef } from "ag-grid-community";
 import { Team } from "../../../models/general-info/Team";
 import { Fixture } from "../../../models/general-info/Fixture";
+import { CustomClubNameCell } from "../../Shared/CustomPlayerNameCell/CustomPlayerNameCell";
 
 class LeagueTableConfig {
     public getLeagueTableColDefs(teams: Team[], currentGameWeekId: number): ColDef[] {
         const columns: ColDef[] = [
-            { headerName: "Team Name", field: "name", minWidth: 100, width: 150, flex: 1 },
+            { 
+                headerName: "Team Name",
+                field: "name",
+                minWidth: 100,
+                width: 150,
+                flex: 1,
+                cellRenderer: CustomClubNameCell 
+            },
             { headerName: "Points", field: "points", minWidth: 75, width: 100, flex: 1 },
             { headerName: "Position", field: "position", minWidth: 75, width: 100, flex: 1 },
             ...this.generateGameColumns(teams, currentGameWeekId)
