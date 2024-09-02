@@ -24,11 +24,11 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 // import ThemeToggle from '../shared/ThemeToggle/ThemeToggle'
 
 const features = [
-  { name: 'Clubs', description: 'Get a better understanding of current league standings', href: '#', icon: ChartPieIcon },
-  { name: 'Players', description: 'Identify key players for your team', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Managers', description: 'Find Managers by their code', href: '#', icon: SquaresPlusIcon },
-  { name: 'Leagues & Caps', description: 'Lookup your own & others Leagues and Caps', href: '#', icon: ArrowPathIcon },
-  { name: 'Compare', description: 'Compare players and clubs ', href: '#', icon: FingerPrintIcon },
+  { name: 'Clubs', description: 'Get a better understanding of current league standings', href: '/clubs', icon: ChartPieIcon },
+  { name: 'Players', description: 'Identify key players for your team', href: '/players', icon: CursorArrowRaysIcon },
+  { name: 'Managers', description: 'Find Managers by their code', href: '/managers', icon: SquaresPlusIcon },
+  { name: 'Leagues & Caps', description: 'Lookup your own & others Leagues and Caps', href: '/leagues', icon: ArrowPathIcon },
+  { name: 'Compare', description: 'Compare players and clubs ', href: '/compare', icon: FingerPrintIcon },
 ]
 
 
@@ -39,7 +39,7 @@ export default function Navbar() {
     <header className="bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/home" className="-m-1.5 p-1.5">
             <span className="sr-only">Fantasea</span>
             <img alt="" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" className="h-8 w-auto" />
           </a>
