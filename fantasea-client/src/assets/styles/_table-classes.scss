@@ -1,0 +1,34 @@
+@import "../styles/variables";
+
+.table-very-low-rank {
+    background-color: $table-very-low;
+}
+.table-low-rank {
+    background-color: $table-low;
+}
+.table-mid-rank {
+    background-color: $table-mid-alt;
+    color: $dark;
+}
+.table-high-rank {
+    background-color: $table-high;
+    color: $dark;
+}
+.table-very-high-rank {
+    background-color: $table-very-high;
+    color: $dark;
+}
+
+.compare-high {
+    background-color: $table-very-high;
+}
+.compare-equal {
+    background-color: $table-mid-alt;
+}
+.compare-mid {
+    background-color: $table-high;
+}
+.compare-low {
+    background-color: $table-low;
+    color: white;
+}

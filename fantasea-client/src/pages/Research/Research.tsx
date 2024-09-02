@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../store/store"
-import { fetchGeneralInfo } from "../store/slices/general-info";
-import { ResearchTabs } from "../components/ResearchTabs/ResearchTabs";
+import { useAppDispatch, useAppSelector } from "../../store/store"
+import { fetchGeneralInfo } from "../../store/slices/general-info";
+import { ResearchTabs } from "../../components/ResearchTabs/ResearchTabs";
 
 export function Research():JSX.Element {
     const dispatch = useAppDispatch();
@@ -16,10 +16,6 @@ export function Research():JSX.Element {
     if(status === 'loading') return <p>Loading...</p>
     if(status === 'failed') return <p>Error: {error}</p>
     return (
-        <div>
-            <div>
-                <ResearchTabs />
-            </div>
-        </div>
+        <ResearchTabs />
     )
 }

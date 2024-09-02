@@ -12,6 +12,8 @@ export default class GeneralInfo {
     public element_stats: ElementStat[] = [];
     public events: Event[] = [];
     public fixtures: Fixture[] = [];
+    public currentGameWeekId: number = 0;
+    public nextGameWeekId: number = 0;
 
     constructor(data: Partial<GeneralInfo> = {}) {
         Object.assign(this, data);
@@ -24,7 +26,9 @@ export default class GeneralInfo {
             element_types: this.element_types,
             element_stats: this.element_stats,
             events: this.events,
-            fixtures: this.fixtures
+            fixtures: this.fixtures,
+            currentGameWeekId: this.currentGameWeekId,
+            nextGameWeekId: this.nextGameWeekId
         };
     };
 }
