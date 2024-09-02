@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
+import { Routing } from "./router/Routing";
 
 function App() {
     return (
@@ -7,7 +8,9 @@ function App() {
                 <Navbar />
             </nav>
             <main className="flex-1 overflow-y-auto"> {/* Content area */}
-                {/* Content goes here */}
+                <div>
+                    <Routing />
+                </div>
             </main>
         </div>
     )
