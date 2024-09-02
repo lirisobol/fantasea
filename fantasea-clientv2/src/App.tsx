@@ -1,13 +1,10 @@
-import ThemeToggle from "./components/shared/ThemeToggle/ThemeToggle";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
     return (
         <div className="flex flex-col h-screen">
-            <nav className="bg-blue-500 text-white h-7vh"> {/* Navbar */}
-                <div className="navbar">
-                    <ThemeToggle />
-                  <a className="btn btn-ghost normal-case text-xl">Logo</a>
-                </div>
+            <nav className="h-7vh"> {/* Navbar */}
+                <Navbar />
             </nav>
             <main className="flex-1 overflow-y-auto"> {/* Content area */}
                 {/* Content goes here */}

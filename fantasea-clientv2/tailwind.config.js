@@ -13,17 +13,17 @@ export default {
     },
   },
   plugins: [
-    require('daisyui'),
+    // require('daisyui'),
   ],
-  daisyui: {
-    themes: false,
-    darkTheme: "dark",
-    base: true,
-    styled: true,
-    utils: true,
-    prefix:"",
-    logs: true,
-    themeRoot: ":root",
-  }
+//   daisyui: {
+//     themes: false,
+//     darkTheme: "dark",
+//     base: true,
+//     styled: true,
+//     utils: true,
+//     prefix:"",
+//     logs: true,
+//     themeRoot: ":root",
+//   }
 }
 
