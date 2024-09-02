@@ -1,6 +1,7 @@
 import { ColDef } from "ag-grid-community";
 import { Team } from "../../../models/gen-info/Team";
 import { agHelpers } from "../ag-helpers";
+import { CustomNameCell } from "../../../components/Tables/CustomCells/CustomPlayerNameCell/CustomPlayerNameCell";
 
 class ClubsTableHelpers {
     public setColDef(teams: Team[], currentGameWeekId:number, numberOfGames:number): ColDef[] {
@@ -11,6 +12,7 @@ class ClubsTableHelpers {
                 minWidth:100,
                 width:150,
                 flex:1,
+                cellRenderer: CustomNameCell
             },
             {
                 headerName: 'Points',
@@ -21,7 +23,7 @@ class ClubsTableHelpers {
             },
             {
                 headerName: 'Position',
-                field: 'Position',
+                field: 'position',
                 minWidth:100,
                 width:150,
                 flex:1

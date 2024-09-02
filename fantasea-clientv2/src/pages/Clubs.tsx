@@ -1,6 +1,6 @@
 import { ClubsTable } from "../components/Tables/ClubsTable"
 import { Team } from "../models/gen-info/Team";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppSelector } from "../store/store";
 
 export const Clubs = ():JSX.Element => {
     const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
