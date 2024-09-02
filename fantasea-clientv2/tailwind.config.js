@@ -9,6 +9,14 @@ export default {
         height: {
             '5vh': '5vh',
             '93vh': '93vh'
+        },
+        colors: {
+            // table colors
+            'very-high': '#AAF683', // green
+            'high': '#60D394',      // lighter green
+            'mid': '#dcdcdc',       // grey
+            'low': '#FF9B85',       // orange
+            'very-low': '#EE6055',  // red
         }
     },
   },
