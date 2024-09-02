@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store"
 import { fetchGeneralInfo } from "../../store/slices/general-info";
 import { ResearchTabs } from "../../components/ResearchTabs/ResearchTabs";
-import styles from "./Research.module.scss";
 
 export function Research():JSX.Element {
     const dispatch = useAppDispatch();
@@ -17,8 +16,6 @@ export function Research():JSX.Element {
     if(status === 'loading') return <p>Loading...</p>
     if(status === 'failed') return <p>Error: {error}</p>
     return (
-        <div className={styles.ResearchWrapper}>
-            <ResearchTabs />
-        </div>
+        <ResearchTabs />
     )
 }
