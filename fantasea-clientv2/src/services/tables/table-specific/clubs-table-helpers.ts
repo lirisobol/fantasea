@@ -9,7 +9,7 @@ class ClubsTableHelpers {
             {
                 headerName: 'Team Name',
                 field: 'name',
-                minWidth:100,
+                minWidth:130,
                 width:150,
                 flex:1,
                 cellRenderer: CustomNameCell
@@ -18,14 +18,14 @@ class ClubsTableHelpers {
                 headerName: 'Points',
                 field: 'points',
                 minWidth:75,
-                width:100,
+                width:75,
                 flex:1
             },
             {
                 headerName: 'Position',
                 field: 'position',
-                minWidth:100,
-                width:150,
+                minWidth:75,
+                width:75,
                 flex:1
             },
             ...agHelpers.generateFixtureCols(teams, currentGameWeekId, numberOfGames)
