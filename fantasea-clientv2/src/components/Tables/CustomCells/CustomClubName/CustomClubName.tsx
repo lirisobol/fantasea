@@ -1,11 +1,11 @@
 import React from 'react';
 import { Team } from '../../../../models/gen-info/Team';
 
-interface CustomNameCellProps {
+interface CustomClubNameProps {
     data: Team; 
 }
 
-export const CustomNameCell: React.FC<CustomNameCellProps> = ({ data }) => {
+export const CustomClubName: React.FC<CustomClubNameProps> = ({ data }) => {
     const jerseyImagePath = data && data.code ? `/assets/images/kits/${data.code}.png` : '/assets/images/kits/default.png';
 
     return (
