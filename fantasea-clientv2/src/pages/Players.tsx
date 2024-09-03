@@ -11,10 +11,12 @@ export const Players = ():JSX.Element => {
         <div>
             <PlayersTableFilterGroup />
             {teams && 
-                <PlayersTable 
-                    teams={teams}
-                    currentGameWeekId={currentGameWeekId}
-                />
+                <div className="mt-11">
+                    <PlayersTable 
+                        teams={teams}
+                        currentGameWeekId={currentGameWeekId}
+                    />
+                </div>
             }
         </div>
     )
