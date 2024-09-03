@@ -2,12 +2,67 @@ import { ColDef } from "ag-grid-community";
 import { Fixture } from "../../models/gen-info/Fixture";
 import { Team } from "../../models/gen-info/Team";
 import { OpponentCell } from "../../components/Tables/CustomCells/OpponentCell/OpponentCell";
-
+import { Element } from "../../models/gen-info/Element";
 class AgHelpers {  
     /* Fixture Cols Configs And Helpers
     --------------------------------------------------------------------------------------------------------------------------------
     */
-    public generateFixtureCols(teams: Team[], currentGameWeekId: number, numberOfGames:number): ColDef[] {
+    public generatePlayerFixtureCols(teams: Team[], players: Element[], currentGameWeekId: number, numberOfGames: number): ColDef[] {
+        return Array.from({ length: numberOfGames }, (_, i) => ({
+            headerName: `GW ${currentGameWeekId + i + 1}`,
+            width: 75,
+            minWidth: 75,
+            flex: 1,
+            cellRenderer: OpponentCell,
+            valueGetter: (params) => {
+                const player = params.data as Element;
+                const team = teams.find(t => t.id === player.team);
+                if (!team || !team.fixtures) return '-'; // Handle no team or no fixtures case
+
+                const fixtures = this.getNextGamesForClub(team.fixtures, currentGameWeekId);
+                if (fixtures.length > i) {
+                    const fixture = fixtures[i];
+                    const opponentId = team.id === fixture.team_h ? fixture.team_a : fixture.team_h;
+                    const homeOrAway = team.id === fixture.team_h ? "(H)" : "(A)";
+                    const opponentName = this.getTeamShortNameById(opponentId, teams);
+                    return `${opponentName} ${homeOrAway}`;
+                }
+                
+                return '-';
+            },
+            cellClassRules: {
+                'bg-very-high': (params) => {
+                    const team = this.getTeamByPlayer(params.data, teams);
+                    const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
+                    return this.determineStrength(fixture, team, teams) === 'very-high';
+                    
+                },
+                'bg-high': (params) => {
+                    const team = this.getTeamByPlayer(params.data, teams);
+                    const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
+                    return this.determineStrength(fixture, team, teams) === 'high';
+                    
+                },
+                'bg-mid': (params) => {
+                    const team = this.getTeamByPlayer(params.data, teams);
+                    const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
+                    return this.determineStrength(fixture, team, teams) === 'mid'
+                },
+                'bg-low': (params) => {
+                    const team = this.getTeamByPlayer(params.data, teams);
+                    const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
+                    return this.determineStrength(fixture, team, teams) === 'low'
+                },
+                'bg-very-low': (params) => {
+                    const team = this.getTeamByPlayer(params.data, teams);
+                    const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
+                    return this.determineStrength(fixture, team, teams) === 'very-low'
+                },
+
+            }
+        }));
+    }
+    public generateClubFixtureCols(teams: Team[], currentGameWeekId: number, numberOfGames:number): ColDef[] {
         return Array.from({ length: numberOfGames }, (_, i) => ({
             headerName: `Gameweek ${currentGameWeekId + i + 1}`,
             width: 75,
@@ -27,23 +82,23 @@ class AgHelpers {
             },
             cellClassRules: {
                 'bg-very-high': (params) => {
-                    const fixture = this.getFixtureForStrengthFunction(params.data, i, currentGameWeekId);
+                    const fixture = this.generateClubFixtureForStrength(params.data, i, currentGameWeekId);
                     return this.determineStrength(fixture, params.data, teams) === 'very-high';
                 },
                 'bg-high': (params) => {
-                    const fixture = this.getFixtureForStrengthFunction(params.data, i, currentGameWeekId);
+                    const fixture = this.generateClubFixtureForStrength(params.data, i, currentGameWeekId);
                     return this.determineStrength(fixture, params.data, teams) === 'high';
                 },
                 'bg-mid': (params) => {
-                    const fixture = this.getFixtureForStrengthFunction(params.data, i, currentGameWeekId);
+                    const fixture = this.generateClubFixtureForStrength(params.data, i, currentGameWeekId);
                     return this.determineStrength(fixture, params.data, teams) === 'mid';
                 },
                 'bg-low': (params) => {
-                    const fixture = this.getFixtureForStrengthFunction(params.data, i, currentGameWeekId);
+                    const fixture = this.generateClubFixtureForStrength(params.data, i, currentGameWeekId);
                     return this.determineStrength(fixture, params.data, teams) === 'low';
                 },
                 'bg-very-low': (params) => {
-                    const fixture = this.getFixtureForStrengthFunction(params.data, i, currentGameWeekId);
+                    const fixture = this.generateClubFixtureForStrength(params.data, i, currentGameWeekId);
                     return this.determineStrength(fixture, params.data, teams) === 'very-low';
                 },
             }
@@ -77,7 +132,14 @@ class AgHelpers {
         return 'mid';
     }
     
-    public getFixtureForStrengthFunction(team: Team, gameIndex: number, currentGameWeekId: number): Fixture | null {
+    public generateClubFixtureForStrength(team: Team, gameIndex: number, currentGameWeekId: number): Fixture | null {
+        const fixtures = this.getNextGamesForClub(team.fixtures, currentGameWeekId);
+        return fixtures.length > gameIndex ? fixtures[gameIndex] : null;
+    }
+
+    public generatePlayersFixtureForStrength(player: Element, teams: Team[], gameIndex: number, currentGameWeekId: number): Fixture | null {
+        const teamId = player.team_code;
+        const team = teams.find(t => t.code === teamId)
         const fixtures = this.getNextGamesForClub(team.fixtures, currentGameWeekId);
         return fixtures.length > gameIndex ? fixtures[gameIndex] : null;
     }
@@ -98,6 +160,12 @@ class AgHelpers {
     public getTeamShortNameById(teamId: number, teams: Team[]): string {
         const team = teams.find(team => team.id === teamId);
         return team ? team.short_name : 'Unknown';
+    }
+
+    // Get team by player
+    public getTeamByPlayer(player: Player, teams: Team[]): Team {
+        const teamId = player.team_code;
+        return teams.find(t => t.code === teamId) as Team;
     }
 
     
