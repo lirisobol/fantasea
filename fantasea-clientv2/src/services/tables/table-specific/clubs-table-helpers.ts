@@ -28,7 +28,7 @@ class ClubsTableHelpers {
                 width:75,
                 flex:1
             },
-            ...agHelpers.generateFixtureCols(teams, currentGameWeekId, numberOfGames)
+            ...agHelpers.generateClubFixtureCols(teams, currentGameWeekId, numberOfGames)
         ];
         return cols
     }
