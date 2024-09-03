@@ -5,17 +5,23 @@ import { AgGridReact } from 'ag-grid-react';
 import { useEffect, useState } from 'react';
 import { playersTableHelpers } from '../../services/tables/table-specific/players-table-helpers';
 import { Team } from '../../models/gen-info/Team';
-import { useAppDispatch } from '../../store/store';
+import { Element } from '../../models/gen-info/Element';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { fetchGeneralInfo } from '../../store/slices/gen-info';
+import useFilteredPlayers from '../../hooks/useFilteredPlayers';
 
 interface PlayersTableProps {
     teams: Team[];
-    players: Element[];
     currentGameWeekId: number
 }
-export const PlayersTable = ({teams, players, currentGameWeekId}: PlayersTableProps):JSX.Element => {
+export const PlayersTable = ({teams, currentGameWeekId}: PlayersTableProps):JSX.Element => {
     const dispatch = useAppDispatch();
     const [columnDefs, setColumnDefs] = useState<ColDef[]>([]);
+
+    const teamCode = useAppSelector((state) => state.filters.teamCode);
+    const positionType = useAppSelector((state) => state.filters.positionType);
+    const searchQuery = useAppSelector((state) => state.filters.searchQuery);
+    const players:Element[] = useFilteredPlayers(teamCode, positionType, searchQuery);
 
     useEffect(() => {
         if(teams && players  && currentGameWeekId) {
