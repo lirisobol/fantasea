@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Navbar from "./components/Navbar/Navbar";
 import { Routing } from "./router/Routing";
 import { fetchGeneralInfo } from "./store/slices/gen-info";
 import { useAppDispatch, useAppSelector } from "./store/store";
 import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
     const dispatch = useAppDispatch();
