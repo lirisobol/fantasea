@@ -21,14 +21,20 @@ export const PlayersTable = ({teams, currentGameWeekId}: PlayersTableProps):JSX.
     const teamCode = useAppSelector((state) => state.filters.teamCode);
     const positionType = useAppSelector((state) => state.filters.positionType);
     const searchQuery = useAppSelector((state) => state.filters.searchQuery);
-    const players:Element[] = useFilteredPlayers(teamCode, positionType, searchQuery);
+    const minPrice = useAppSelector((state) => state.filters.minPrice);
+    const maxPrice = useAppSelector((state) => state.filters.maxPrice);
 
+    const players:Element[] = useFilteredPlayers(teamCode, positionType, searchQuery, minPrice, maxPrice);
     useEffect(() => {
         if(teams && players  && currentGameWeekId) {
+            
             const cols = playersTableHelpers.setColDef(teams, players, currentGameWeekId, 5);
             setColumnDefs(cols);
         }
-        dispatch(fetchGeneralInfo());
+        else {
+
+            dispatch(fetchGeneralInfo());
+        }
     },[])
 
 
