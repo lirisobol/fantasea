@@ -6,7 +6,7 @@ import { useAppSelector } from "../store/store";
 export const Players = ():JSX.Element => {
     const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
     const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
-    
+
     return (
         <div>
             <PlayersTableFilterGroup />
