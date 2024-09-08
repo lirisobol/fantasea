@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { PriceRangeFilter } from '../PriceRangeFilter';
+import { PriceRangeFilter } from '../../Filters/PriceRangeFilter';
 
 interface AdvancedFiltersModalProps {
     show: boolean;

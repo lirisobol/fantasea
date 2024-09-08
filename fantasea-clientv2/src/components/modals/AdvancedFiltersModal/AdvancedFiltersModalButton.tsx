@@ -1,8 +1,8 @@
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/20/solid";
-interface ModalButtonProps {
+interface AdvancedFiltersModalButtonProps {
     openModal:() => void;
 }
-export const ModalButton = ({openModal}:ModalButtonProps) => {
+export const AdvancedFiltersModalButton = ({openModal}:AdvancedFiltersModalButtonProps) => {
     return (
         <div className="content-center mt-2">
             <button

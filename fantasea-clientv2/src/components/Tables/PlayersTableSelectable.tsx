@@ -9,6 +9,7 @@ import { fetchGeneralInfo } from "../../store/slices/gen-info";
 import { AgGridReact } from "ag-grid-react";
 import 'ag-grid-community/styles/ag-grid.css'; 
 import 'ag-grid-community/styles/ag-theme-quartz.css';
+import { addPlayer } from "../../store/slices/player-compare";
 
 interface PlayersTableSelectableProps {
     onHide: () => void;
@@ -42,8 +43,7 @@ export const PlayersTableSelectable = ({onHide}: PlayersTableSelectableProps):JS
         const selectedNode = event.api.getSelectedNodes()[0];
         const selectedData = selectedNode ? selectedNode.data : null;
         if (selectedData) {
-            console.log(selectedData);
-            
+            dispatch(addPlayer(selectedData))
             onHide();
         }
     }, [dispatch, onHide]);
