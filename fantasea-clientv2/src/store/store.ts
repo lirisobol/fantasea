@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import genInfoReducer from "./slices/gen-info";
 import filterReducer from "./slices/filters";
+import playerCompare from "./slices/player-compare";
 
 export const store = configureStore({
     reducer: {
         genInfo: genInfoReducer,
-        filters: filterReducer
+        filters: filterReducer,
+        playerCompare: playerCompare,
     }
 })
 export type RootState = ReturnType<typeof store.getState>;
