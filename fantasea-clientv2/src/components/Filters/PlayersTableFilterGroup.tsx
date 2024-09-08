@@ -1,9 +1,9 @@
 import { useState } from "react"
-import AdvancedFiltersModal from "./AdvancedFiltersModal/AdvancedFiltersModal"
-import { ModalButton } from "./ModalButton/ModalButton"
 import ClubSelect from "./ClubSelect"
 import PositionSelect from "./PositionSelect"
 import PlayerSearch from "./PlayerSearch"
+import { AdvancedFiltersModalButton } from "../modals/AdvancedFiltersModal/AdvancedFiltersModalButton"
+import AdvancedFiltersModal from "../modals/AdvancedFiltersModal/AdvancedFiltersModal"
 
 export const PlayersTableFilterGroup = ():JSX.Element => {
     const [modalShow, setModalShow] = useState<boolean>(false);
@@ -22,7 +22,7 @@ export const PlayersTableFilterGroup = ():JSX.Element => {
                     <PositionSelect />
                 </div>
                 <div className="flex sm:flex-row sm:gap-1 justify-center">
-                    <ModalButton openModal={handleModalOpen}/>
+                    <AdvancedFiltersModalButton openModal={handleModalOpen}/>
                 </div>
             <AdvancedFiltersModal show={modalShow} onHide={handleModalClose}/>
         </div>

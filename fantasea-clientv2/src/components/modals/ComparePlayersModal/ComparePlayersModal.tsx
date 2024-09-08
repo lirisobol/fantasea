@@ -1,12 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { PriceRangeFilter } from '../PriceRangeFilter';
+import { PlayersTableSelectable } from '../../Tables/PlayersTableSelectable';
+import { PlayersTableFilterGroup } from '../../Filters/PlayersTableFilterGroup';
 
-interface AdvancedFiltersModalProps {
+interface ComparePlayersModal {
     show: boolean;
     onHide: () => void;
 }
-export default function AdvancedFiltersModal({show, onHide}: AdvancedFiltersModalProps) {
+export default function ComparePlayersModal({show, onHide}: ComparePlayersModal) {
 
   return (
     <>
@@ -35,15 +36,16 @@ export default function AdvancedFiltersModal({show, onHide}: AdvancedFiltersModa
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
+                <Dialog.Panel className="w-full max-w-7xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Advanced Filters
+                    Select A Player
                   </Dialog.Title>
                   <div className="mt-2">
-                    <PriceRangeFilter />
+                    <PlayersTableFilterGroup />
+                    <PlayersTableSelectable onHide={onHide} />
                   </div>
 
                   <div className="mt-4">

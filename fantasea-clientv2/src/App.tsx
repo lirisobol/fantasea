@@ -21,7 +21,7 @@ function App() {
             </nav>
             <main className="flex-1 overflow-y-auto"> {/* Content area */}
                 {status === 'loading' && <LoadingSpinner />}
-                <div className="mt-3">
+                <div>
                     <Routing />
                 </div>
             </main>
