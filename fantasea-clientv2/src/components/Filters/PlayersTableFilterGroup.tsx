@@ -15,11 +15,15 @@ export const PlayersTableFilterGroup = ():JSX.Element => {
         setModalShow(false)
     };
     return (
-        <div className="flex flex-col gap-0 sm:flex-row sm:gap-1 w-full shadow p-1 justify-start">
-            <PlayerSearch />
-            <ClubSelect />
-            <PositionSelect />
-            <ModalButton openModal={handleModalOpen}/>
+        <div className="flex flex-col gap-0 sm:flex-row sm:gap-1 w-full shadow p-1 justify-between">
+                <div className="flex flex-col gap-0 sm:flex-row sm:gap-1">
+                    <PlayerSearch />
+                    <ClubSelect />
+                    <PositionSelect />
+                </div>
+                <div className="flex sm:flex-row sm:gap-1 justify-center">
+                    <ModalButton openModal={handleModalOpen}/>
+                </div>
             <AdvancedFiltersModal show={modalShow} onHide={handleModalClose}/>
         </div>
     )
