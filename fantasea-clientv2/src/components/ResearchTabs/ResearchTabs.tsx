@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Players as PlayersPageComponent } from '../../pages/Players';
 import { Clubs as ClubsPageComponent } from '../../pages/Clubs';
+import { Compare as PlayerCompareComponent } from '../../pages/Compare';
 const tabComponents = {
     'Players': PlayersPageComponent,
     'Clubs': ClubsPageComponent,
+    'Compare Players': PlayerCompareComponent
 };
 
 const tabs = [
     { name: 'Players', current: true },
     { name: 'Clubs', current: false },
+    { name: 'Compare Players', current: false },
 ];
 
 function classNames(...classes) {
@@ -35,7 +38,7 @@ export default function ResearchTabs() {
               ))}
             </select>
           </div>
-          <div className="">
+          <div>
             <div className="border-b border-gray-200">
               <nav aria-label="Tabs" className="-mb-px flex">
                 {tabs.map((tab) => (
