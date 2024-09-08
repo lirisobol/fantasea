@@ -2,6 +2,7 @@ import { Disclosure, DisclosurePanel } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 
 const navigation = [
+    { name: 'Research', href: '/research' },
   { name: 'Clubs', href: '/clubs' },
   { name: 'Players', href: '/players' },
 ];

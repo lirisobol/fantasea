@@ -25,16 +25,16 @@ export const PlayersTable = ({teams, currentGameWeekId}: PlayersTableProps):JSX.
     const maxPrice = useAppSelector((state) => state.filters.maxPrice);
 
     const players:Element[] = useFilteredPlayers(teamCode, positionType, searchQuery, minPrice, maxPrice);
-    console.log(players);
-    
-
     useEffect(() => {
         if(teams && players  && currentGameWeekId) {
             
             const cols = playersTableHelpers.setColDef(teams, players, currentGameWeekId, 5);
             setColumnDefs(cols);
         }
-        dispatch(fetchGeneralInfo());
+        else {
+
+            dispatch(fetchGeneralInfo());
+        }
     },[])
 
 
