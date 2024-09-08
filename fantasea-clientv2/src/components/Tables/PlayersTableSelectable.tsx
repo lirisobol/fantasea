@@ -1,10 +1,7 @@
-// interface PlayersTableSelectableProps {
-//     teams: Team[];
-//     currentGameWeekId: number
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import { ColDef } from "ag-grid-community";
+import { ColDef, SelectionChangedEvent } from "ag-grid-community";
 import useFilteredPlayers from "../../hooks/useFilteredPlayers";
 import { Element } from "../../models/gen-info/Element";
 import { playersTableHelpers } from "../../services/tables/table-specific/players-table-helpers";
@@ -13,8 +10,10 @@ import { AgGridReact } from "ag-grid-react";
 import 'ag-grid-community/styles/ag-grid.css'; 
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 
-// }
-export const PlayersTableSelectable = ():JSX.Element => {
+interface PlayersTableSelectableProps {
+    onHide: () => void;
+}
+export const PlayersTableSelectable = ({onHide}: PlayersTableSelectableProps):JSX.Element => {
     
     const dispatch = useAppDispatch();
     const [columnDefs, setColumnDefs] = useState<ColDef[]>([]);
@@ -28,7 +27,6 @@ export const PlayersTableSelectable = ():JSX.Element => {
     const minPrice = useAppSelector((state) => state.filters.minPrice);
     const maxPrice = useAppSelector((state) => state.filters.maxPrice);
 
-    
     const players:Element[] = useFilteredPlayers(teamCode, positionType, searchQuery, minPrice, maxPrice);
     useEffect(() => {
         if(teams && players  && currentGameWeekId) {
@@ -39,6 +37,16 @@ export const PlayersTableSelectable = ():JSX.Element => {
             dispatch(fetchGeneralInfo());
         }
     },[])
+    
+    const onSelectionChanged = useCallback((event:SelectionChangedEvent) => {
+        const selectedNode = event.api.getSelectedNodes()[0];
+        const selectedData = selectedNode ? selectedNode.data : null;
+        if (selectedData) {
+            console.log(selectedData);
+            
+            onHide();
+        }
+    }, [dispatch, onHide]);
 
     return (
         <div className="ag-theme-quartz">
@@ -47,6 +55,9 @@ export const PlayersTableSelectable = ():JSX.Element => {
                 rowData={players}
                 rowHeight={75}
                 domLayout='autoHeight'
+                rowSelection={"single"}
+                onSelectionChanged={onSelectionChanged}
+
             />
         </div>
     )

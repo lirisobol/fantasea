@@ -45,7 +45,7 @@ export default function ComparePlayersModal({show, onHide}: ComparePlayersModal)
                   </Dialog.Title>
                   <div className="mt-2">
                     <PlayersTableFilterGroup />
-                    <PlayersTableSelectable />
+                    <PlayersTableSelectable onHide={onHide} />
                   </div>
 
                   <div className="mt-4">
