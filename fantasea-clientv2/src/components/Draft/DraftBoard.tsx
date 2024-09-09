@@ -1,9 +1,25 @@
+import { useCallback, useState } from 'react';
 import field from '../../assets/field.jpg';
 import { PlayerCard } from './PlayerCard';
+import { SelectionChangedEvent } from 'ag-grid-community';
+import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
 
 export const DraftBoard = () => {
     const boardBackground = `url(${field})`;
+    const [draftModalShow, setDraftModalShow] = useState<boolean>(false);
+    const handleDraftModalOpen = () => setDraftModalShow(true);
+    const handleDraftModalClose = () => setDraftModalShow(false);
 
+
+
+    const onSelectionChanged = useCallback((event:SelectionChangedEvent) => {
+        const selectedNode = event.api.getSelectedNodes()[0];
+        const selectedData = selectedNode ? selectedNode.data : null;
+        if (selectedData) {
+            console.log(selectedData);
+            handleDraftModalClose();
+        }
+    }, []);
     return (
         <div 
             className="h-full flex flex-col"
@@ -17,24 +33,24 @@ export const DraftBoard = () => {
                 <div className="grid grid-rows-4 gap-20 px-4">
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Goalkeepers */}
                         <h3 className="text-md font-semibold"></h3>
-                        <PlayerCard />
+                        <PlayerCard onAddPlayer={handleDraftModalOpen}/>
                     </div>
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Defenders */}
                         <h3 className="text-md font-semibold"></h3>
                         {Array.from({ length: 4 }).map((_, index) => (
-                            <PlayerCard key={index}/>
+                            <PlayerCard key={index} onAddPlayer={handleDraftModalOpen}/>
                         ))}
                     </div>
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Midfielders */}
                         <h3 className="text-md font-semibold"></h3>
                         {Array.from({ length: 3 }).map((_, index) => (
-                            <PlayerCard key={index}/>
+                            <PlayerCard key={index} onAddPlayer={handleDraftModalOpen}/>
                         ))}
                     </div>
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Attackers */}
                         <h3 className="text-md font-semibold"></h3>
                         {Array.from({ length: 3 }).map((_, index) => (
-                            <PlayerCard key={index}  />
+                            <PlayerCard key={index} onAddPlayer={handleDraftModalOpen}/>
                         ))}
                     </div>
                 </div>
@@ -45,10 +61,12 @@ export const DraftBoard = () => {
             <div className="flex-1 p-3 content-center"> {/* Bench section */}
                 <div className="flex justify-around px-4">
                     {Array.from({ length: 4 }).map((_, index) => (
-                        <PlayerCard key={index} />
+                        <PlayerCard key={index} onAddPlayer={handleDraftModalOpen} />
                     ))}
                 </div>
             </div>
+
+            <DraftPlayersModal show={draftModalShow} onHide={handleDraftModalClose} onSelection={onSelectionChanged}/>
         </div>
     );
 };
