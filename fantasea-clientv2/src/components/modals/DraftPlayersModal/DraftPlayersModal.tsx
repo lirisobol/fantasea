@@ -1,15 +1,18 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { PlayersTableSelectable } from '../../Tables/PlayersTableSelectable';
-import { PlayersTableFilterGroup } from '../../Filters/PlayersTableFilterGroup';
+import { PlayersDraftTableSelectable } from '../../Tables/PlayersDraftTableSelectable';
+import { PlayersDraftTableFilterGroup } from '../../Filters/PlayersDraftTableFilterGroup';
+import { XMarkIcon } from '@heroicons/react/16/solid';
 
 interface DraftPlayersModalProps {
     show: boolean;
     onHide: () => void;
     onSelection: () => void;
+    preSetPosition: number;
 }
-export default function DraftPlayersModal({show, onHide, onSelection}: DraftPlayersModalProps) {
-
+export default function DraftPlayersModal({show, onHide, onSelection, preSetPosition}: DraftPlayersModalProps) {
+    console.log(preSetPosition);
+    
   return (
     <>
       <Transition appear show={show} as={Fragment}>
@@ -38,6 +41,16 @@ export default function DraftPlayersModal({show, onHide, onSelection}: DraftPlay
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-7xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+                    <button
+                        type="button"
+                        onClick={() => onHide()}
+                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                    <span className="sr-only">Close</span>
+                    <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                    </button>
+            </div>
                 <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
@@ -45,8 +58,8 @@ export default function DraftPlayersModal({show, onHide, onSelection}: DraftPlay
                     Select A Player
                   </Dialog.Title>
                   <div className="mt-2">
-                    <PlayersTableFilterGroup />
-                    <PlayersTableSelectable onSelection={onSelection}/>
+                    <PlayersDraftTableFilterGroup />
+                    <PlayersDraftTableSelectable  preSetPosition={preSetPosition} onSelection={onSelection}/>
                   </div>
 
                   <div className="mt-4">

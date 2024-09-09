@@ -1,10 +1,28 @@
 import { PlusIcon } from '@heroicons/react/20/solid';
 import { Element } from '../../models/gen-info/Element';
+import { useAppDispatch } from '../../store/store';
+import { useCallback, useState } from 'react';
+import { addPlayerToSquad } from '../../store/slices/draft';
+import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
 interface PlayerCardProps {
     player: Element;
-    onAddPlayer: () => void;
+    elementType: number;
 }
-export const PlayerCard = ({ player, onAddPlayer }: PlayerCardProps): JSX.Element => {
+export const PlayerCard = ({ player, elementType}: PlayerCardProps): JSX.Element => {
+    
+    const dispatch = useAppDispatch();
+    const [draftModalShow, setDraftModalShow] = useState<boolean>(false);
+
+    const handleDraftModalOpen = () => setDraftModalShow(true);
+    const handleDraftModalClose = () => setDraftModalShow(false);
+
+    const onSelectionChanged = useCallback((selectedPlayer: Element) => {
+        if (selectedPlayer) {
+            dispatch(addPlayerToSquad({ player: selectedPlayer, element_type: player.element_type }));
+            handleDraftModalClose();
+        }
+    }, [dispatch, player.element_type]);
+
     return (
         <div className="player-card bg-slate-300 rounded-lg flex flex-col justify-center content-center text-xs sm:text-base">
             {player && !player.isPlaceholder ? (
@@ -30,10 +48,13 @@ export const PlayerCard = ({ player, onAddPlayer }: PlayerCardProps): JSX.Elemen
                     </div>
                 </>
             ) : (
-                <button onClick={onAddPlayer} className="flex flex-col items-center justify-center h-10 w-10 border-2 border-dashed border-gray-400 rounded-lg">
+                <button onClick={handleDraftModalOpen} className="flex flex-col items-center justify-center h-10 w-10 border-2 border-dashed border-gray-400 rounded-lg">
                     <PlusIcon className="h-5 w-5 text-gray-500"/>
                 </button>
             )}
+            <DraftPlayersModal show={draftModalShow} onHide={handleDraftModalClose} onSelection={onSelectionChanged} preSetPosition={elementType} />
+
         </div>
+        
     );
 };
