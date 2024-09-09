@@ -10,14 +10,8 @@ const useFilteredPlayers = (
     maxPrice: number
     ) => {
     const players = useAppSelector<Element[]>((state) => state.genInfo.data?.elements);
-    
     return useMemo(() => {
-        if (!players) return [];
-        console.log(minPrice);
-        console.log(maxPrice);
-        
-        
-
+        if (!players) return [];        
         return players.filter(player => {
             const matchesTeam = teamCode === 0 || player.team_code === teamCode;
             const matchesPosition = selectedPositionType === 0 || player.element_type === selectedPositionType;
@@ -25,8 +19,6 @@ const useFilteredPlayers = (
                 player.first_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 player.second_name.toLowerCase().includes(searchQuery.toLowerCase());
 
-            
-            
             const actualPrice = player.now_cost / 10 
             const matchesPrice = actualPrice >= minPrice && actualPrice <= maxPrice; 
 

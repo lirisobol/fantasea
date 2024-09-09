@@ -3,10 +3,10 @@ import { ComparePlayersModalButton } from "../components/modals/ComparePlayersMo
 import ComparePlayersModal from "../components/modals/ComparePlayersModal/ComparePlayersModal";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { Element } from "../models/gen-info/Element";
-import { PlayerComparison } from "../components/PlayerComparison/PlayerComparison";
 import { ClearAllButton } from "../components/PlayerComparison/ClearAllButton";
 import ClearAllModal from "../components/PlayerComparison/ClearAllModal";
 import { clearAllPlayers } from "../store/slices/player-compare";
+import { PlayerComparisonCard } from "../components/PlayerComparison/PlayerComparison";
 
 export const Compare = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ export const Compare = (): JSX.Element => {
             </div>
             <div className="flex flex-row flex-wrap justify-center gap-4">
                 {selectedPlayers.map(player => (
-                    <PlayerComparison key={player.id} player={player}/>
+                    <PlayerComparisonCard key={player.id} player={player}/>
                 ))}
 
             </div>

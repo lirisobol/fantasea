@@ -1,18 +1,22 @@
 import { Element } from "../../models/gen-info/Element"
 import { PlayerRemoverButton } from "./PlayerRemoverButton";
 
-interface PlayerComparisonProps {
+interface PlayerComparisonCardProps {
     player: Element
 }
 
-export const PlayerComparison = ({ player }: PlayerComparisonProps): JSX.Element => {
+export const PlayerComparisonCard = ({ player }: PlayerComparisonCardProps): JSX.Element => {
     console.log(player);
-    
+    const jerseyImagePath = player && player.team_code ? `/assets/images/kits/${player.team_code}.png` : '/assets/images/kits/default.png';
+
     return (
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6 flex justify-between">
                 <div>
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">{player.web_name}</h3>
+                    <div className="flex gap-10">
+                        <p className="text-lg leading-6 font-medium text-gray-900">{player.first_name} {player.second_name}</p>
+                        <img src={jerseyImagePath} alt="jersey" style={{ width: '25px', height: '25px', marginRight: '8px' }} />
+                    </div>
                     <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and stats.</p>
                 </div>
                 <div>
