@@ -2,7 +2,7 @@ import { ResetDraftButton } from "./ResetDraftButton"
 
 export const DraftControls = ():JSX.Element => {
     return (
-        <div className="flex flex-row justify-center">
+        <div className="flex flex-row justify-center p-2">
             <ResetDraftButton />
         </div>
     )

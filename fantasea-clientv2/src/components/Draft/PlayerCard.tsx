@@ -31,31 +31,29 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
         dispatch(removePlayerFromSquad({ index, element_type: elementType }));
     }, [dispatch, index, elementType]);
     return (
-        <div className="player-card bg-slate-300 rounded-lg flex flex-col justify-center content-center text-xs sm:text-base">
+        <div className="player-card text-xs sm:text-sm h-20 w-20">
             {player && !player.isPlaceholder ? (
                 <>
-                    <div className='flex flex-col content-center justify-center items-center'>
-                        <div className="relative right-5 top-0 hidden sm:block">
-                            <button
-                                type="button"
-                                onClick={() => removePlayer()}
-                                className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                >
-                            <XMarkIcon aria-hidden="true" className="h-5 w-5" />
-                            </button>
-                        </div>
-                        <div className='flex flex-col p-3 items-center'>
-                            <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-10 w-10 mr-1"/>
-                            <div className='font-medium'>{player.web_name}</div>
+                    <div className='flex flex-col border'>
+                        <button
+                            type="button"
+                            onClick={() => removePlayer()}
+                            className="rounded-md text-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            >
+                        <XMarkIcon aria-hidden="true" className="h-5 w-5" />
+                        </button>
+                        <div className='flex flex-col items-center justify-center content-center'>
+                            <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-14 w-14"/>
+                            <div className='font-medium bg-slate-300 w-full text-center'>{player.web_name}</div>
                         </div>
 
-                        <div className='bg-slate-500 w-full p-2 flex flex-row gap-3'>
-                            <span className='text-slate-100 flex flex-col text-xs'>
+                        <div className='bg-slate-500 w-full flex flex-col gap-1'>
+                            <span className='text-slate-100 flex flex-row justify-between text-xs p-1'>
                                 <span>Price</span>
                                 {player.now_cost / 10}m
                             </span>
-
-                            <span className='text-slate-100 flex flex-col text-xs'>
+                            <hr></hr>
+                            <span className='text-slate-100 flex flex-row justify-between text-xs p-1'>
                                 <span>PPG</span>
                                 {player.points_per_game}
                             </span>
@@ -63,7 +61,7 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                     </div>
                 </>
             ) : (
-                <button onClick={handleDraftModalOpen} className="flex flex-col items-center justify-center h-10 w-10 border-2 border-dashed border-gray-400 rounded-lg">
+                <button onClick={handleDraftModalOpen} className="flex flex-col items-center justify-center h-20 w-20 border-2 border-dashed border-gray-400 bg-slate-600 rounded-lg">
                     <PlusIcon className="h-5 w-5 text-gray-500"/>
                 </button>
             )}

@@ -10,7 +10,7 @@ const tabComponents = {
 };
 
 const tabs = [
-    { name: 'Players', current: false },
+    { name: 'Players', current: true },
     { name: 'Clubs', current: false },
     { name: 'Compare Players', current: false },
 ];
@@ -59,7 +59,7 @@ export default function ResearchTabs() {
                 ))}
               </nav>
             </div>
-            <div className='h-93vh'>
+            <div className='flex-1 h-full'>
               {ActiveTabComponent && <ActiveTabComponent />}
             </div>
           </div>
