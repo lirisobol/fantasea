@@ -11,7 +11,6 @@ interface DraftPlayersModalProps {
     preSetPosition: number;
 }
 export default function DraftPlayersModal({show, onHide, onSelection, preSetPosition}: DraftPlayersModalProps) {
-    console.log(preSetPosition);
     
   return (
     <>
@@ -50,7 +49,7 @@ export default function DraftPlayersModal({show, onHide, onSelection, preSetPosi
                     <span className="sr-only">Close</span>
                     <XMarkIcon aria-hidden="true" className="h-6 w-6" />
                     </button>
-            </div>
+                </div>
                 <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"

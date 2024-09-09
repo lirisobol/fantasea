@@ -16,28 +16,19 @@ export const DraftBoard = () => {
         >
             <div className="h-screen content-center"> {/* Squad section */}
                 <div className="grid grid-rows-4 gap-20 px-4">
-                    <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Goalkeepers */}
-                        {players.squad.goalkeepers.map((player) => (
-                            <PlayerCard key={player.id} player={player} elementType={1}/>
-                        ))}
-                    </div>
-                    <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Defenders */}
-                        {players.squad.defenders.map((player) => (
-                            <PlayerCard key={player.id} player={player} elementType={2}/>
-                        ))}
-
-                    </div>
-                    <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Midfielders */}
-                        {players.squad.midfielders.map((player) => (
-                            <PlayerCard key={player.id} player={player} elementType={3}/>
-                        ))}
-
-                    </div>
-                    <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Attackers */}
-                        {players.squad.attackers.map((player) => (
-                            <PlayerCard key={player.id} player={player} elementType={4}/>
-                        ))}
-                    </div>
+                    {/* Iterating over each position group and passing the index and elementType */}
+                    {['goalkeepers', 'defenders', 'midfielders', 'attackers'].map((position, elementType) => (
+                        <div className="flex justify-center w-full gap-1 sm:gap-20" key={position}>
+                            {players.squad[position].map((player, index) => (
+                                <PlayerCard
+                                    key={player.id}
+                                    player={player}
+                                    index={index}
+                                    elementType={elementType + 1} // elementType starts from 1 for goalkeepers
+                                />
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
 
@@ -45,12 +36,16 @@ export const DraftBoard = () => {
 
             <div className="flex-1 p-3 content-center"> {/* Bench section */}
                 <div className="flex justify-around px-4">
-                    {players.bench.map((player) => (
-                            <PlayerCard key={player.id} player={player} elementType={1}/>
-                        ))}
+                    {players.bench.map((player, index) => (
+                        <PlayerCard
+                            key={player.id}
+                            player={player}
+                            index={index}
+                            elementType={0} // Example element type for bench could be 0 or another identifier
+                        />
+                    ))}
                 </div>
             </div>
-
         </div>
     );
 };

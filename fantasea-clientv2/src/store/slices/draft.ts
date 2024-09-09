@@ -17,6 +17,7 @@ interface DraftState {
     };
 }
 const getPlaceholders = (count: number): Element[] => Array.from({ length: count }, () => ({ isPlaceholder: true }));
+const getPlaceholder = (): Element => ({ isPlaceholder: true });
 
 function getMaxLength(position: keyof PositionGroup): number {
     switch(position) {
@@ -75,8 +76,12 @@ const draftSlice = createSlice({
                 state.players.bench.push(action.payload);
             }
         },
-        removePlayerFromSquad(state, action: PayloadAction<{ index: number, position: keyof PositionGroup }>) {
-            state.players.squad[action.payload.position].splice(action.payload.index, 1);
+        removePlayerFromSquad(state, action: PayloadAction<{ index: number, element_type: number }>) {
+            const position = elementTypeToPosition(action.payload.element_type);
+            // Replace the player with a placeholder instead of removing it
+            if (state.players.squad[position][action.payload.index]) {
+                state.players.squad[position][action.payload.index] = getPlaceholder();
+            }
         },
         removePlayerFromBench(state, action: PayloadAction<number>) {
             state.players.bench.splice(action.payload, 1);

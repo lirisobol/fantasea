@@ -15,8 +15,6 @@ interface PlayersDraftTableSelectableProps {
     onSelection: () => void;
 }
 export const PlayersDraftTableSelectable = ({preSetPosition, onSelection}: PlayersDraftTableSelectableProps):JSX.Element => {
-    console.log(preSetPosition);
-    
     const dispatch = useAppDispatch();
     const [columnDefs, setColumnDefs] = useState<ColDef[]>([]);
 
