@@ -1,6 +1,6 @@
 import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { Element } from '../../models/gen-info/Element';
-import { useAppDispatch } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useCallback, useState } from 'react';
 import { addPlayerToSquad, removePlayerFromSquad } from '../../store/slices/draft';
 import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
@@ -11,6 +11,7 @@ interface PlayerCardProps {
     elementType: number;
 }
 export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX.Element => {
+    const budget = useAppSelector((state) => state.draft.budget);
     
     const dispatch = useAppDispatch();
     const [draftModalShow, setDraftModalShow] = useState<boolean>(false);
@@ -22,8 +23,15 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
         const selectedNode = event.api.getSelectedNodes()[0];
         const selectedData = selectedNode ? selectedNode.data : null;
         if (selectedData) {
-            dispatch(addPlayerToSquad({ player: selectedData, element_type: selectedData.element_type }));
-            handleDraftModalClose();
+            if(selectedData.now_cost/10 > budget) {
+                console.log('not enough budget');
+                handleDraftModalClose();
+                
+            }
+            else {
+                dispatch(addPlayerToSquad({ player: selectedData, element_type: selectedData.element_type }));
+                handleDraftModalClose();
+            }
         }
     }, [dispatch]);
     console.log(player);

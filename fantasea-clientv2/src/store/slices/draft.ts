@@ -62,6 +62,8 @@ const draftSlice = createSlice({
             state.budget = action.payload;
         },
         addPlayerToSquad(state, action: PayloadAction<{ player: Element, element_type: number }>) {
+            const playerPrice = action.payload.player.now_cost/10
+            state.budget = state.budget - playerPrice
             const position = elementTypeToPosition(action.payload.element_type);
             const positionArray = state.players.squad[position];
             const placeholderIndex = positionArray.findIndex(p => p.isPlaceholder);
@@ -80,6 +82,8 @@ const draftSlice = createSlice({
             const position = elementTypeToPosition(action.payload.element_type);
             // Replace the player with a placeholder instead of removing it
             if (state.players.squad[position][action.payload.index]) {
+                const player = state.players.squad[position][action.payload.index];
+                state.budget = state.budget + player.now_cost/10                
                 state.players.squad[position][action.payload.index] = getPlaceholder();
             }
         },
@@ -89,6 +93,7 @@ const draftSlice = createSlice({
         resetDraft(state) {
             state.players.squad = { goalkeepers: getPlaceholders(1), defenders: getPlaceholders(4), midfielders: getPlaceholders(4), attackers: getPlaceholders(2) };
             state.players.bench = getPlaceholders(4);
+            state.budget = 100;
         }
     }
 });
