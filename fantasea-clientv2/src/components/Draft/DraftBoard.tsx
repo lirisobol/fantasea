@@ -1,25 +1,29 @@
 import { useCallback, useState } from 'react';
 import field from '../../assets/field.jpg';
-import { PlayerCard } from './PlayerCard';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { PlayerCard } from './PlayerCard';
+import { addPlayerToSquad } from '../../store/slices/draft';
 
 export const DraftBoard = () => {
     const boardBackground = `url(${field})`;
+    const dispatch = useAppDispatch();
     const [draftModalShow, setDraftModalShow] = useState<boolean>(false);
     const handleDraftModalOpen = () => setDraftModalShow(true);
     const handleDraftModalClose = () => setDraftModalShow(false);
 
 
-
-    const onSelectionChanged = useCallback((event:SelectionChangedEvent) => {
+    const onSelectionChanged = useCallback((event: SelectionChangedEvent) => {
         const selectedNode = event.api.getSelectedNodes()[0];
         const selectedData = selectedNode ? selectedNode.data : null;
         if (selectedData) {
-            console.log(selectedData);
+            dispatch(addPlayerToSquad({ player: selectedData, element_type: selectedData.element_type }));
             handleDraftModalClose();
         }
-    }, []);
+    }, [dispatch]);
+
+    const players = useAppSelector((state) => state.draft.players);
     return (
         <div 
             className="h-full flex flex-col"
@@ -32,25 +36,25 @@ export const DraftBoard = () => {
             <div className="h-screen content-center"> {/* Squad section */}
                 <div className="grid grid-rows-4 gap-20 px-4">
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Goalkeepers */}
-                        <h3 className="text-md font-semibold"></h3>
-                        <PlayerCard onAddPlayer={handleDraftModalOpen}/>
+                        {players.squad.goalkeepers.map((player) => (
+                            <PlayerCard key={player.id} player={player} onAddPlayer={handleDraftModalOpen}/>
+                        ))}
                     </div>
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Defenders */}
-                        <h3 className="text-md font-semibold"></h3>
-                        {Array.from({ length: 4 }).map((_, index) => (
-                            <PlayerCard key={index} onAddPlayer={handleDraftModalOpen}/>
+                        {players.squad.defenders.map((player) => (
+                            <PlayerCard key={player.id} player={player} onAddPlayer={handleDraftModalOpen}/>
                         ))}
+
                     </div>
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Midfielders */}
-                        <h3 className="text-md font-semibold"></h3>
-                        {Array.from({ length: 3 }).map((_, index) => (
-                            <PlayerCard key={index} onAddPlayer={handleDraftModalOpen}/>
+                        {players.squad.midfielders.map((player) => (
+                            <PlayerCard key={player.id} player={player} onAddPlayer={handleDraftModalOpen}/>
                         ))}
+
                     </div>
                     <div className="flex justify-center w-full gap-1 sm:gap-20"> {/* Attackers */}
-                        <h3 className="text-md font-semibold"></h3>
-                        {Array.from({ length: 3 }).map((_, index) => (
-                            <PlayerCard key={index} onAddPlayer={handleDraftModalOpen}/>
+                        {players.squad.attackers.map((player) => (
+                            <PlayerCard key={player.id} player={player} onAddPlayer={handleDraftModalOpen}/>
                         ))}
                     </div>
                 </div>
@@ -60,9 +64,9 @@ export const DraftBoard = () => {
 
             <div className="flex-1 p-3 content-center"> {/* Bench section */}
                 <div className="flex justify-around px-4">
-                    {Array.from({ length: 4 }).map((_, index) => (
-                        <PlayerCard key={index} onAddPlayer={handleDraftModalOpen} />
-                    ))}
+                    {players.bench.map((player) => (
+                            <PlayerCard key={player.id} player={player} onAddPlayer={handleDraftModalOpen}/>
+                        ))}
                 </div>
             </div>
 
