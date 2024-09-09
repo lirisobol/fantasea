@@ -15,13 +15,13 @@ function App() {
     
     if(error) return <div>Error: {error}</div>
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen"> {/* Ensure the app fills the entire screen */}
             <nav className="h-7vh"> {/* Navbar */}
                 <Navbar />
             </nav>
-            <main className="flex-1 overflow-y-auto"> {/* Content area */}
+            <main className="flex-1 overflow-hidden"> {/* Content area now prevents overflow */}
                 {status === 'loading' && <LoadingSpinner />}
-                <div>
+                <div className="h-93vh overflow-y-auto"> {/* This div now correctly manages overflow */}
                     <Routing />
                 </div>
             </main>

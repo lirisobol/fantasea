@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Players as PlayersPageComponent } from '../../pages/Players';
 import { Clubs as ClubsPageComponent } from '../../pages/Clubs';
-import { Compare as PlayerCompareComponent } from '../../pages/Compare';
+import { Compare as PlayerComparePageComponent } from '../../pages/Compare';
+import {Draft as DraftPageComponent} from "../../pages/Draft";
+
 const tabComponents = {
     'Players': PlayersPageComponent,
     'Clubs': ClubsPageComponent,
-    'Compare Players': PlayerCompareComponent
+    'Compare Players': PlayerComparePageComponent,
+    'Draft': DraftPageComponent, 
 };
 
 const tabs = [
     { name: 'Players', current: true },
     { name: 'Clubs', current: false },
     { name: 'Compare Players', current: false },
+    { name: 'Draft', current: false},
 ];
 
 function classNames(...classes) {
@@ -38,7 +42,7 @@ export default function ResearchTabs() {
               ))}
             </select>
           </div>
-          <div>
+          <div className='h-full'>
             <div className="border-b border-gray-200">
               <nav aria-label="Tabs" className="-mb-px flex">
                 {tabs.map((tab) => (
@@ -58,7 +62,7 @@ export default function ResearchTabs() {
                 ))}
               </nav>
             </div>
-            <div>
+            <div className='h-93vh'>
               {ActiveTabComponent && <ActiveTabComponent />}
             </div>
           </div>
