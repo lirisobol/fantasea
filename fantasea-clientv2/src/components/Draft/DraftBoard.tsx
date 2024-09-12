@@ -14,11 +14,11 @@ export const DraftBoard = () => {
                 backgroundPosition: 'center'
             }}
         >
-            <div className="content-center h-full p-2"> {/* Squad section */}
-                <div className="grid grid-rows-4 gap-20">
+            <div className="content-center h-5/6 p-2"> {/* Squad section */}
+                <div className="grid gap-4 h-full">
                     {/* Iterating over each position group and passing the index and elementType */}
                     {['goalkeepers', 'defenders', 'midfielders', 'attackers'].map((position, elementType) => (
-                        <div className="flex justify-center w-full sm:gap-20" key={position}>
+                        <div className="flex justify-center w-full gap-2 sm:gap-20" key={position}>
                             {players.squad[position].map((player, index) => (
                                 <PlayerCard
                                     key={player.id}
@@ -32,9 +32,9 @@ export const DraftBoard = () => {
                 </div>
             </div>
 
-            <hr className="my-4 border-t-2 border-gray-300" /> {/* Divider */}
+            <hr className="border-t-2 border-gray-300" /> {/* Divider */}
 
-            <div className="flex-1 p-3 content-center h-full"> {/* Bench section */}
+            <div className="content-center h-1/6 p-2"> {/* Bench section */}
                 <div className="flex justify-around px-4">
                     {players.bench.map((player, index) => (
                         <PlayerCard

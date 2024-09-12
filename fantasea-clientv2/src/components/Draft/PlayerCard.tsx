@@ -44,7 +44,7 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
 
 
     return (
-        <div className="player-card text-xs sm:text-sm h-20 w-20">
+        <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-24 sm:w-24">
             {player && !player.isPlaceholder ? (
                 <>
                     <div className='flex flex-col border rounded-lg'>
@@ -56,7 +56,7 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                         <XMarkIcon aria-hidden="true" className="h-5 w-5" />
                         </button>
                         <div className='flex flex-col items-center justify-center content-center'>
-                            <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-14 w-14"/>
+                            <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-3/5 w-2/5"/>
                             <div className='font-medium bg-slate-300 w-full text-center'>{player.web_name}</div>
                         </div>
 
@@ -64,17 +64,9 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                             <span className='bg-slate-200 text-slate-700 flex flex-row justify-center text-xs p-1'>
                                 {nextOpponent}
                             </span>
-                            <span className='text-slate-100 flex flex-row justify-between text-xs p-1'>
-                                <span>Price</span>
+                            <span className='bg-slate-500 text-slate-100 flex flex-row justify-center text-xs p-1 rounded-lg'>
                                 {player.now_cost / 10}m
                             </span>
-                            <hr></hr>
-                            <span className='text-slate-100 flex flex-row justify-between text-xs p-1'>
-                                <span>PPG</span>
-                                {player.points_per_game}
-                            </span>
-                            <hr></hr>
-
                         </div>
                     </div>
                 </>
