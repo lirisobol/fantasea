@@ -14,8 +14,8 @@ export const DraftBoard = () => {
                 backgroundPosition: 'center'
             }}
         >
-            <div className="content-center h-full p-3"> {/* Squad section */}
-                <div className="grid grid-rows-4 gap-24">
+            <div className="content-center h-full p-2"> {/* Squad section */}
+                <div className="grid grid-rows-4 gap-20">
                     {/* Iterating over each position group and passing the index and elementType */}
                     {['goalkeepers', 'defenders', 'midfielders', 'attackers'].map((position, elementType) => (
                         <div className="flex justify-center w-full sm:gap-20" key={position}>

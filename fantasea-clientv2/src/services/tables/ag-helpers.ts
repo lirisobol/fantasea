@@ -163,11 +163,18 @@ class AgHelpers {
     }
 
     // Get team by player
-    public getTeamByPlayer(player: Player, teams: Team[]): Team {
+    public getTeamByPlayer(player: Element, teams: Team[]): Team {
         const teamId = player.team_code;
         return teams.find(t => t.code === teamId) as Team;
     }
 
-    
+    // Helper function to get opponent name with home/away string
+    public getOpponentName(fixture: Fixture, team: Team, teams: Team[]): string {
+        const opponentId = team.id === fixture.team_h ? fixture.team_a : fixture.team_h;
+        if(opponentId === fixture.team_a) return `${this.getTeamShortNameById(opponentId, teams)} (H)`
+        else {
+            return `${this.getTeamShortNameById(opponentId,teams)} (A)`
+        }
+    }
 }
 export const agHelpers = new AgHelpers();

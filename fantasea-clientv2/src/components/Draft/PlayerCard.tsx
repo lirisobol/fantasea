@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react';
 import { addPlayerToSquad, removePlayerFromSquad } from '../../store/slices/draft';
 import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
 import { SelectionChangedEvent } from 'ag-grid-community';
+import { useNextMatchForPlayer } from '../../hooks/useNextMatchForPlayer';
 interface PlayerCardProps {
     player: Element;
     index: number;
@@ -12,9 +13,11 @@ interface PlayerCardProps {
 }
 export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX.Element => {
     const budget = useAppSelector((state) => state.draft.budget);
-    
     const dispatch = useAppDispatch();
     const [draftModalShow, setDraftModalShow] = useState<boolean>(false);
+    const nextOpponent = useNextMatchForPlayer(player);
+    console.log(nextOpponent);
+    
 
     const handleDraftModalOpen = () => setDraftModalShow(true);
     const handleDraftModalClose = () => setDraftModalShow(false);
@@ -34,15 +37,17 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
             }
         }
     }, [dispatch]);
-    console.log(player);
+    
     const removePlayer = useCallback(() => {
         dispatch(removePlayerFromSquad({ index, element_type: elementType }));
     }, [dispatch, index, elementType]);
+
+
     return (
         <div className="player-card text-xs sm:text-sm h-20 w-20">
             {player && !player.isPlaceholder ? (
                 <>
-                    <div className='flex flex-col border'>
+                    <div className='flex flex-col border rounded-lg'>
                         <button
                             type="button"
                             onClick={() => removePlayer()}
@@ -55,7 +60,10 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                             <div className='font-medium bg-slate-300 w-full text-center'>{player.web_name}</div>
                         </div>
 
-                        <div className='bg-slate-500 w-full flex flex-col gap-1'>
+                        <div className='bg-slate-500 w-full flex flex-col rounded-lg'>
+                            <span className='bg-slate-200 text-slate-700 flex flex-row justify-center text-xs p-1'>
+                                {nextOpponent}
+                            </span>
                             <span className='text-slate-100 flex flex-row justify-between text-xs p-1'>
                                 <span>Price</span>
                                 {player.now_cost / 10}m
@@ -65,6 +73,8 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                                 <span>PPG</span>
                                 {player.points_per_game}
                             </span>
+                            <hr></hr>
+
                         </div>
                     </div>
                 </>
