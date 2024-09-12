@@ -162,7 +162,13 @@ const draftSlice = createSlice({
             }
         },
         removePlayerFromBench(state, action: PayloadAction<number>) {
-            state.players.bench.splice(action.payload, 1);
+            if (state.players.bench[action.payload]) { // Check if there's a player at the index
+                const player = state.players.bench[action.payload];
+                state.budget += player.now_cost / 10; // Refund the player's cost to the budget
+                state.players.bench[action.payload] = getPlaceholder(); // Replace with placeholder
+                // If you don't want to use placeholders and instead shrink the array, use:
+                // state.players.bench.splice(action.payload, 1);
+            }
         },
         resetDraft(state) {
             state.players.squad = { goalkeepers: getPlaceholders(1), defenders: getPlaceholders(4), midfielders: getPlaceholders(4), attackers: getPlaceholders(2) };

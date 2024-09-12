@@ -2,7 +2,7 @@ import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { Element } from '../../models/gen-info/Element';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useCallback, useState } from 'react';
-import { addPlayerToSquad, addPlayerToBench, removePlayerFromSquad } from '../../store/slices/draft';
+import { addPlayerToSquad, addPlayerToBench, removePlayerFromSquad, removePlayerFromBench } from '../../store/slices/draft';
 import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { useNextMatchForPlayer } from '../../hooks/useNextMatchForPlayer';
@@ -34,7 +34,7 @@ export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardPr
                 if (isBench) {
                     dispatch(addPlayerToBench(selectedData));
                 } else {
-                    dispatch(addPlayerToSquad({ player: selectedData, isBench}));
+                    dispatch(addPlayerToSquad({ player: selectedData}));
                 }
                 handleDraftModalClose();
             }
@@ -42,8 +42,12 @@ export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardPr
     }, [dispatch, budget, isBench]); // Include isBench in dependencies
 
     const removePlayer = useCallback(() => {
-        dispatch(removePlayerFromSquad({ index, element_type: elementType }));
-    }, [dispatch, index, elementType]);
+        if (isBench) {
+            dispatch(removePlayerFromBench(index));
+        } else {
+            dispatch(removePlayerFromSquad({ index, element_type: elementType }));
+        }
+    }, [dispatch, index, elementType, isBench]);
 
     return (
         <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-24 sm:w-24">
