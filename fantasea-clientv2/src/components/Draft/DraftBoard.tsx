@@ -25,6 +25,7 @@ export const DraftBoard = () => {
                                     player={player}
                                     index={index}
                                     elementType={elementType + 1} // elementType starts from 1 for goalkeepers
+                                    isBench={false}
                                 />
                             ))}
                         </div>
@@ -42,6 +43,7 @@ export const DraftBoard = () => {
                             player={player}
                             index={index}
                             elementType={0} // Example element type for bench could be 0 or another identifier
+                            isBench={true}
                         />
                     ))}
                 </div>

@@ -2,22 +2,23 @@ import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { Element } from '../../models/gen-info/Element';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useCallback, useState } from 'react';
-import { addPlayerToSquad, removePlayerFromSquad } from '../../store/slices/draft';
+import { addPlayerToSquad, addPlayerToBench, removePlayerFromSquad } from '../../store/slices/draft';
 import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { useNextMatchForPlayer } from '../../hooks/useNextMatchForPlayer';
+
 interface PlayerCardProps {
     player: Element;
     index: number;
     elementType: number;
+    isBench: boolean; // Added to differentiate between bench and squad
 }
-export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX.Element => {
+
+export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardProps): JSX.Element => {
     const budget = useAppSelector((state) => state.draft.budget);
     const dispatch = useAppDispatch();
     const [draftModalShow, setDraftModalShow] = useState<boolean>(false);
     const nextOpponent = useNextMatchForPlayer(player);
-    console.log(nextOpponent);
-    
 
     const handleDraftModalOpen = () => setDraftModalShow(true);
     const handleDraftModalClose = () => setDraftModalShow(false);
@@ -26,22 +27,23 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
         const selectedNode = event.api.getSelectedNodes()[0];
         const selectedData = selectedNode ? selectedNode.data : null;
         if (selectedData) {
-            if(selectedData.now_cost/10 > budget) {
-                console.log('not enough budget');
+            if (selectedData.now_cost / 10 > budget) {
+                console.log('Not enough budget');
                 handleDraftModalClose();
-                
-            }
-            else {
-                dispatch(addPlayerToSquad({ player: selectedData, element_type: selectedData.element_type }));
+            } else {
+                if (isBench) {
+                    dispatch(addPlayerToBench(selectedData));
+                } else {
+                    dispatch(addPlayerToSquad({ player: selectedData, isBench}));
+                }
                 handleDraftModalClose();
             }
         }
-    }, [dispatch]);
-    
+    }, [dispatch, budget, isBench]); // Include isBench in dependencies
+
     const removePlayer = useCallback(() => {
         dispatch(removePlayerFromSquad({ index, element_type: elementType }));
     }, [dispatch, index, elementType]);
-
 
     return (
         <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-24 sm:w-24">
@@ -50,10 +52,10 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                     <div className='flex flex-col border rounded-lg'>
                         <button
                             type="button"
-                            onClick={() => removePlayer()}
+                            onClick={removePlayer}
                             className="rounded-md text-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                            >
-                        <XMarkIcon aria-hidden="true" className="h-5 w-5" />
+                        >
+                            <XMarkIcon className="h-5 w-5" />
                         </button>
                         <div className='flex flex-col items-center justify-center content-center'>
                             <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-3/5 w-2/5"/>
