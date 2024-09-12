@@ -76,8 +76,6 @@ export const PlayerCard = ({ player, index, elementType }: PlayerCardProps): JSX
                 </button>
             )}
             <DraftPlayersModal show={draftModalShow} onHide={handleDraftModalClose} onSelection={onSelectionChanged} preSetPosition={elementType} />
-
         </div>
-        
     );
 };

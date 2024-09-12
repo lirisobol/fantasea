@@ -1,21 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { Element } from "../../models/gen-info/Element";
 
-interface PositionGroup {
-    goalkeepers: Element[];
-    defenders: Element[];
-    midfielders: Element[];
-    attackers: Element[];
-}
 
-interface DraftState {
-    budget: number;
-    formation: string;
-    players: {
-        squad: PositionGroup;
-        bench: Element[];
-    };
-}
 const getPlaceholders = (count: number): Element[] => Array.from({ length: count }, () => ({ isPlaceholder: true }));
 const getPlaceholder = (): Element => ({ isPlaceholder: true });
 
@@ -37,6 +23,46 @@ const elementTypeToPosition = (elementType: number): keyof PositionGroup => {
         default: throw new Error('Unknown element type');
     }
 }
+const sameTeamLimitCheck = (state: DraftState, teamCode: number): boolean => {
+    const playersFromSameTeam = [
+        ...state.players.squad.attackers,
+        ...state.players.squad.defenders,
+        ...state.players.squad.midfielders,
+        ...state.players.squad.goalkeepers
+    ].filter(player => player.team_code === teamCode);
+
+    return playersFromSameTeam.length < 3; // Allow up to 3 players from the same team
+};
+
+const duplicateCheck = (state: DraftState, playerId: number): boolean => {
+    // Check if the player exists in any position group or the bench
+    const allPlayers = [
+        ...state.players.squad.goalkeepers,
+        ...state.players.squad.defenders,
+        ...state.players.squad.midfielders,
+        ...state.players.squad.attackers,
+        ...state.players.bench
+    ];
+    
+    return allPlayers.some(player => player.id === playerId);
+}
+
+interface PositionGroup {
+    goalkeepers: Element[];
+    defenders: Element[];
+    midfielders: Element[];
+    attackers: Element[];
+}
+
+interface DraftState {
+    budget: number;
+    formation: string;
+    players: {
+        squad: PositionGroup;
+        bench: Element[];
+    };
+}
+
 const initialState: DraftState = {
     budget: 100,
     formation: "4-4-2",
@@ -61,20 +87,34 @@ const draftSlice = createSlice({
         setBudget(state, action: PayloadAction<number>) {
             state.budget = action.payload;
         },
-        addPlayerToSquad(state, action: PayloadAction<{ player: Element, element_type: number }>) {
-            const playerPrice = action.payload.player.now_cost/10
-            state.budget = state.budget - playerPrice
-            const position = elementTypeToPosition(action.payload.element_type);
+        addPlayerToSquad(state: DraftState, action: PayloadAction<{ player: Element, element_type: number }>) {
+            const { player, element_type } = action.payload;
+
+            // Check for duplicate player
+            if (duplicateCheck(state, player.id)) {
+                console.log('This player is already in your squad or on the bench.');
+                return; // Stop the execution if the player is a duplicate
+            }
+
+            if (!sameTeamLimitCheck(state, player.team_code)) {
+                console.log('Cannot add more than 3 players from the same team');
+                return; // Stop further execution if the team limit is reached
+            }
+
+            const position = elementTypeToPosition(element_type);
             const positionArray = state.players.squad[position];
             const placeholderIndex = positionArray.findIndex(p => p.isPlaceholder);
+
             if (placeholderIndex !== -1) {
-                positionArray[placeholderIndex] = action.payload.player;
+                positionArray[placeholderIndex] = player;
+                state.budget -= player.now_cost / 10;
             } else if (positionArray.length < getMaxLength(position)) {
-                positionArray.push(action.payload.player);
+                positionArray.push(player);
+                state.budget -= player.now_cost / 10;
             }
         },
         addPlayerToBench(state, action: PayloadAction<Element>) {
-            if (state.players.bench.length < 4) { // Assuming a bench limit of 4 players
+            if (state.players.bench.length < 4) { 
                 state.players.bench.push(action.payload);
             }
         },
