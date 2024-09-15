@@ -2,7 +2,7 @@ import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { Element } from '../../models/gen-info/Element';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useCallback, useState } from 'react';
-import { addPlayerToSquad, addPlayerToBench, removePlayerFromSquad, removePlayerFromBench } from '../../store/slices/draft';
+import { addPlayerToSquad, addPlayerToBench, removePlayerFromSquad, removePlayerFromBench } from '../../store/slices/draft/draft';
 import DraftPlayersModal from '../modals/DraftPlayersModal/DraftPlayersModal';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { useNextMatchForPlayer } from '../../hooks/useNextMatchForPlayer';

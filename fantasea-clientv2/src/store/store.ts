@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import genInfoReducer from "./slices/gen-info";
 import filterReducer from "./slices/filters";
 import playerCompare from "./slices/player-compare";
-import draft from "./slices/draft";
+import draft from "./slices/draft/draft";
+import alert from "./slices/alert";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         filters: filterReducer,
         playerCompare: playerCompare,
         draft: draft,
+        alert: alert
     }
 })
 export type RootState = ReturnType<typeof store.getState>;

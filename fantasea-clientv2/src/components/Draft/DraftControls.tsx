@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { DraftBudget } from "./DraftBudget"
 import { ResetDraftButton } from "./ResetDraftButton"
-import { TeamDrawerButton } from "./TeamDrawerButton";
-import TeamDrawer from "./DraftDrawer";
+import { TeamDrawerButton } from "./TeamDrawer/TeamDrawerButton";
+import TeamDrawer from "./TeamDrawer/TeamDrawer";
 
 export const DraftControls = ():JSX.Element => {
     const [teamDrawerShow, setTeamDrawerShow] = useState<boolean>(false);

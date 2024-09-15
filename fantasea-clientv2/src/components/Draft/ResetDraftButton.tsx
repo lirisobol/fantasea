@@ -1,4 +1,4 @@
-import { resetDraft } from "../../store/slices/draft"
+import { resetDraft } from "../../store/slices/draft/draft"
 import { useAppDispatch } from "../../store/store"
 
 export const ResetDraftButton = ():JSX.Element => {
