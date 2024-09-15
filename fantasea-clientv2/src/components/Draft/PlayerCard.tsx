@@ -50,7 +50,7 @@ export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardPr
     }, [dispatch, index, elementType, isBench]);
 
     return (
-        <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-24 sm:w-24">
+        <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-28 sm:w-32">
             {player && !player.isPlaceholder ? (
                 <>
                     <div className='flex flex-col border rounded-lg'>
@@ -77,7 +77,13 @@ export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardPr
                     </div>
                 </>
             ) : (
-                <button onClick={handleDraftModalOpen} className="flex flex-col items-center justify-center h-20 w-20 border-2 border-dashed border-gray-400 bg-slate-600 rounded-lg">
+                <button onClick={handleDraftModalOpen} 
+                    className="
+                    flex flex-col items-center justify-center 
+                    h-16 w-16 sm:h-28 sm:w-32 
+                    border-2 border-dashed border-gray-400 
+                    bg-slate-600 
+                    rounded-lg">
                     <PlusIcon className="h-5 w-5 text-gray-500"/>
                 </button>
             )}

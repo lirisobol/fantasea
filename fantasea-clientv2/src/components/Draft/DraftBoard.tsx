@@ -36,7 +36,7 @@ export const DraftBoard = () => {
             <hr className="border-t-2 border-gray-300" /> {/* Divider */}
 
             <div className="content-center h-1/6 p-2"> {/* Bench section */}
-                <div className="flex justify-around px-4">
+                <div className="flex justify-around px-4 gap-4">
                     {players.bench.map((player, index) => (
                         <PlayerCard
                             key={player.id}
