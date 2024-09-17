@@ -14,7 +14,7 @@ export const ResetDraftButton = ():JSX.Element => {
                 gap-x-1.5 
                 rounded-lg
                 px-5 py-2
-                text-xs sm:text-sm 
+                text-xs
                 bg-red-600 font-normal text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
             Reset

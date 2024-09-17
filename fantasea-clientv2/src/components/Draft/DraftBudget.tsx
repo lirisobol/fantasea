@@ -9,7 +9,7 @@ export const DraftBudget = ():JSX.Element => {
             px-3 py-2  
             rounded-lg
             justify-center
-            text-xs sm:text-sm 
+            text-xs 
             text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             <span>Budget </span>
             <span className="font-semibold text-green-700">

@@ -14,10 +14,14 @@ export const DraftControls = ():JSX.Element => {
         setTeamDrawerShow(true);
     }
     return (
-        <div className="flex flex-row justify-center content-center items-center gap-10 p-2">
-            <DraftBudget />
-            <ResetDraftButton />
-            <TeamDrawerButton handleOpen={handleTeamDrawerOpen} />
+        <div className="flex flex-row justify-between content-center items-center gap-2 sm:gap-20 px-5 py-2">
+            <div className="flex flex-row gap-2">
+                <ResetDraftButton />
+                <DraftBudget />
+            </div>
+            <div>
+                <TeamDrawerButton handleOpen={handleTeamDrawerOpen} />
+            </div>
             <TeamDrawer show={teamDrawerShow} handleClose={handleTeamDrawerClose}/>
         </div>
     )

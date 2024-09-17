@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from "@heroicons/react/16/solid"
 interface TeamDrawerButtonProps {
     handleOpen: () => void;
 }
@@ -12,8 +11,8 @@ export const TeamDrawerButton = ({handleOpen}: TeamDrawerButtonProps):JSX.Elemen
             w-20
             rounded-lg
             px-3 py-2
-            text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"      >
-        <ArrowLeftIcon aria-hidden="true" className="h-4 w-4" />
+            text-xs text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"      >
+            List View
       </button>
     )
 }
