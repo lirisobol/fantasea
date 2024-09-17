@@ -70,7 +70,7 @@ export const addPlayerToBench = createAsyncThunk(
 
         const placeholderIndex = state.players.bench.findIndex(p => p.isPlaceholder);
         if (placeholderIndex !== -1) {
-            return { ...state, budget: state.budget - player.now_cost / 10, index: placeholderIndex, player };
+            return { ...state, budget: state.budget - player.now_cost.toFixed(1) / 10, index: placeholderIndex, player };
         } else {
             throw new Error('Bench is full, cannot add.');
         }
@@ -89,17 +89,17 @@ const draftSlice = createSlice({
         updatePlayerInSquad(state, action: PayloadAction<{ index: number; player: Element; position: keyof PositionGroup }>) {
             const { index, player, position } = action.payload;
             state.players.squad[position][index] = player;
-            state.budget -= player.now_cost / 10;
+            state.budget -= player.now_cost.toFixed(1) / 10;
         },
         removePlayerFromSquad(state, action: PayloadAction<{ index: number, element_type: number }>) {
             const position = elementTypeToPosition(action.payload.element_type);
             const player = state.players.squad[position][action.payload.index];
-            state.budget += player.now_cost / 10;
+            state.budget += player.now_cost.toFixed(1) / 10;
             state.players.squad[position][action.payload.index] = getPlaceholder();
         },
         removePlayerFromBench(state, action: PayloadAction<number>) {
             const player = state.players.bench[action.payload];
-            state.budget += player.now_cost / 10;
+            state.budget += player.now_cost.toFixed(1) / 10;
             state.players.bench[action.payload] = getPlaceholder();
         },
         resetDraft(state) {
