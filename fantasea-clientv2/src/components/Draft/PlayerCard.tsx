@@ -50,7 +50,7 @@ export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardPr
     }, [dispatch, index, elementType, isBench]);
 
     return (
-        <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-28 sm:w-32">
+        <div className="player-card text-xs sm:text-sm h-16 w-16 sm:h-24 sm:w-32">
             {player && !player.isPlaceholder ? (
                 <>
                     <div className='flex flex-col border rounded-lg'>
@@ -62,7 +62,7 @@ export const PlayerCard = ({ player, index, elementType, isBench }: PlayerCardPr
                             <XMarkIcon className="h-5 w-5" />
                         </button>
                         <div className='flex flex-col items-center justify-center content-center'>
-                            <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-3/5 w-2/5"/>
+                            <img src={`/assets/images/kits/${player.team_code}.png`} alt="Jersey" className="h-12 w-12"/>
                             <div className='font-medium bg-slate-300 w-full text-center'>{player.web_name}</div>
                         </div>
 
