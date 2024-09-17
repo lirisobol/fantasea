@@ -1,7 +1,7 @@
 import { useAppSelector } from "../../store/store";
 
 export const DraftBudget = ():JSX.Element => {
-    const budget = useAppSelector((state) => state.draft.budget);
+    const budget = useAppSelector((state) => state.draft.budget).toFixed(1)
     
     return (
         <div className="

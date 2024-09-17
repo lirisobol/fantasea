@@ -9,7 +9,6 @@ export const TeamDrawerButton = ({handleOpen}: TeamDrawerButtonProps):JSX.Elemen
         type="button"
         className="
             flex content-center justify-center
-            relative sm:absolute sm:right-4
             w-20
             rounded-lg
             px-3 py-2
