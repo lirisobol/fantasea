@@ -3,6 +3,7 @@ import { Fixture } from "../../models/gen-info/Fixture";
 import { Team } from "../../models/gen-info/Team";
 import { OpponentCell } from "../../components/Tables/CustomCells/OpponentCell/OpponentCell";
 import { Element } from "../../models/gen-info/Element";
+import { ElementType } from "../../models/gen-info/ElementType";
 class AgHelpers {  
     /* Fixture Cols Configs And Helpers
     --------------------------------------------------------------------------------------------------------------------------------
@@ -175,6 +176,13 @@ class AgHelpers {
         else {
             return `${this.getTeamShortNameById(opponentId,teams)} (A)`
         }
+    }
+
+    public getPlayerPositionStringByPlayer(player: Element, elementTypes: ElementType): string {
+        const element_type = player.element_type;
+        const position:ElementType = elementTypes.find(elementType => elementType.id === element_type)
+        const positionString = position.singular_name;
+        return positionString;
     }
 }
 export const agHelpers = new AgHelpers();
