@@ -1,13 +1,13 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Element } from '../../../models/gen-info/Element';
 import { useAppSelector } from '../../../store/store';
-import { agHelpers } from '../../../services/tables/ag-helpers';
 import { Team } from '../../../models/gen-info/Team';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import { ElementType } from '../../../models/gen-info/ElementType';
-import { PlayerFixtureCard } from './PlayerFixtureCard';
 import { Fixture } from '../../../models/gen-info/Fixture';
+import { PlayerFixtureHistory } from './PlayerFixtureHistory';
+import { generalHelpers } from '../../../services/general-helpers/general-helpers';
 
 interface PlayerDetailsModalProps {
     show: boolean;
@@ -36,7 +36,7 @@ export default function PlayerDetailsModal({show, onHide, player}: PlayerDetails
     useEffect(() => {
         
         if(!player.isPlaceholder) {
-            const team = agHelpers.getTeamByPlayer(player, teams)
+            const team = generalHelpers.getTeamByPlayer(player, teams)
             setTeam(team)
             const history = team.fixtures?.filter(fixture => fixture.event <= currentGameWeekId);
             setFixtureHistory(history);
@@ -44,7 +44,7 @@ export default function PlayerDetailsModal({show, onHide, player}: PlayerDetails
             setFixtureUpcoming(upcoming);
 
 
-            const position = agHelpers.getPlayerPositionStringByPlayer(player, elementTypes)
+            const position = generalHelpers.getPlayerPositionStringByPlayer(player, elementTypes)
             setPositionString(position)            
         }
     }, [teams, elementTypes])
@@ -156,13 +156,12 @@ export default function PlayerDetailsModal({show, onHide, player}: PlayerDetails
                             p-4'
                             >
                             <div className='flex flex-col w-full'>
-                                History
-                                {fixtureHistory?.map(fixture => (<PlayerFixtureCard player={player} fixture={fixture} teams={teams} />))}
+                                {fixtureHistory?.map(fixture => (<PlayerFixtureHistory player={player} fixture={fixture} teams={teams} />))}
                             </div>
-                            <div className='flex flex-col w-full'>
+                            {/* <div className='flex flex-col w-full'>
                                 Upcoming
-                                {fixtureUcpoming.map(fixture => (<PlayerFixtureCard player={player} fixture={fixture} teams={teams} />))}
-                            </div>
+                                {fixtureUcpoming.map(fixture => (<PlayerFixtureUpcoming player={player} fixture={fixture} teams={teams} />))}
+                            </div> */}
                         </div>
                         
                         <hr />

@@ -20,13 +20,13 @@ function App() {
     return (
         
         <div className="flex flex-col h-screen"> {/* Ensure the app fills the entire screen */}
+            {status === 'loading' && <LoaderBar />}
 
             <nav className="h-7vh"> {/* Navbar */}
                 <Navbar />
             </nav>
             <main className="flex-1 overflow-hidden"> {/* Content area now prevents overflow */}
 
-                {status === 'loading' && <LoaderBar />}
                 <div className="h-93vh overflow-y-auto"> {/* This div now correctly manages overflow */}
                     {alert.isVisible && (
                         <Alert

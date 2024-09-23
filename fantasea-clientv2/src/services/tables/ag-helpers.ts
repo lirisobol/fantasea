@@ -3,7 +3,7 @@ import { Fixture } from "../../models/gen-info/Fixture";
 import { Team } from "../../models/gen-info/Team";
 import { OpponentCell } from "../../components/Tables/CustomCells/OpponentCell/OpponentCell";
 import { Element } from "../../models/gen-info/Element";
-import { ElementType } from "../../models/gen-info/ElementType";
+import { generalHelpers } from "../general-helpers/general-helpers";
 class AgHelpers {  
     /* Fixture Cols Configs And Helpers
     --------------------------------------------------------------------------------------------------------------------------------
@@ -20,12 +20,12 @@ class AgHelpers {
                 const team = teams.find(t => t.id === player.team);
                 if (!team || !team.fixtures) return '-'; // Handle no team or no fixtures case
 
-                const fixtures = this.getNextGamesForClub(team.fixtures, currentGameWeekId);
+                const fixtures = generalHelpers.getNextGamesForClub(team.fixtures, currentGameWeekId);
                 if (fixtures.length > i) {
                     const fixture = fixtures[i];
                     const opponentId = team.id === fixture.team_h ? fixture.team_a : fixture.team_h;
                     const homeOrAway = team.id === fixture.team_h ? "(H)" : "(A)";
-                    const opponentName = this.getTeamShortNameById(opponentId, teams);
+                    const opponentName = generalHelpers.getTeamShortNameById(opponentId, teams);
                     return `${opponentName} ${homeOrAway}`;
                 }
                 
@@ -33,29 +33,29 @@ class AgHelpers {
             },
             cellClassRules: {
                 'bg-very-high': (params) => {
-                    const team = this.getTeamByPlayer(params.data, teams);
+                    const team = generalHelpers.getTeamByPlayer(params.data, teams);
                     const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
                     return this.determineStrength(fixture, team, teams) === 'very-high';
                     
                 },
                 'bg-high': (params) => {
-                    const team = this.getTeamByPlayer(params.data, teams);
+                    const team = generalHelpers.getTeamByPlayer(params.data, teams);
                     const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
                     return this.determineStrength(fixture, team, teams) === 'high';
                     
                 },
                 'bg-mid': (params) => {
-                    const team = this.getTeamByPlayer(params.data, teams);
+                    const team = generalHelpers.getTeamByPlayer(params.data, teams);
                     const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
                     return this.determineStrength(fixture, team, teams) === 'mid'
                 },
                 'bg-low': (params) => {
-                    const team = this.getTeamByPlayer(params.data, teams);
+                    const team = generalHelpers.getTeamByPlayer(params.data, teams);
                     const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
                     return this.determineStrength(fixture, team, teams) === 'low'
                 },
                 'bg-very-low': (params) => {
-                    const team = this.getTeamByPlayer(params.data, teams);
+                    const team = generalHelpers.getTeamByPlayer(params.data, teams);
                     const fixture = this.generatePlayersFixtureForStrength(params.data, teams, i, currentGameWeekId)
                     return this.determineStrength(fixture, team, teams) === 'very-low'
                 },
@@ -71,12 +71,12 @@ class AgHelpers {
             flex: 1,
             cellRenderer: OpponentCell,
             valueGetter: (params) => {
-                const fixtures = this.getNextGamesForClub(params.data.fixtures, currentGameWeekId);
+                const fixtures = generalHelpers.getNextGamesForClub(params.data.fixtures, currentGameWeekId);
                 if (fixtures.length > i) {
                     const fixture = fixtures[i];
                     const opponentId = params.data.id === fixture.team_h ? fixture.team_a : fixture.team_h;
                     const homeOrAway = params.data.id === fixture.team_h ? "(H)" : "(A)";
-                    const opponentName = this.getTeamShortNameById(opponentId, teams);
+                    const opponentName = generalHelpers.getTeamShortNameById(opponentId, teams);
                     return `${opponentName} ${homeOrAway}`;
                 }
                 return '-';
@@ -132,57 +132,15 @@ class AgHelpers {
 
         return 'mid';
     }
-    
     public generateClubFixtureForStrength(team: Team, gameIndex: number, currentGameWeekId: number): Fixture | null {
-        const fixtures = this.getNextGamesForClub(team.fixtures, currentGameWeekId);
+        const fixtures = generalHelpers.getNextGamesForClub(team.fixtures, currentGameWeekId);
         return fixtures.length > gameIndex ? fixtures[gameIndex] : null;
     }
-
     public generatePlayersFixtureForStrength(player: Element, teams: Team[], gameIndex: number, currentGameWeekId: number): Fixture | null {
         const teamId = player.team_code;
         const team = teams.find(t => t.code === teamId)
-        const fixtures = this.getNextGamesForClub(team.fixtures, currentGameWeekId);
+        const fixtures = generalHelpers.getNextGamesForClub(team.fixtures, currentGameWeekId);
         return fixtures.length > gameIndex ? fixtures[gameIndex] : null;
-    }
-
-    /* 
-        ** teamFixtures - Fixture[] of a specific team
-        ** currentGameWeek - Id number of current gameweek
-        might be located in the main redux store.
-    */
-    public getNextGamesForClub(teamFixtures: Fixture[], currentGameWeekId: number): Fixture[] {
-        return teamFixtures
-            .filter(fixture => fixture.event > currentGameWeekId)
-            .sort((a, b) => a.event - b.event)
-            .slice(0, 5);
-    }
-
-    // Get Shortname by team code
-    public getTeamShortNameById(teamId: number, teams: Team[]): string {
-        const team = teams.find(team => team.id === teamId);
-        return team ? team.short_name : 'Unknown';
-    }
-
-    // Get team by player
-    public getTeamByPlayer(player: Element, teams: Team[]): Team {
-        const teamId = player.team_code;
-        return teams.find(t => t.code === teamId) as Team;
-    }
-
-    // Helper function to get opponent name with home/away string
-    public getOpponentName(fixture: Fixture, team: Team, teams: Team[]): string {
-        const opponentId = team.id === fixture.team_h ? fixture.team_a : fixture.team_h;
-        if(opponentId === fixture.team_a) return `${this.getTeamShortNameById(opponentId, teams)} (H)`
-        else {
-            return `${this.getTeamShortNameById(opponentId,teams)} (A)`
-        }
-    }
-
-    public getPlayerPositionStringByPlayer(player: Element, elementTypes: ElementType): string {
-        const element_type = player.element_type;
-        const position:ElementType = elementTypes.find(elementType => elementType.id === element_type)
-        const positionString = position.singular_name;
-        return positionString;
     }
 }
 export const agHelpers = new AgHelpers();

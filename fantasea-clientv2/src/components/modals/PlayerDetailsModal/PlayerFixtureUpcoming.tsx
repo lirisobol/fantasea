@@ -4,13 +4,13 @@ import { Fixture } from "../../../models/gen-info/Fixture";
 import { Team } from "../../../models/gen-info/Team";
 import { agHelpers } from "../../../services/tables/ag-helpers";
 
-interface PlayerFixtureCardProps {
+interface PlayerFixtureUpcomingProps {
     player:Element;
     fixture: Fixture;
     teams: Team[];
 }
 
-export const PlayerFixtureCard = ({player, fixture, teams}:PlayerFixtureCardProps):JSX.Element => {
+export const PlayerFixtureUpcoming = ({player, fixture, teams}:PlayerFixtureUpcomingProps):JSX.Element => {
 
     const [opponentTeam, setOpponentTeam] = useState<string>('');
     const playerTeam:Team = teams.find(t => t.code === player.team_code);
@@ -21,7 +21,6 @@ export const PlayerFixtureCard = ({player, fixture, teams}:PlayerFixtureCardProp
             setOpponentTeam(opponent);
         }
     }, [player, fixture, playerTeam, teams])
-    console.log(opponentTeam);
     
 
 
