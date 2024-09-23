@@ -8,6 +8,7 @@ import { ElementType } from '../../../models/gen-info/ElementType';
 import { Fixture } from '../../../models/gen-info/Fixture';
 import { PlayerFixtureHistory } from './PlayerFixtureHistory';
 import { generalHelpers } from '../../../services/general-helpers/general-helpers';
+import { PlayerFixtureUpcoming } from './PlayerFixtureUpcoming';
 
 interface PlayerDetailsModalProps {
     show: boolean;
@@ -38,9 +39,9 @@ export default function PlayerDetailsModal({show, onHide, player}: PlayerDetails
         if(!player.isPlaceholder) {
             const team = generalHelpers.getTeamByPlayer(player, teams)
             setTeam(team)
-            const history = team.fixtures?.filter(fixture => fixture.event <= currentGameWeekId);
+            const history:Fixture[] = team.fixtures?.filter(fixture => fixture.event <= currentGameWeekId);
             setFixtureHistory(history);
-            const upcoming = team.fixtures?.filter(fixture => fixture.event > currentGameWeekId);
+            const upcoming:Fixture[] = team.fixtures?.filter(fixture => fixture.event > currentGameWeekId);
             setFixtureUpcoming(upcoming);
 
 
@@ -153,15 +154,15 @@ export default function PlayerDetailsModal({show, onHide, player}: PlayerDetails
                         <div className='
                             flex flex-row
                             gap-8
-                            p-4'
+                            p-4
+                            '
                             >
                             <div className='flex flex-col w-full'>
                                 {fixtureHistory?.map(fixture => (<PlayerFixtureHistory player={player} fixture={fixture} teams={teams} />))}
                             </div>
-                            {/* <div className='flex flex-col w-full'>
-                                Upcoming
+                            <div className='flex flex-col w-full'>
                                 {fixtureUcpoming.map(fixture => (<PlayerFixtureUpcoming player={player} fixture={fixture} teams={teams} />))}
-                            </div> */}
+                            </div>
                         </div>
                         
                         <hr />

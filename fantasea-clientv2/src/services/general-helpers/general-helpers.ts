@@ -25,42 +25,30 @@ class GeneralHelpers {
         }
     }
 
-    public getDifficultyRating(fixture:Fixture, teamId: number): number {
-        const isHomeTeam = teamId === fixture.team_h;
-        const teamDifficulty = isHomeTeam ? fixture.team_h_difficulty : fixture.team_a_difficulty;
-        const opponentDifficulty = isHomeTeam ? fixture.team_a_difficulty : fixture.team_h_difficulty;
-        return teamDifficulty - opponentDifficulty
-    };
+    public getDifficultyRating(fixture: Fixture, teamId: number): number {
+        if(fixture.team_a === teamId) return fixture.team_a_difficulty;
+        if(fixture.team_h === teamId) return fixture.team_h_difficulty;
+        return 3;      
+    }
+    
 
-    public getDifficultyColor(difficulty:number):string {
+    public getDifficultyColor(difficulty: number): string {
         console.log(difficulty);
         
         switch (difficulty) {
-            case -5:
-                return "green-100";
-            case -4:
-                return "green-200";
-            case -3:
-                return "green-300"
-            case -2:
-                return "green-400"
-            case -1:
-                return "green-500"
-            case 0:
-                return "gray-200";
             case 1:
-                return "red-100";
+                return "green-600";  // Easiest
             case 2:
-                return "red-200";
+                return "green-500";
             case 3:
-                return "red-300";
+                return "green-300";  // Moderate
             case 4:
                 return "red-400";
             case 5:
-                return "red-500";
+                return "red-500";    // Hardest
             default:
-                return "gray-200";
-            }
+                return "gray-200";   // Fallback for unexpected values
+        }
     }
         /* 
         ** teamFixtures - Fixture[] of a specific team
@@ -107,6 +95,22 @@ class GeneralHelpers {
             const position:ElementType = elementTypes.find(elementType => elementType.id === element_type)
             const positionString = position.singular_name;
             return positionString;
+        }
+
+        public formatKickoffTime(kickoffTime:string):string {
+            const date = new Date(kickoffTime);
+            const year = date.getFullYear();
+            let month = date.getMonth()+1;
+            let dt = date.getDate();
+
+            if (dt < 10) {
+                dt = '0' + dt;
+            }
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            return (year+'-' + month + '-'+ dt)
         }
 }
 export const generalHelpers = new GeneralHelpers();
