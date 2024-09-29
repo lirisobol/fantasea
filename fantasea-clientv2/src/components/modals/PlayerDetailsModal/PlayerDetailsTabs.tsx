@@ -7,42 +7,58 @@ import { generalHelpers } from "../../../services/general-helpers/general-helper
 import { Tab } from "@headlessui/react";
 import { PlayerFixtureHistory } from "./PlayerFixtureHistory";
 import { PlayerFixtureUpcoming } from "./PlayerFixtureUpcoming";
+import { playerHistoryService } from "../../../services/data/PlayerHistory";
+import { PlayerHistoryItem } from "../../../models/PlayerHistoryItems";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+    return classes.filter(Boolean).join(" ");
 }
 
 interface PlayerDetailsTabsProps {
-  player: Element;
+    player: Element;
 }
 
 export const PlayerDetailsTabs = ({ player }: PlayerDetailsTabsProps): JSX.Element => {
-  const currentGameWeekId = useAppSelector<number>(
-    (state) => state.genInfo.data?.currentGameWeekId
-  );
-  const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
-  const [fixtureHistory, setFixtureHistory] = useState<Fixture[]>([]);
-  const [fixtureUpcoming, setFixtureUpcoming] = useState<Fixture[]>([]);
+    const [playerHistoryData, setPlayerHistoryData] = useState<PlayerHistoryItem[] | null>(null);
 
-  useEffect(() => {
-    if (!player.isPlaceholder) {
-      const team = generalHelpers.getTeamByPlayer(player, teams);
+    const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
+    const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
+    const [fixtureHistory, setFixtureHistory] = useState<Fixture[]>([]);
+    const [fixtureUpcoming, setFixtureUpcoming] = useState<Fixture[]>([]);
+    useEffect(() => {
+        const fetchPlayerHistory = async () => {
+            try {
+                const data = await playerHistoryService.fetchPlayerHistory(player.id);
+                setPlayerHistoryData(data);
 
-      if (team && team.fixtures) {
-        const history: Fixture[] = team.fixtures.filter(
-          (fixture) => fixture.event <= currentGameWeekId
-        );
-        setFixtureHistory(history);
+            } catch (error) {
+                console.error("Error fetching player history data:", error);
+            } 
+        };
+    
+        if (player && player.id) {
+            fetchPlayerHistory();
+        }
+    }, [player]);
+    useEffect(() => {
+        if (!player.isPlaceholder) {
+            const team = generalHelpers.getTeamByPlayer(player, teams);
 
-        const upcoming: Fixture[] = team.fixtures.filter(
-          (fixture) => fixture.event > currentGameWeekId
-        );
-        setFixtureUpcoming(upcoming);
-      }
-    }
-  }, [player, teams, currentGameWeekId]);
+            if (team && team.fixtures) {
+                const history: Fixture[] = team.fixtures.filter(
+                  (fixture) => fixture.event <= currentGameWeekId
+                );
+                setFixtureHistory(history);
 
-  return (
+                const upcoming: Fixture[] = team.fixtures.filter(
+                  (fixture) => fixture.event > currentGameWeekId
+                );
+                setFixtureUpcoming(upcoming);
+            }
+        }
+    }, [player, teams, currentGameWeekId]);
+
+    return (
     <Tab.Group>
       <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
         <Tab

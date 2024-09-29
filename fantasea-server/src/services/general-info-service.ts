@@ -5,7 +5,6 @@ import { ResourceNotFoundError } from "../models/client-errors";
 import { handleError } from "../utils/error-handler";
 import { Fixture } from "../models/general-info/Fixture";
 import { Event } from "../models/general-info/Event";
-import { log } from "console";
 
 class GeneralInfoService {
     private generalInfoEndpoint = "https://fantasy.premierleague.com/api/bootstrap-static/";

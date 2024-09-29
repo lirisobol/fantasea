@@ -12,17 +12,18 @@ interface PlayerFixtureHistoryProps {
     teams: Team[];
 }
 
-export const PlayerFixtureHistory = ({ player, fixture, teams }: PlayerFixtureHistoryProps): JSX.Element => {
+export const PlayerFixtureHistory = ({ player, fixture, teams}: PlayerFixtureHistoryProps): JSX.Element => {
     const playerTeam: Team = teams.find(t => t.code === player.team_code);
-
     const [opponentTeam, setOpponentTeam] = useState<string>('');
     const [gameResult, setGameResult] = useState<string>('');
     const [gameDifficulty, setGameDifficulty] = useState<number>(0);
+    
 
     useEffect(() => {
         if (!player.isPlaceholder) {
+
             const opponentId = generalHelpers.getOpponentTeamId(fixture, playerTeam);
-            
+
             const opponent = generalHelpers.getOpponentName(fixture, opponentId, teams);
             setOpponentTeam(opponent);
             
@@ -33,23 +34,24 @@ export const PlayerFixtureHistory = ({ player, fixture, teams }: PlayerFixtureHi
             setGameDifficulty(difficulty);
         }
     }, [player, fixture, playerTeam, teams]);
+    
 
     return (
-        <div className="flex gap-4 justify-around border p-4">
+        <div className="flex items-center gap-4 border p-2">
             {/* Kickoff Time */}
-            <span className="font-semibold ">
-                {`GW${fixture.event}`}
-            </span>
-            <span className="w-1/4 text-xs mt-1">
-                {generalHelpers.formatKickoffTime(fixture.kickoff_time)}
-            </span>
-            <span className="w-1/4">
+            <div className="w-40 flex-shrink-0 flex items-center gap-2">
+                <span className="font-semibold w-12 flex-shrink-0">
+                    {`GW${fixture.event}`}
+                </span>
+                <span className="text-xs ml-2 flex-grow">
+                    {generalHelpers.formatKickoffTime(fixture.kickoff_time)}
+                </span>
+            </div>
+            <div className="flex flex-row flex-grow gap-2">
                 <OpponentBox opponent={opponentTeam} difficulty={gameDifficulty} />
-            </span>
-            {/* Result */}
-            <span className="w-1/4">
+                {/* Result */}
                 <ResultBadge result={gameResult} home_score={fixture.team_h_score} away_score={fixture.team_a_score}/>
-            </span>
+            </div>
         </div>
     )
 }

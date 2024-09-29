@@ -2,13 +2,10 @@ import { Fragment, useEffect, useState } from 'react';
 import { Element } from '../../../models/gen-info/Element';
 import { useAppSelector } from '../../../store/store';
 import { Team } from '../../../models/gen-info/Team';
-import { Dialog, Transition, Tab } from '@headlessui/react';
+import { Dialog, Transition} from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import { ElementType } from '../../../models/gen-info/ElementType';
-import { Fixture } from '../../../models/gen-info/Fixture';
-import { PlayerFixtureHistory } from './PlayerFixtureHistory';
 import { generalHelpers } from '../../../services/general-helpers/general-helpers';
-import { PlayerFixtureUpcoming } from './PlayerFixtureUpcoming';
 import { PlayerDetailsTabs } from './PlayerDetailsTabs';
 
 function classNames(...classes) {
@@ -22,33 +19,24 @@ interface PlayerDetailsModalProps {
 }
 
 export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetailsModalProps) {
-  const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
-  const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
-  const elementTypes = useAppSelector<ElementType[]>((state) => state.genInfo.data?.element_types);
-  const [team, setTeam] = useState<Team>(null);
+    const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
+    const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
+    const elementTypes = useAppSelector<ElementType[]>((state) => state.genInfo.data?.element_types);
+    const [team, setTeam] = useState<Team>(null);
+    const [positionString, setPositionString] = useState<string>('');
 
-  const [fixtureHistory, setFixtureHistory] = useState<Fixture[]>([]);
-  const [fixtureUpcoming, setFixtureUpcoming] = useState<Fixture[]>([]);
+    useEffect(() => {
+      if (!player.isPlaceholder) {
+        const team = generalHelpers.getTeamByPlayer(player, teams);
+        setTeam(team);
+        const position = generalHelpers.getPlayerPositionStringByPlayer(player, elementTypes);
+        setPositionString(position);
+      }
+    }, [teams, elementTypes, player, currentGameWeekId]);
 
-  const [positionString, setPositionString] = useState<string>('');
+    const jerseyImagePath = player && player.team_code ? `/assets/images/kits/${player.team_code}.png` : '/assets/images/kits/default.png';
 
-  useEffect(() => {
-    if (!player.isPlaceholder) {
-      const team = generalHelpers.getTeamByPlayer(player, teams);
-      setTeam(team);
-      const history: Fixture[] = team.fixtures?.filter((fixture) => fixture.event <= currentGameWeekId);
-      setFixtureHistory(history);
-      const upcoming: Fixture[] = team.fixtures?.filter((fixture) => fixture.event > currentGameWeekId);
-      setFixtureUpcoming(upcoming);
-
-      const position = generalHelpers.getPlayerPositionStringByPlayer(player, elementTypes);
-      setPositionString(position);
-    }
-  }, [teams, elementTypes, player, currentGameWeekId]);
-
-  const jerseyImagePath = player && player.team_code ? `/assets/images/kits/${player.team_code}.png` : '/assets/images/kits/default.png';
-
-  return (
+    return (
     <>
       <Transition appear show={show} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onHide}>
