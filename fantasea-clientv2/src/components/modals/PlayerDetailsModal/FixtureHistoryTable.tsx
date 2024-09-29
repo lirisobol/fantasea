@@ -18,9 +18,8 @@ export const FixtureHistoryTable = ({
     return (
       <div className="w-full">
         {/* Header Row */}
-        <div className="hidden sm:grid sm:grid-cols-5 gap-4 border-b p-2 font-semibold text-gray-700">
+        <div className="hidden sm:grid sm:grid-cols-4 gap-4 border-b py-2 font-semibold text-gray-700 text-xs">
           <div>Event</div>
-          <div>Date</div>
           <div>Opponent</div>
           <div>Result</div>
           <div>Points</div>

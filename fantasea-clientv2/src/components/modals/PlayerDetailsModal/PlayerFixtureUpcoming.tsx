@@ -32,21 +32,21 @@ export const PlayerFixtureUpcoming = ({player, fixture, teams}:PlayerFixtureUpco
 
 
     return (
-        <div className="flex items-center gap-4 border p-2">
-          {/* Kickoff Time */}
-            <div className="w-40 flex-shrink-0 flex items-center gap-2">
-                <span className="font-semibold w-12 flex-shrink-0">
-                  {`GW${fixture.event}`}
-                </span>
-                <span className="text-xs ml-2 flex-grow">
-                  {generalHelpers.formatKickoffTime(fixture.kickoff_time)}
-                </span>
+        <div className="border-b py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:items-center">
+        {/* Event And Date*/}
+        <div className="flex justify-center gap-5 sm:block">
+            <div className="font-semibold text-xs sm:text-sm">
+              {`GW${fixture.event}`}
             </div>
-            {/* Opponent */}
-            <div className="flex-grow">
-                <OpponentBox opponent={opponentTeam} difficulty={gameDifficulty} />
+            <div className="text-xs">
+              {generalHelpers.formatKickoffTime(fixture.kickoff_time)}
             </div>
         </div>
+        {/* Opponent */}
+        <div className="mt-4 sm:mt-0 flex justify-center sm:justify-start">
+            <OpponentBox opponent={opponentTeam} difficulty={gameDifficulty} />
+        </div>
+      </div>
     )
       
 }

@@ -105,7 +105,7 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                   {/* Title */}
                   <Dialog.Title
                     as="div"
-                    className="flex flex-row justify-center items-center gap-10 p-4 text-lg font-medium leading-6 text-gray-900"
+                    className="flex flex-row justify-start items-center gap-10 p-4 text-lg font-medium leading-6 text-gray-900"
                   >
                     <div>
                       <img src={jerseyImagePath} alt="Jersey" className="h-24 w-24" />

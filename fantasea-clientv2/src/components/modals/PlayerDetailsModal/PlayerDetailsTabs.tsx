@@ -5,10 +5,10 @@ import { useAppSelector } from "../../../store/store";
 import { Fixture } from "../../../models/gen-info/Fixture";
 import { generalHelpers } from "../../../services/general-helpers/general-helpers";
 import { Tab } from "@headlessui/react";
-import { PlayerFixtureHistory } from "./PlayerFixtureHistory";
 import { PlayerFixtureUpcoming } from "./PlayerFixtureUpcoming";
 import { PlayerHistoryItem } from "../../../models/PlayerHistoryItems";
 import { FixtureHistoryTable } from "./FixtureHistoryTable";
+import { FixtureUpcomingTable } from "./FixtureUpcomingTable";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -89,21 +89,11 @@ export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): 
             "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
           )}
         >
-          {/* Upcoming Fixtures Content */}
-          <div className="flex flex-col w-full">
-            {fixtureUpcoming.length > 0 ? (
-              fixtureUpcoming.map((fixture) => (
-                <PlayerFixtureUpcoming
-                  key={fixture.id}
-                  player={player}
-                  fixture={fixture}
-                  teams={teams}
-                />
-              ))
-            ) : (
-              <p className="text-center text-gray-500">No upcoming fixtures.</p>
-            )}
-          </div>
+            <FixtureUpcomingTable 
+                player={player}
+                fixtureUpcoming={fixtureUpcoming}
+                teams={teams}
+            />
         </Tab.Panel>
       </Tab.Panels>
     </Tab.Group>
