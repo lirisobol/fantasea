@@ -37,21 +37,18 @@ export const PlayerFixtureHistory = ({ player, fixture, teams }: PlayerFixtureHi
     return (
         <div className="flex gap-4 justify-around border p-4">
             {/* Kickoff Time */}
-            <span className="w-1/4">
-                {fixture.kickoff_time}
+            <span className="font-semibold ">
+                {`GW${fixture.event}`}
+            </span>
+            <span className="w-1/4 text-xs mt-1">
+                {generalHelpers.formatKickoffTime(fixture.kickoff_time)}
             </span>
             <span className="w-1/4">
                 <OpponentBox opponent={opponentTeam} difficulty={gameDifficulty} />
             </span>
             {/* Result */}
             <span className="w-1/4">
-                <ResultBadge result={gameResult}/>
-            </span>
-            {/* Score */}
-            <span className="flex flex-row gap-2 w-1/4">
-                <span>{fixture.team_h_score}</span>
-                <span> - </span>
-                <span>{fixture.team_a_score}</span>
+                <ResultBadge result={gameResult} home_score={fixture.team_h_score} away_score={fixture.team_a_score}/>
             </span>
         </div>
     )

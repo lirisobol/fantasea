@@ -27,7 +27,7 @@ export default {
   safelist: [
     'bg-green-100', 'bg-red-100', 'bg-gray-100','bg-blue-100','bg-green-200',
     'bg-green-300','bg-green-400','bg-green-500','bg-red-100','bg-red-200',
-    'bg-red-300','bg-red-400','bg-red-500',"bg-gray-200",
+    'bg-red-300','bg-red-400','bg-red-500',"bg-gray-200","bg-gray-600","bg-gray-400",
     'text-green-700', 'text-red-700', 'text-gray-700', 'text-blue-100'
   ]
 //   daisyui: {

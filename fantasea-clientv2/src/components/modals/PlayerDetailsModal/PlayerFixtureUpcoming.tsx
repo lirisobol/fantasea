@@ -12,13 +12,15 @@ interface PlayerFixtureUpcomingProps {
 }
 
 export const PlayerFixtureUpcoming = ({player, fixture, teams}:PlayerFixtureUpcomingProps):JSX.Element => {
-    const playerTeam:Team = teams.find(t => t.code === player.team_code);
-
+    // const playerTeam:Team = teams.find(t => t.code === player.team_code);
+    const [playerTeam, setPlayerTeam] = useState("");
     const [opponentTeam, setOpponentTeam] = useState<string>('');
     const [gameDifficulty, setGameDifficulty] = useState<number>(0);
 
     useEffect(() => {
         if(!player.isPlaceholder) {
+            const team = teams.find(t => t.code === player.team_code);
+            setPlayerTeam(team);
             const opponentId = generalHelpers.getOpponentTeamId(fixture, playerTeam);
             const opponent = generalHelpers.getOpponentName(fixture, opponentId, teams);
             setOpponentTeam(opponent);

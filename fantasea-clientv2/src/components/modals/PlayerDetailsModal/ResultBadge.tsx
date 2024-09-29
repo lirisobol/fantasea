@@ -1,8 +1,10 @@
 interface ResultBadgeProps {
     result: string;
+    home_score: string;
+    away_score: string;
 }
 
-export const ResultBadge = ({ result }: ResultBadgeProps): JSX.Element => {
+export const ResultBadge = ({ result, home_score, away_score }: ResultBadgeProps): JSX.Element => {
     const getColor = (result: string) => {
         switch(result) {
             case "Win":
@@ -20,7 +22,7 @@ export const ResultBadge = ({ result }: ResultBadgeProps): JSX.Element => {
 
     return (
         <div className={`flex items-center justify-center rounded-md bg-${color}-100 px-3 py-1.5 text-sm font-medium text-${color}-700 w-32`}>
-            {result}
+            {home_score} - {away_score}
         </div>
     );
 }

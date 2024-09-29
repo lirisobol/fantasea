@@ -33,7 +33,6 @@ class GeneralHelpers {
     
 
     public getDifficultyColor(difficulty: number): string {
-        console.log(difficulty);
         
         switch (difficulty) {
             case 1:
@@ -41,7 +40,7 @@ class GeneralHelpers {
             case 2:
                 return "green-500";
             case 3:
-                return "green-300";  // Moderate
+                return "gray-400";  // Moderate
             case 4:
                 return "red-400";
             case 5:
@@ -50,7 +49,13 @@ class GeneralHelpers {
                 return "gray-200";   // Fallback for unexpected values
         }
     }
-        /* 
+
+    public getTextColor(color:string): string {
+        if(color.includes("red")) return "white"
+        return "black";
+    }
+
+    /* 
         ** teamFixtures - Fixture[] of a specific team
         ** currentGameWeek - Id number of current gameweek
         might be located in the main redux store.

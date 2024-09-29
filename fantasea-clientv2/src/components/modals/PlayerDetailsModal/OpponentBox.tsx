@@ -6,8 +6,11 @@ interface OpponentBoxProps {
 }
 export const OpponentBox = ({opponent,difficulty}: OpponentBoxProps):JSX.Element => {
     const color = generalHelpers.getDifficultyColor(difficulty);
+    const textColor = generalHelpers.getTextColor(color); 
+    
+
     return (
-        <div className={`rounded-lg px-3 py-1.5 bg-${color} w-32 text-center truncate`}>
+        <div className={`rounded-lg px-2 py-1 bg-${color} text-${textColor} w-32 text-center truncate`}>
             {opponent}
         </div>
     )
