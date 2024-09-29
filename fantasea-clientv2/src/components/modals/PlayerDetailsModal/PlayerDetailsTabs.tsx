@@ -7,7 +7,6 @@ import { generalHelpers } from "../../../services/general-helpers/general-helper
 import { Tab } from "@headlessui/react";
 import { PlayerFixtureHistory } from "./PlayerFixtureHistory";
 import { PlayerFixtureUpcoming } from "./PlayerFixtureUpcoming";
-import { playerHistoryService } from "../../../services/data/PlayerHistory";
 import { PlayerHistoryItem } from "../../../models/PlayerHistoryItems";
 
 function classNames(...classes) {
@@ -16,30 +15,15 @@ function classNames(...classes) {
 
 interface PlayerDetailsTabsProps {
     player: Element;
+    history: PlayerHistoryItem[];
 }
-
-export const PlayerDetailsTabs = ({ player }: PlayerDetailsTabsProps): JSX.Element => {
-    const [playerHistoryData, setPlayerHistoryData] = useState<PlayerHistoryItem[] | null>(null);
-
+export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): JSX.Element => {
     const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
     const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
     const [fixtureHistory, setFixtureHistory] = useState<Fixture[]>([]);
     const [fixtureUpcoming, setFixtureUpcoming] = useState<Fixture[]>([]);
-    useEffect(() => {
-        const fetchPlayerHistory = async () => {
-            try {
-                const data = await playerHistoryService.fetchPlayerHistory(player.id);
-                setPlayerHistoryData(data);
 
-            } catch (error) {
-                console.error("Error fetching player history data:", error);
-            } 
-        };
-    
-        if (player && player.id) {
-            fetchPlayerHistory();
-        }
-    }, [player]);
+
     useEffect(() => {
         if (!player.isPlaceholder) {
             const team = generalHelpers.getTeamByPlayer(player, teams);
@@ -100,7 +84,7 @@ export const PlayerDetailsTabs = ({ player }: PlayerDetailsTabsProps): JSX.Eleme
                   player={player}
                   fixture={fixture}
                   teams={teams}
-                  playerHistory={playerHistoryData}
+                  playerHistory={history}
                 />
               ))
             ) : (

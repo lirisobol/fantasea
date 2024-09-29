@@ -117,5 +117,7 @@ class GeneralHelpers {
 
             return (year+'-' + month + '-'+ dt)
         }
+
+        
 }
 export const generalHelpers = new GeneralHelpers();

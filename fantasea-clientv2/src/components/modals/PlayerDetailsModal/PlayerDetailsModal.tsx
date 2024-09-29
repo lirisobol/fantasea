@@ -7,6 +7,9 @@ import { XMarkIcon } from '@heroicons/react/16/solid';
 import { ElementType } from '../../../models/gen-info/ElementType';
 import { generalHelpers } from '../../../services/general-helpers/general-helpers';
 import { PlayerDetailsTabs } from './PlayerDetailsTabs';
+import { playerHistoryService } from '../../../services/data/PlayerHistory';
+import { PlayerHistoryItem } from '../../../models/PlayerHistoryItems';
+import { PlayerStats } from './PlayerStats';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -19,11 +22,29 @@ interface PlayerDetailsModalProps {
 }
 
 export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetailsModalProps) {
+    const [playerHistoryData, setPlayerHistoryData] = useState<PlayerHistoryItem[] | null>(null);
+
     const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
     const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
     const elementTypes = useAppSelector<ElementType[]>((state) => state.genInfo.data?.element_types);
-    const [team, setTeam] = useState<Team>(null);
+    const [team, setTeam] = useState<Team | null>(null);
     const [positionString, setPositionString] = useState<string>('');
+
+    useEffect(() => {
+        const fetchPlayerHistory = async () => {
+            try {
+                const data = await playerHistoryService.fetchPlayerHistory(player.id);
+                setPlayerHistoryData(data);
+
+            } catch (error) {
+                console.error("Error fetching player history data:", error);
+            } 
+        };
+    
+        if (player && player.id) {
+            fetchPlayerHistory();
+        }
+    }, [player]);
 
     useEffect(() => {
       if (!player.isPlaceholder) {
@@ -103,31 +124,10 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                   {/* Body */}
                   <div className="flex flex-col gap-2">
                     {/* Player Stats Section */}
-                    <div className="flex flex-wrap gap-4 sm:flex-row sm:gap-0 justify-evenly rounded-lg bg-slate-100 p-4">
-                      <div className="flex flex-col gap-1 justify-center items-center">
-                        <span className="text-xs sm:text-sm">Price</span>
-                        <span className="font-bold text-sm sm:text-xl">{player.now_cost / 10} m</span>
-                      </div>
-                      <div className="flex flex-col gap-1 justify-center items-center">
-                        <span className="text-xs sm:text-sm">Pts / Game</span>
-                        <span className="font-bold text-sm sm:text-xl">{player.points_per_game}</span>
-                      </div>
-                      <div className="flex flex-col gap-1 justify-center items-center">
-                        <span className="text-xs sm:text-sm">Form</span>
-                        <span className="font-bold text-sm sm:text-xl">{player.form}</span>
-                      </div>
-                      <div className="flex flex-col gap-1 justify-center items-center">
-                        <span className="text-xs sm:text-sm">Selected</span>
-                        <span className="font-bold text-sm sm:text-xl">{player.selected_by_percent} %</span>
-                      </div>
-                      <div className="flex flex-col gap-1 justify-center items-center">
-                        <span className="text-xs sm:text-sm">ICT Index</span>
-                        <span className="font-bold text-sm sm:text-xl">{player.ict_index}</span>
-                      </div>
-                    </div>
+                    <PlayerStats player={player} history={playerHistoryData} currentGameweek={currentGameWeekId}/>
                     <hr />
-                        {/* Tabs with Fixed Height and Scrollable Content */}
-                        <PlayerDetailsTabs player={player} />
+                    {/* Tabs with Fixed Height and Scrollable Content */}
+                    <PlayerDetailsTabs player={player} history={playerHistoryData}/>
                     <hr />
                   </div>
                 </Dialog.Panel>
