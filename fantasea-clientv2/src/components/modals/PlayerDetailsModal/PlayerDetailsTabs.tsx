@@ -100,6 +100,7 @@ export const PlayerDetailsTabs = ({ player }: PlayerDetailsTabsProps): JSX.Eleme
                   player={player}
                   fixture={fixture}
                   teams={teams}
+                  playerHistory={playerHistoryData}
                 />
               ))
             ) : (
