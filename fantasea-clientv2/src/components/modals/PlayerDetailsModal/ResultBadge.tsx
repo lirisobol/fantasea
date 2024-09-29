@@ -21,7 +21,7 @@ export const ResultBadge = ({ result, home_score, away_score }: ResultBadgeProps
     const color = getColor(result);
 
     return (
-        <div className={`flex items-center justify-center rounded-md bg-${color}-100 px-3 py-1.5 text-sm font-medium text-${color}-700 w-32`}>
+        <div className={`flex items-center justify-center rounded-md bg-${color}-100 w-20 py-1 text-xs font-medium text-${color}-700`}>
             {home_score} - {away_score}
         </div>
     );

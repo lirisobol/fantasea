@@ -10,7 +10,7 @@ export const OpponentBox = ({opponent,difficulty}: OpponentBoxProps):JSX.Element
     
 
     return (
-        <div className={`rounded-lg px-2 py-1 bg-${color} text-${textColor} w-32 text-center truncate`}>
+        <div className={`rounded-lg bg-${color} text-${textColor} w-20 py-1 text-center font-medium truncate text-xs`}>
             {opponent}
         </div>
     )

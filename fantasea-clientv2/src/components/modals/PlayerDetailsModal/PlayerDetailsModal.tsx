@@ -125,7 +125,6 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                   <div className="flex flex-col gap-2">
                     {/* Player Stats Section */}
                     <PlayerStats player={player} history={playerHistoryData} currentGameweek={currentGameWeekId}/>
-                    <hr />
                     {/* Tabs with Fixed Height and Scrollable Content */}
                     <PlayerDetailsTabs player={player} history={playerHistoryData}/>
                     <hr />

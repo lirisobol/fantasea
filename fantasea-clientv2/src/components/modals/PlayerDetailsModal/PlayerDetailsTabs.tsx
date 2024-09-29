@@ -8,6 +8,7 @@ import { Tab } from "@headlessui/react";
 import { PlayerFixtureHistory } from "./PlayerFixtureHistory";
 import { PlayerFixtureUpcoming } from "./PlayerFixtureUpcoming";
 import { PlayerHistoryItem } from "../../../models/PlayerHistoryItems";
+import { FixtureHistoryTable } from "./FixtureHistoryTable";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -75,22 +76,12 @@ export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): 
             "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
           )}
         >
-          {/* Fixture History Content */}
-          <div className="flex flex-col w-full">
-            {fixtureHistory.length > 0 ? (
-              fixtureHistory.map((fixture) => (
-                <PlayerFixtureHistory
-                  key={fixture.id}
-                  player={player}
-                  fixture={fixture}
-                  teams={teams}
-                  playerHistory={history}
-                />
-              ))
-            ) : (
-              <p className="text-center text-gray-500">No history available.</p>
-            )}
-          </div>
+            <FixtureHistoryTable
+              player={player}
+              fixtureHistory={fixtureHistory}
+              teams={teams}
+              playerHistory={history}
+            />
         </Tab.Panel>
         <Tab.Panel
           className={classNames(
