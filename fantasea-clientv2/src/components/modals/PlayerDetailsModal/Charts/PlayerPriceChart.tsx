@@ -42,7 +42,7 @@ interface PlayerPriceChartProps {
             <Line
               type="linear"
               dataKey="value"
-              stroke="#8884d8"
+              stroke="#63C6BE"
               strokeWidth={3}
               activeDot={{ r: 8 }}
             />
