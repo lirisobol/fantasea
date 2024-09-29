@@ -25,7 +25,7 @@ export const FixtureHistoryTable = ({
           <div>Points</div>
         </div>
         {/* Data Rows */}
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col-reverse w-full">
           {fixtureHistory.length > 0 ? (
             fixtureHistory.map((fixture) => (
               <PlayerFixtureHistory
