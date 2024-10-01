@@ -6,9 +6,11 @@ import { Fixture } from "../../../models/gen-info/Fixture";
 import { generalHelpers } from "../../../services/general-helpers/general-helpers";
 import { Tab } from "@headlessui/react";
 import { PlayerHistoryItem } from "../../../models/PlayerHistoryItems";
-import { FixtureHistoryTable } from "./FixtureHistoryTable";
-import { FixtureUpcomingTable } from "./FixtureUpcomingTable";
-import { PerformanceTab } from "./PerformanceTab";
+import { FixtureHistoryTab } from "./Tabs/FixtureHistoryTab";
+import { FixtureUpcomingTab } from "./Tabs/FixtureUpcomingTab";
+import { PerformanceTab } from "./Tabs/PerformanceTab";
+
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -87,7 +89,7 @@ export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): 
             "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
           )}
         >
-            <FixtureHistoryTable
+            <FixtureHistoryTab
               player={player}
               fixtureHistory={fixtureHistory}
               teams={teams}
@@ -100,7 +102,7 @@ export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): 
             "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
           )}
         >
-            <FixtureUpcomingTable 
+            <FixtureUpcomingTab
                 player={player}
                 fixtureUpcoming={fixtureUpcoming}
                 teams={teams}
@@ -108,7 +110,7 @@ export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): 
         </Tab.Panel>
         <Tab.Panel
           className={classNames(
-            "rounded-xl bg-white p-3",
+            "rounded-xl bg-white",
             "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
           )}
         >

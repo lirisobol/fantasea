@@ -1,10 +1,11 @@
-import { Fixture } from "../../../models/gen-info/Fixture";
-import { Team } from "../../../models/gen-info/Team";
-import { PlayerHistoryItem } from "../../../models/PlayerHistoryItems";
-import { Element } from "../../../models/gen-info/Element";
-import { PlayerFixtureHistory } from "./PlayerFixtureHistory";
+import { Fixture } from "../../../../models/gen-info/Fixture";
+import { Team } from "../../../../models/gen-info/Team";
+import { Element } from "../../../../models/gen-info/Element";
+import { PlayerHistoryItem } from "../../../../models/PlayerHistoryItems";
+import { PlayerFixtureHistory } from "../PlayerFixtureHistory";
 
-export const FixtureHistoryTable = ({
+
+export const FixtureHistoryTab = ({
     player,
     fixtureHistory,
     teams,

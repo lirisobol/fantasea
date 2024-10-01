@@ -17,7 +17,7 @@ interface PlayerPointsChartProps {
     data: ChartDataPoint[];
 }
   
-  export const PlayerPointsChart = ({ data }: PlayerPointsChartProps): JSX.Element => {
+export const PlayerPointsChart = ({ data }: PlayerPointsChartProps): JSX.Element => {
     return (
       <div className="w-full h-56">
         <ResponsiveContainer>

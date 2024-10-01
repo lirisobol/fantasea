@@ -17,8 +17,7 @@ interface PlayerSelectedChartProps {
     data: ChartDataPoint[];
 }
   
-  export const PlayerSelectedChart = ({ data }: PlayerSelectedChartProps): JSX.Element => {
-    console.log(data);
+export const PlayerSelectedChart = ({ data }: PlayerSelectedChartProps): JSX.Element => {
     
     return (
       <div className="w-full h-56">

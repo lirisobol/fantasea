@@ -1,14 +1,15 @@
-import { Element } from "../../../models/gen-info/Element"
-import { Fixture } from "../../../models/gen-info/Fixture";
-import { Team } from "../../../models/gen-info/Team";
-import { PlayerFixtureUpcoming } from "./PlayerFixtureUpcoming";
+import { Fixture } from "../../../../models/gen-info/Fixture";
+import { Team } from "../../../../models/gen-info/Team";
+import { Element } from "../../../../models/gen-info/Element";
+import { PlayerFixtureUpcoming } from "../PlayerFixtureUpcoming";
 
-interface FixtureUpcomingTableProps {
+
+interface FixtureUpcomingTabProps {
     player: Element;
     fixtureUpcoming: Fixture[];
     teams: Team[];
 }
-export const FixtureUpcomingTable = ({player, fixtureUpcoming, teams}: FixtureUpcomingTableProps):JSX.Element => {
+export const FixtureUpcomingTab = ({player, fixtureUpcoming, teams}: FixtureUpcomingTabProps):JSX.Element => {
     return (
         <div className="w-full">
         <div className="hidden sm:grid sm:grid-cols-2 gap-4 border-b py-2 font-semibold text-gray-700 text-xs">

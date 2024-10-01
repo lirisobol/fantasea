@@ -91,7 +91,7 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                   className="w-full max-w-7xl max-h-[90vh] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
                 >
                   {/* Close Button */}
-                  <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+                  <div className="absolute right-0 top-0 pr-4 pt-4 sm:block">
                     <button
                       type="button"
                       onClick={() => onHide()}
@@ -105,26 +105,34 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                   {/* Title */}
                   <Dialog.Title
                     as="div"
-                    className="flex flex-row justify-start items-center gap-10 p-4 text-lg font-medium leading-6 text-gray-900"
-                  >
-                    <div>
-                      <img src={jerseyImagePath} alt="Jersey" className="h-24 w-24" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-gray-900 text-xs shadow-md rounded-lg bg-teal-400 px-2 py-1 w-20">
-                        {positionString}
-                      </span>
-                      <span className="">
-                        {player.first_name} {player.second_name}
-                      </span>
-                      <span className="text-gray-500 text-sm">{team?.name}</span>
-                    </div>
+                    className="
+                        flex flex-col md:flex-row items-center justify-center
+                        p-2 text-gray-900
+                        "
+                    >
+                        <div className="flex flex-col justify-evenly items-center">
+                            <img src={jerseyImagePath} alt="Jersey" className="h-16 w-16 sm:h-24 sm:w-24" />
+                            <span className="text-gray-900 text-xs shadow-md rounded-lg bg-teal-400 px-2 py-1">
+                                {positionString}
+                            </span>
+                            <div className="flex gap-1 font-semibold">
+                                <span>
+                                    {player.first_name} 
+                                </span>
+                                <span>
+                                    {player.second_name}
+                                </span>
+                            </div>
+                            <span className="text-gray-500 text-sm">{team?.name}</span>
+                        </div>
+                        <div className='w-full'>
+                            <PlayerStats player={player} history={playerHistoryData} currentGameweek={currentGameWeekId}/>
+                        </div>
                   </Dialog.Title>
 
                   {/* Body */}
                   <div className="flex flex-col gap-2">
                     {/* Player Stats Section */}
-                    <PlayerStats player={player} history={playerHistoryData} currentGameweek={currentGameWeekId}/>
                     {/* Tabs with Fixed Height and Scrollable Content */}
                     <PlayerDetailsTabs player={player} history={playerHistoryData}/>
                     <hr />

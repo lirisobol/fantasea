@@ -22,40 +22,40 @@ export const PlayerStats = ({player, history, currentGameweek}: PlayerStatsProps
     
 
     return (
-        <div className="flex flex-wrap gap-4 sm:flex-row sm:gap-0 justify-evenly rounded-lg bg-slate-100 p-4">
-        <div className="flex flex-col gap-1 justify-center items-center">
-            <span className="text-xs sm:text-sm">Price</span>
-            {player.now_cost/10 === playerStatsPreviousWeek?.value/10 && 
-                <span className="font-bold text-sm sm:text-xl">
-                    {player.now_cost/10}m
-                </span>}
-            {player.now_cost/10 > playerStatsPreviousWeek?.value/10 && 
-                <span className="font-bold text-sm sm:text-xl">{player.now_cost/10}m
-                    <FontAwesomeIcon icon={faCaretUp} style={{color:"#63E6BE", marginLeft:"10px"}} size="lg"/>
-                </span>
-            }
-            {player.now_cost/10 < playerStatsPreviousWeek?.value/10 && 
-                <span className="font-bold text-sm sm:text-xl">{player.now_cost/10}m
-                    <FontAwesomeIcon icon={faCaretDown} style={{color:"#e66565", marginLeft:"10px"}} size="lg"/>
-                </span>
-            }
-        </div>
-        <div className="flex flex-col gap-1 justify-center items-center">
-            <span className="text-xs sm:text-sm">Pts / Game</span>
-            <span className="font-bold text-sm sm:text-xl">{player.points_per_game}</span>
-        </div>
-        <div className="flex flex-col gap-1 justify-center items-center">
-            <span className="text-xs sm:text-sm">Form</span>
-            <span className="font-bold text-sm sm:text-xl">{player.form}</span>
-        </div>
-        <div className="flex flex-col gap-1 justify-center items-center">
-            <span className="text-xs sm:text-sm">Selected</span>
-            <span className="font-bold text-sm sm:text-xl">{player.selected_by_percent} %</span>
-        </div>
-        <div className="flex flex-col gap-1 justify-center items-center">
-            <span className="text-xs sm:text-sm">ICT Index</span>
-            <span className="font-bold text-sm sm:text-xl">{player.ict_index}</span>
-        </div>
+        <div className="flex flex-col md:flex-row justify-evenly gap-2">
+            <div className="flex flex-row md:flex-col gap-1 justify-between items-center">
+                <span className="text-xs md:text-sm">Price</span>
+                {player.now_cost/10 === playerStatsPreviousWeek?.value/10 && 
+                    <span className="font-bold text-sm md:text-xl">
+                        {player.now_cost/10}m
+                    </span>}
+                {player.now_cost/10 > playerStatsPreviousWeek?.value/10 && 
+                    <span className="font-bold text-sm md:text-xl">{player.now_cost/10}m
+                        <FontAwesomeIcon icon={faCaretUp} style={{color:"#63E6BE", marginLeft:"10px"}} size="lg"/>
+                    </span>
+                }
+                {player.now_cost/10 < playerStatsPreviousWeek?.value/10 && 
+                    <span className="font-bold text-sm md:text-xl">{player.now_cost/10}m
+                        <FontAwesomeIcon icon={faCaretDown} style={{color:"#e66565", marginLeft:"10px"}} size="lg"/>
+                    </span>
+                }
+            </div>
+            <div className="flex flex-row md:flex-col gap-1 justify-between items-center">
+                <span className="text-xs md:text-sm">Pts / Game</span>
+                <span className="font-bold text-sm md:text-xl">{player.points_per_game}</span>
+            </div>
+            <div className="flex flex-row md:flex-col gap-1 justify-between items-center">
+                <span className="text-xs md:text-sm">Form</span>
+                <span className="font-bold text-sm md:text-xl">{player.form}</span>
+            </div>
+            <div className="flex flex-row md:flex-col gap-1 justify-between items-center">
+                <span className="text-xs md:text-sm">Selected</span>
+                <span className="font-bold text-sm md:text-xl">{player.selected_by_percent} %</span>
+            </div>
+            <div className="flex flex-row md:flex-col gap-1 justify-between items-center">
+                <span className="text-xs md:text-sm">ICT Index</span>
+                <span className="font-bold text-sm md:text-xl">{player.ict_index}</span>
+            </div>
       </div>
     )
 }

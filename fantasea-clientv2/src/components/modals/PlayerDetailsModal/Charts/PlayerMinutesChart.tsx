@@ -13,11 +13,11 @@ interface ChartDataPoint {
     value: number;
 }
   
-interface PlayerPriceChartProps {
+interface PlayerMinutesChartProps {
     data: ChartDataPoint[];
 }
   
-export const PlayerPriceChart = ({ data }: PlayerPriceChartProps): JSX.Element => {
+export const PlayerMinutesChart = ({ data }: PlayerMinutesChartProps): JSX.Element => {
     return (
       <div className="w-full h-56">
         <ResponsiveContainer>
@@ -31,12 +31,11 @@ export const PlayerPriceChart = ({ data }: PlayerPriceChartProps): JSX.Element =
                 interval={0}
             />
             <YAxis
-              label={{ value: 'Price (£m)', angle: -90, position: 'insideLeft', offset: 10 }}
+              label={{ value: 'Points', angle: -90, position: 'insideLeft', offset: 10 }}
               tick={{ fontSize: 12 }}
               domain={['dataMin', 'dataMax']}
             />
             <Tooltip
-                formatter={(value: number) => `£${value.toFixed(1)}m`}
                 labelFormatter={(label) => `Gameweek ${label}`}
             />
             <Line
