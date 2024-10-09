@@ -39,12 +39,12 @@ export const PlayersTable = ({teams, currentGameWeekId}: PlayersTableProps):JSX.
 
 
     return (
-        <div className='ag-theme-quartz'>
+        <div className='ag-theme-quartz h-full'>
             <AgGridReact 
                 columnDefs={columnDefs}
                 rowData={players}
-                rowHeight={75}
-                domLayout='autoHeight'
+                rowHeight={50}
+                domLayout='normal'
             />
         </div>
     )

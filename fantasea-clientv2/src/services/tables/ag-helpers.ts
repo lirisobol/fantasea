@@ -24,9 +24,9 @@ class AgHelpers {
                 if (fixtures.length > i) {
                     const fixture = fixtures[i];
                     const opponentId = team.id === fixture.team_h ? fixture.team_a : fixture.team_h;
-                    const homeOrAway = team.id === fixture.team_h ? "(H)" : "(A)";
+                    const homeOrAway = team.id === fixture.team_h ? "(H)":"(A)";
                     const opponentName = generalHelpers.getTeamShortNameById(opponentId, teams);
-                    return `${opponentName} ${homeOrAway}`;
+                    return `${opponentName}${homeOrAway}`;
                 }
                 
                 return '-';
@@ -75,9 +75,9 @@ class AgHelpers {
                 if (fixtures.length > i) {
                     const fixture = fixtures[i];
                     const opponentId = params.data.id === fixture.team_h ? fixture.team_a : fixture.team_h;
-                    const homeOrAway = params.data.id === fixture.team_h ? "(H)" : "(A)";
+                    const homeOrAway = params.data.id === fixture.team_h ? "(H)":"(A)";
                     const opponentName = generalHelpers.getTeamShortNameById(opponentId, teams);
-                    return `${opponentName} ${homeOrAway}`;
+                    return `${opponentName}${homeOrAway}`;
                 }
                 return '-';
             },

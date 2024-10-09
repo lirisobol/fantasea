@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { Routing } from "./router/Routing";
 import { fetchGeneralInfo } from "./store/slices/gen-info";
 import { useAppDispatch, useAppSelector } from "./store/store";
-import Navbar from "./components/Navbar/Navbar";
 import LoaderBar from "./components/Loading/LoaderBar/LoaderBar";
 import { hideAlert } from "./store/slices/alert";
 import { Alert } from "./components/Alerts/Alert";
+import { Navbar } from "./components/Navbar/Navbar";
 
 function App() {
     const dispatch = useAppDispatch();

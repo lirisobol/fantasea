@@ -42,7 +42,7 @@ export const PlayersDraftTableSelectable = ({preSetPosition, onSelection}: Playe
             <AgGridReact 
                 columnDefs={columnDefs}
                 rowData={players}
-                rowHeight={75}
+                rowHeight={50}
                 domLayout='autoHeight'
                 rowSelection={"single"}
                 onSelectionChanged={onSelection}
