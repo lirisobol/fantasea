@@ -11,9 +11,6 @@ import { playerHistoryService } from '../../../services/data/PlayerHistory';
 import { PlayerHistoryItem } from '../../../models/PlayerHistoryItems';
 import { PlayerStats } from './PlayerStats';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 interface PlayerDetailsModalProps {
   show: boolean;

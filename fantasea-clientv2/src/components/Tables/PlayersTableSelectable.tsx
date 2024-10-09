@@ -1,7 +1,7 @@
 
 import {  useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import { ColDef } from "ag-grid-community";
+import { ColDef, SelectionChangedEvent } from "ag-grid-community";
 import useFilteredPlayers from "../../hooks/useFilteredPlayers";
 import { Element } from "../../models/gen-info/Element";
 import { playersTableHelpers } from "../../services/tables/table-specific/players-table-helpers";
@@ -11,10 +11,10 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 
 interface PlayersTableSelectableProps {
-    onSelection: () => void;
+    onSelection: (event: SelectionChangedEvent) => void;
 }
 export const PlayersTableSelectable = ({onSelection}: PlayersTableSelectableProps):JSX.Element => {
-    
+
     const dispatch = useAppDispatch();
     const [columnDefs, setColumnDefs] = useState<ColDef[]>([]);
 
@@ -32,18 +32,20 @@ export const PlayersTableSelectable = ({onSelection}: PlayersTableSelectableProp
         if(teams && players  && currentGameWeekId) {
             const cols = playersTableHelpers.setColDef(teams, players, currentGameWeekId, 5);
             setColumnDefs(cols);
+
         }
         else {
             dispatch(fetchGeneralInfo());
+
         }
-    },[])
-    
+    },[teams, players, currentGameWeekId, dispatch])
+
     return (
         <div className="ag-theme-quartz">
             <AgGridReact 
                 columnDefs={columnDefs}
                 rowData={players}
-                rowHeight={75}
+                rowHeight={40}
                 domLayout='autoHeight'
                 rowSelection={"single"}
                 onSelectionChanged={onSelection}
