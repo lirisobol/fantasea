@@ -30,7 +30,7 @@ export const ClubsTable = ({teams, currentGameWeekId}:ClubsTableProps):JSX.Eleme
                     <AgGridReact 
                     columnDefs={columnDefs}
                     rowData={teams}
-                    rowHeight={40}
+                    rowHeight={50}
                     domLayout='normal'
                     />
                 </div>

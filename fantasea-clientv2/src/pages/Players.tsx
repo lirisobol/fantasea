@@ -25,12 +25,12 @@ export const Players = ():JSX.Element => {
       
     
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-5/6">
             <div className="flex-shrink-0">
                 <PlayersTableFilterGroup />
             </div>
             {teams && 
-                <div className="flex-grow overflow-y-auto h-full">
+                <div className="flex-grow overflow-y-auto">
                     <PlayersTableSelectable 
                         onSelection={onSelect}
                     />

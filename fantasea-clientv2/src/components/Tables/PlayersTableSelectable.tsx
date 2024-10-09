@@ -45,7 +45,7 @@ export const PlayersTableSelectable = ({onSelection}: PlayersTableSelectableProp
             <AgGridReact 
                 columnDefs={columnDefs}
                 rowData={players}
-                rowHeight={40}
+                rowHeight={50}
                 domLayout='autoHeight'
                 rowSelection={"single"}
                 onSelectionChanged={onSelection}

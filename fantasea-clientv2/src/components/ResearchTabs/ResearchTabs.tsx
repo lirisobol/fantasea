@@ -24,7 +24,7 @@ export default function ResearchTabs() {
   const ActiveTabComponent = tabComponents[activeTab];
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full py-5">
       {/* Tabs */}
       <div className="border-b border-gray-200">
         <nav aria-label="Tabs" className="flex">
@@ -46,7 +46,7 @@ export default function ResearchTabs() {
         </nav>
       </div>
       {/* Content Area */}
-      <div className="flex-grow overflow-y-auto h-svh">
+      <div className="flex-grow h-full mt-5">
         {ActiveTabComponent && <ActiveTabComponent />}
       </div>
     </div>

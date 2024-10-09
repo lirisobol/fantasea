@@ -3,6 +3,7 @@ import { DraftBudget } from "./DraftBudget"
 import { ResetDraftButton } from "./ResetDraftButton"
 import { TeamDrawerButton } from "./TeamDrawer/TeamDrawerButton";
 import TeamDrawer from "./TeamDrawer/TeamDrawer";
+import { SelectedCounter } from "./SelectedCounter";
 
 export const DraftControls = ():JSX.Element => {
     const [teamDrawerShow, setTeamDrawerShow] = useState<boolean>(false);
@@ -18,6 +19,7 @@ export const DraftControls = ():JSX.Element => {
             <div className="flex flex-row gap-2">
                 <ResetDraftButton />
                 <DraftBudget />
+                <SelectedCounter />
             </div>
             <div>
                 <TeamDrawerButton handleOpen={handleTeamDrawerOpen} />
