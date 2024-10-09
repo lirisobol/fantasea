@@ -6,8 +6,9 @@ import { PlayersTableFilterGroup } from '../../Filters/PlayersTableFilterGroup';
 interface ComparePlayersModal {
     show: boolean;
     onHide: () => void;
+    onSelection: () => void;
 }
-export default function ComparePlayersModal({show, onHide}: ComparePlayersModal) {
+export default function ComparePlayersModal({show, onHide, onSelection}: ComparePlayersModal) {
 
   return (
     <>
@@ -45,7 +46,7 @@ export default function ComparePlayersModal({show, onHide}: ComparePlayersModal)
                   </Dialog.Title>
                   <div className="mt-2">
                     <PlayersTableFilterGroup />
-                    <PlayersTableSelectable onHide={onHide} />
+                    <PlayersTableSelectable onSelection={onSelection}/>
                   </div>
 
                   <div className="mt-4">

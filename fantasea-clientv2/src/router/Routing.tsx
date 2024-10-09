@@ -6,6 +6,7 @@ import { Managers } from "../pages/Managers"
 import { Leagues } from "../pages/Leagues"
 import { Compare } from "../pages/Compare"
 import { Research } from "../pages/Research"
+import { Draft } from "../pages/Draft"
 
 export const Routing = ():JSX.Element => {
     return (
@@ -17,6 +18,7 @@ export const Routing = ():JSX.Element => {
             <Route path="/leagues" element={<Leagues />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/research" element={<Research />} />
+            <Route path="/draft" element={<Draft />} />
         </Routes>
     )
 }

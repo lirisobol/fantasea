@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Players as PlayersPageComponent } from '../../pages/Players';
 import { Clubs as ClubsPageComponent } from '../../pages/Clubs';
-import { Compare as PlayerCompareComponent } from '../../pages/Compare';
+import { Compare as PlayerComparePageComponent } from '../../pages/Compare';
+
 const tabComponents = {
     'Players': PlayersPageComponent,
     'Clubs': ClubsPageComponent,
-    'Compare Players': PlayerCompareComponent
+    'Compare Players': PlayerComparePageComponent,
 };
 
 const tabs = [
@@ -38,7 +39,7 @@ export default function ResearchTabs() {
               ))}
             </select>
           </div>
-          <div>
+          <div className='h-full'>
             <div className="border-b border-gray-200">
               <nav aria-label="Tabs" className="-mb-px flex">
                 {tabs.map((tab) => (
@@ -58,7 +59,7 @@ export default function ResearchTabs() {
                 ))}
               </nav>
             </div>
-            <div>
+            <div className='flex-1 h-full'>
               {ActiveTabComponent && <ActiveTabComponent />}
             </div>
           </div>

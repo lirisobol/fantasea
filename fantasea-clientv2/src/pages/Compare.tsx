@@ -1,12 +1,13 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { ComparePlayersModalButton } from "../components/modals/ComparePlayersModal/ComparePlayersModalButton"
 import ComparePlayersModal from "../components/modals/ComparePlayersModal/ComparePlayersModal";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { Element } from "../models/gen-info/Element";
 import { ClearAllButton } from "../components/PlayerComparison/ClearAllButton";
 import ClearAllModal from "../components/PlayerComparison/ClearAllModal";
-import { clearAllPlayers } from "../store/slices/player-compare";
+import { addPlayer, clearAllPlayers } from "../store/slices/player-compare";
 import { PlayerComparisonCard } from "../components/PlayerComparison/PlayerComparison";
+import { SelectionChangedEvent } from "ag-grid-community";
 
 export const Compare = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -23,7 +24,15 @@ export const Compare = (): JSX.Element => {
     }; 
     const handleClearAllModalCloseCanceled = () => setClearAllModalShow(false); 
 
-
+    const onSelectionChanged = useCallback((event:SelectionChangedEvent) => {
+        const selectedNode = event.api.getSelectedNodes()[0];
+        const selectedData = selectedNode ? selectedNode.data : null;
+        if (selectedData) {
+            dispatch(addPlayer(selectedData))
+            handleCompareModalClose();
+        }
+    }, [dispatch]);
+    
     return (
         <div className="flex flex-col flex-wrap justify-center gap-4">
             <div className="flex justify-center gap-5">
@@ -41,7 +50,7 @@ export const Compare = (): JSX.Element => {
                 ))}
 
             </div>
-            <ComparePlayersModal show={compareModalShow} onHide={handleCompareModalClose}/>
+            <ComparePlayersModal show={compareModalShow} onHide={handleCompareModalClose} onSelection={onSelectionChanged}/>
         </div>
     )
 }

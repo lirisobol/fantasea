@@ -25,6 +25,9 @@ class GeneralInfoService {
             // Fetch fixtures
             const fixtures = await this.fetchFixtures();
 
+            // Populate fixtures array under genInfo
+            generalInfo.fixtures = fixtures;
+
             // Populate fixtures in Events
             this.populateFixturesInEvents(generalInfo, fixtures);
 
@@ -35,6 +38,8 @@ class GeneralInfoService {
             generalInfo.currentGameWeekId = this.getCurrentGameWeekId(generalInfo.events);
             // Find Next Game week
             generalInfo.nextGameWeekId = this.getNextGameWeekId(generalInfo.events);
+
+            console.log(`total players ${generalInfo.total_players}`)
 
             return generalInfo;
         } 
