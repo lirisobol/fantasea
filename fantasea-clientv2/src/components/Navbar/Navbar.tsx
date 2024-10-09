@@ -9,12 +9,18 @@ export const Navbar = ():JSX.Element => {
                     Brand
                 </NavLink>
             </div>
+            <div>
+                <NavLink to={"/myfpl"} className={"px-14 py-1 rounded-lg border border-gray-900 hover:bg-gray-900 hover:text-white transition"}>
+                    My Fantasy
+                </NavLink>
+            </div>
             {/* Links */}
             <div>
                 <NavLink to={"/draft"} className={"px-14 py-1 rounded-lg border border-gray-900 hover:bg-gray-900 hover:text-white transition"}>
                     Draft
                 </NavLink>
             </div>
+
         </div>
     )
 }
