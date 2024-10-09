@@ -110,12 +110,12 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                         p-2 text-gray-900
                         "
                     >
-                        <div className="flex flex-col justify-evenly items-center">
-                            <img src={jerseyImagePath} alt="Jersey" className="h-16 w-16 sm:h-24 sm:w-24" />
-                            <span className="text-gray-900 text-xs shadow-md rounded-lg bg-teal-400 px-2 py-1">
+                        <div className="flex flex-col justify-evenly gap-1.5">
+                            <span className="text-gray-900 text-center text-xs shadow-md rounded-lg bg-teal-400 px-2 py-1">
                                 {positionString}
                             </span>
-                            <div className="flex gap-1 font-semibold">
+                            <img src={jerseyImagePath} alt="Jersey" className="h-16 w-16 sm:h-24 sm:w-24" />
+                            <div className="flex gap-1 font-semibold truncate">
                                 <span>
                                     {player.first_name} 
                                 </span>
@@ -124,6 +124,7 @@ export default function PlayerDetailsModal({ show, onHide, player }: PlayerDetai
                                 </span>
                             </div>
                             <span className="text-gray-500 text-sm">{team?.name}</span>
+
                         </div>
                         <div className='w-full'>
                             <PlayerStats player={player} history={playerHistoryData} currentGameweek={currentGameWeekId}/>

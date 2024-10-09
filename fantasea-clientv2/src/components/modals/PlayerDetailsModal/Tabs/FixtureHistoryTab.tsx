@@ -18,13 +18,6 @@ export const FixtureHistoryTab = ({
   }): JSX.Element => {
     return (
       <div className="w-full">
-        {/* Header Row */}
-        <div className="hidden sm:grid sm:grid-cols-4 gap-4 border-b py-2 font-semibold text-gray-700 text-xs">
-          <div>Event</div>
-          <div>Opponent</div>
-          <div>Result</div>
-          <div>Points</div>
-        </div>
         {/* Data Rows */}
         <div className="flex flex-col-reverse w-full">
           {fixtureHistory.length > 0 ? (

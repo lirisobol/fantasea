@@ -25,7 +25,6 @@ export const PlayerDetailsTabs = ({ player, history }: PlayerDetailsTabsProps): 
     const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
     const [fixtureHistory, setFixtureHistory] = useState<Fixture[]>([]);
     const [fixtureUpcoming, setFixtureUpcoming] = useState<Fixture[]>([]);
-    console.log(history);
 
     useEffect(() => {
         if (!player.isPlaceholder) {

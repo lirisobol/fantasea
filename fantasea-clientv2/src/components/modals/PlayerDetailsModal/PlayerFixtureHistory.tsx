@@ -47,9 +47,9 @@ export const PlayerFixtureHistory = ({
   }, [player, fixture, playerTeam, teams, playerHistory]);
 
   return (
-    <div className="border-b py-2 sm:grid sm:grid-cols-4 sm:gap-4 sm:items-center">
+    <div className="border-b py-1 flex flex-col gap-1 items-center sm:flex-row sm:gap-6">
       {/* Event and Date */}
-      <div className="flex justify-center gap-5 sm:block">
+      <div className="flex flex-col justify-center items-center">
         <div className="font-semibold text-xs sm:text-sm">
           {`GW${fixture.event}`}
         </div>
@@ -59,12 +59,8 @@ export const PlayerFixtureHistory = ({
       </div>
 
       {/* Opponent */}
-      <div className="mt-2 sm:mt-0 flex justify-center sm:justify-start">
+      <div className="flex items-center gap-6">
         <OpponentBox opponent={opponentTeam} difficulty={gameDifficulty} />
-      </div>
-
-      {/* Result */}
-      <div className="mt-2 sm:mt-0 flex justify-center sm:justify-start">
         <ResultBadge
           result={gameResult}
           home_score={fixture.team_h_score}
@@ -73,7 +69,7 @@ export const PlayerFixtureHistory = ({
       </div>
 
       {/* Points */}
-      <div className="mt-2 sm:mt-0 flex justify-center sm:justify-start">
+      <div className="flex items-center">
         <PointsBadge points={playerStats?.total_points} />
       </div>
     </div>

@@ -39,6 +39,8 @@ class GeneralInfoService {
             // Find Next Game week
             generalInfo.nextGameWeekId = this.getNextGameWeekId(generalInfo.events);
 
+            console.log(`total players ${generalInfo.total_players}`)
+
             return generalInfo;
         } 
         catch (err) {

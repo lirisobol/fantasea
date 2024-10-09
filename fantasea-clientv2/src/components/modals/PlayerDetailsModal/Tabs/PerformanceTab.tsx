@@ -21,7 +21,6 @@ export const PerformanceTab = ({player, history}: PerformanceTabProps):JSX.Eleme
     const [selectedData, setSelectedData] = useState<ChartDataPoint[]>([]);
     const [minutesData, setMinutesData] = useState<ChartDataPoint[]>([]);
 
-    console.log(history);
     
 
     useEffect(() => {

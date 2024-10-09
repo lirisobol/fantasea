@@ -32,7 +32,7 @@ export const PlayerFixtureUpcoming = ({player, fixture, teams}:PlayerFixtureUpco
 
 
     return (
-        <div className="border-b py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:items-center">
+        <div className="border-b py-1 flex flex-col gap-1 items-center sm:flex-row sm:gap-6">
         {/* Event And Date*/}
         <div className="flex justify-center gap-5 sm:block">
             <div className="font-semibold text-xs sm:text-sm">

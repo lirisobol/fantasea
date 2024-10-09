@@ -12,10 +12,6 @@ interface FixtureUpcomingTabProps {
 export const FixtureUpcomingTab = ({player, fixtureUpcoming, teams}: FixtureUpcomingTabProps):JSX.Element => {
     return (
         <div className="w-full">
-        <div className="hidden sm:grid sm:grid-cols-2 gap-4 border-b py-2 font-semibold text-gray-700 text-xs">
-                <div>Event</div>
-                <div>Opponent</div>
-            </div>
             <div className="flex flex-col w-full">
                 {fixtureUpcoming.length > 0 ? (
                     fixtureUpcoming.map((fixture) => (
