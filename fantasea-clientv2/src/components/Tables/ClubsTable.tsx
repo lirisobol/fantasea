@@ -26,12 +26,12 @@ export const ClubsTable = ({teams, currentGameWeekId}:ClubsTableProps):JSX.Eleme
     return (
         <>
             {teams &&
-                <div className='ag-theme-quartz'>
+                <div className='ag-theme-quartz h-full'>
                     <AgGridReact 
                     columnDefs={columnDefs}
                     rowData={teams}
-                    rowHeight={75}
-                    domLayout='autoHeight'
+                    rowHeight={40}
+                    domLayout='normal'
                     />
                 </div>
             }

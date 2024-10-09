@@ -8,10 +8,12 @@ export const Players = ():JSX.Element => {
     const currentGameWeekId = useAppSelector<number>((state) => state.genInfo.data?.currentGameWeekId);
 
     return (
-        <div>
-            <PlayersTableFilterGroup />
+        <div className="flex flex-col h-full">
+            <div className="flex-shrink-0">
+                <PlayersTableFilterGroup />
+            </div>
             {teams && 
-                <div >
+                <div className="flex-grow overflow-y-auto h-full">
                     <PlayersTable 
                         teams={teams}
                         currentGameWeekId={currentGameWeekId}
