@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import { myFPLTrackerService } from "../services/my-fpl-tracker-service";
+import { ManagerDetails } from "../models/ManagerDetails";
 
 class MyFPLTrackerController {
     public readonly router = express.Router();
@@ -16,7 +17,7 @@ class MyFPLTrackerController {
                 response.status(400).json({error: "Invalid Manager ID"})
                 return
             }
-            const managerDetails = await myFPLTrackerService.fetchManagerDetails(managerId);
+            const managerDetails:ManagerDetails = await myFPLTrackerService.fetchManagerDetails(managerId);
             response.status(200).json(managerDetails)
         }
         catch (err:any) {next(err)};
