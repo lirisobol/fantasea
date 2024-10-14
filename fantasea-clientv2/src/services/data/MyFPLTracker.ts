@@ -1,6 +1,6 @@
 import axios from "axios";
 import { appConfig } from "../../utils/AppConfig";
-import { ManagerDetails } from "../../models/ManagerDetails";
+import { ManagerDetails } from "../../models/manager/ManagerDetails";
 
 class MyFPLTrackerService {
     public async fetchManagerDetails(managerId:number):Promise<ManagerDetails> {

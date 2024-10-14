@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ManagerSearch } from "../components/MyFPL/Manager/ManagerSearch"
-import { ManagerDetails } from "../models/ManagerDetails";
+import { ManagerDetails } from "../models/manager/ManagerDetails";
 import { myFPLTrackerService } from "../services/data/MyFPLTracker";
 import ErrorBanner from "../components/Banners/ErrorBanner";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner/LoadingSpinner";
 import { ManagerStats } from "../components/MyFPL/Manager/ManagerDetails";
+import { ManagerCharts } from "../components/MyFPL/Manager/ManagerCharts";
 
 export const MyFPL = ():JSX.Element => {
     const [managerDetails, setManagerDetails] = useState<ManagerDetails | null>(null);
@@ -29,7 +30,7 @@ export const MyFPL = ():JSX.Element => {
         }
     }
     return (
-        <div className="w-full h-full flex flex-col gap-2">
+        <div className="w-full h-full flex flex-col items-center gap-2">
             {error && (
                 <ErrorBanner message={error}/>
             )}
@@ -40,15 +41,18 @@ export const MyFPL = ():JSX.Element => {
                 <LoadingSpinner />
             )}
             {managerDetails && (
-                <div className="flex justify-center">
-                    <ManagerStats managerStats={managerDetails}/>
+                <div className="flex flex-col items-center border rounded-lg w-full shadow">
+                    <div className="border w-full">
+                        <ManagerStats managerDetails={managerDetails}/>
+                    </div>
+                    <div className="border w-full">
+                        <ManagerStats managerDetails={managerDetails}/>
+                    </div>
+                    <div className="border w-full">
+                        <ManagerCharts managerDetails={managerDetails}/>
+                    </div>
                 </div>
             )}
         </div>
     )
 }
-
-/* 
-<FontAwesomeIcon icon={faCaretUp} style={{color:"#63E6BE", marginRight:"10px"}} size="lg"/>
-<FontAwesomeIcon icon={faCaretDown} style={{color:"#e66565", marginRight:"10px"}} size="lg"/>
-*/

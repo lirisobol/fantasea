@@ -1,3 +1,5 @@
+import { ManagerHistory } from "./ManagerHistory";
+
 export interface ManagerDetails {
     id: number;
     joined_time: string;
@@ -23,6 +25,7 @@ export interface ManagerDetails {
     last_deadline_bank: number;
     last_deadline_value: number;
     last_deadline_total_transfers: number;
+    manager_history: ManagerHistory;
 }
   
 export interface Leagues {

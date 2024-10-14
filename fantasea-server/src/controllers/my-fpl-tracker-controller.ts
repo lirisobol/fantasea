@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import { myFPLTrackerService } from "../services/my-fpl-tracker-service";
-import { ManagerDetails } from "../models/ManagerDetails";
+import { ManagerDetails } from "../models/manager/ManagerDetails";
 
 class MyFPLTrackerController {
     public readonly router = express.Router();
