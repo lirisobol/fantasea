@@ -1,4 +1,3 @@
-// ManagerDetails.ts
 export interface ManagerDetails {
     id: number;
     joined_time: string;
@@ -26,14 +25,14 @@ export interface ManagerDetails {
     last_deadline_total_transfers: number;
 }
   
-  export interface Leagues {
+export interface Leagues {
     classic: ClassicLeague[];
     h2h: any[]; 
     cup: Cup;
     cup_matches: any[]; 
 }
   
-  export interface ClassicLeague {
+export interface ClassicLeague {
     id: number;
     name: string;
     short_name: string | null;
