@@ -1,4 +1,4 @@
-import { ManagerHistory } from "../../../../fantasea-clientv2/src/models/manager/ManagerHistory";
+import { ManagerHistory } from "./ManagerHistory";
 
 export interface ManagerDetails {
     id: number;
@@ -28,14 +28,14 @@ export interface ManagerDetails {
     manager_history: ManagerHistory;
 }
   
-  export interface Leagues {
+export interface Leagues {
     classic: ClassicLeague[];
     h2h: any[]; 
     cup: Cup;
     cup_matches: any[]; 
 }
   
-  export interface ClassicLeague {
+export interface ClassicLeague {
     id: number;
     name: string;
     short_name: string | null;
@@ -60,7 +60,7 @@ export interface ManagerDetails {
     entry_last_rank: number;
 }
   
-  export interface ActivePhase {
+export interface ActivePhase {
     phase: number;
     rank: number;
     last_rank: number;
@@ -71,13 +71,13 @@ export interface ManagerDetails {
     entry_percentile_rank: number | null;
 }
   
-  export interface Cup {
+export interface Cup {
     matches: any[]; 
     status: CupStatus;
     cup_league: number | null;
 }
   
-  export interface CupStatus {
+export interface CupStatus {
     qualification_event: number | null;
     qualification_numbers: number | null;
     qualification_rank: number | null;

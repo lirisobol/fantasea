@@ -10,7 +10,7 @@ import ManagerLeagues from "../components/MyFPL/Manager/ManagerLeagues";
 
 export const MyFPL = ():JSX.Element => {
     const [managerDetails, setManagerDetails] = useState<ManagerDetails | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
     const handleManagerSearch = async (managerId: string) => {

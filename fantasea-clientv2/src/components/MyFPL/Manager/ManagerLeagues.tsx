@@ -1,10 +1,26 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Leagues } from "../../../models/manager/ManagerDetails"
 import { RankIndicator } from "./RankIndicator";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import LeagueDetailsModal from "../../modals/LeagueDetailsModal/LeagueDetailsModal";
 
 interface ManagerLeaguesProps {
     leagues: Leagues;
 }
 export default function ManagerLeagues({leagues}:ManagerLeaguesProps):JSX.Element {
+    const [modalShow, setModalShow] = useState<boolean>(false);
+    const [leagueId, setLeagueId] = useState<number | null>(null);
+
+    const showModal = (id:number) => {
+        setLeagueId(id)
+        setModalShow(true);
+    }
+    const hideModal = () => {
+        setModalShow(false);
+    }
+    
+    
     console.log(leagues);
     const classicLeagues = leagues.classic;
     return (
@@ -48,9 +64,12 @@ export default function ManagerLeagues({leagues}:ManagerLeaguesProps):JSX.Elemen
                         <RankIndicator current_rank={league.entry_rank} previous_rank={league.entry_last_rank}/>
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-xs sm:text-sm font-medium sm:pr-6 lg:pr-8">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                            Standings
-                        </a>
+                        <button 
+                            className="text-indigo-600 hover:text-indigo-900"
+                            onClick={() => showModal(league.id)}
+                            >
+                            <FontAwesomeIcon icon={faArrowRight}/>
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -59,6 +78,9 @@ export default function ManagerLeagues({leagues}:ManagerLeaguesProps):JSX.Elemen
             </div>
           </div>
         </div>
+        {leagueId && 
+            <LeagueDetailsModal show={modalShow} onHide={hideModal} leagueId={leagueId}/>
+        }
       </div>
     )
 }
