@@ -21,18 +21,18 @@ export const RankChart = ({ data }: RankChartProps): JSX.Element => {
     return (
       <div className="w-full h-56">
         <ResponsiveContainer>
-          <LineChart data={data} margin={{ top: 20, right: 30, bottom: 20, left: 0 }}>
+          <LineChart data={data} margin={{ top: 20, right: 30, bottom: 20, left: -10 }}>
             <CartesianGrid strokeDasharray="0 1" />
             <XAxis
               dataKey="gameweek"
               tickFormatter={(value) => `GW${value}`}
               label={{ value: 'Gameweek', position: 'insideBottom', offset: -10 }}
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
               interval={0}
             />
             <YAxis
               reversed={true} // Reverse Y-axis since lower rank is better
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
               domain={['dataMin', 'dataMax']}
               tickFormatter={(value) => value.toLocaleString()}
             />

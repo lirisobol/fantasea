@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 
 export const Navbar = ():JSX.Element => {
     return (
-        <div className="border py-3 px-5 shadow flex flex-row justify-between items-center gap-4 text-xs">
+        <div className="border py-3 px-5 shadow flex flex-row justify-between items-center gap-4 text-xs sm:text-sm">
             {/* Brand */}
             <div>
                 <NavLink to={"/"} className={"font-bold text-lg"}>

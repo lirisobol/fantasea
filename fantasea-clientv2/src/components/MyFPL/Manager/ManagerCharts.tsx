@@ -32,7 +32,7 @@ export const ManagerCharts = ({managerDetails}:ManagerChartsProps):JSX.Element =
 
     
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             <div className="p-4 bg-white rounded-lg shadow">
                 <h3 className="text-sm font-semibold mb-4 text-center">Points Per Gameweek</h3>
                 {pointsData.length > 0 ? (

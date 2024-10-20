@@ -34,10 +34,14 @@ export const MyFPL = ():JSX.Element => {
     return (
         <div className="w-full h-full flex flex-col items-center gap-2">
             {error && (
-                <ErrorBanner message={error}/>
+              <ErrorBanner
+                message={error}
+                onDismiss={() => setError('')}
+                duration={5000} // Banner will auto-hide after 5 seconds
+              />
             )}
-            <div className="flex justify-center py-2">
-                <ManagerSearch onSubmit={handleManagerSearch} loading={loading}/>
+            <div className="flex justify-center py-2 w-full bg-gray-900 sticky top-0">
+                <ManagerSearch onSubmit={handleManagerSearch} loading={loading} setError={setError}/>
             </div>
             {loading && (
                 <LoadingSpinner />
@@ -47,7 +51,6 @@ export const MyFPL = ():JSX.Element => {
                     <div className="w-full">
                         <ManagerStats managerDetails={managerDetails}/>
                     </div>
-
                     <div className="w-full">
                         <ManagerCharts managerDetails={managerDetails}/>
                     </div>
