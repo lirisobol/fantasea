@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ManagerDetails } from "../../../models/manager/ManagerDetails"
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import StatsBanner from "./StatsBanner";
 interface managerStatsProps {
     managerDetails: ManagerDetails
 }
@@ -9,6 +10,7 @@ export const ManagerStats = ({managerDetails}:managerStatsProps):JSX.Element => 
     const current_event = managerDetails.current_event;
     return (
         <div className="flex flex-col">
+            <StatsBanner gameweek={current_event} gameweek_points={managerDetails.summary_event_points}/>
             <div className="flex flex-row justify-center">
                 <h2 className="p-4 font-semibold text-2xl">
                     {managerDetails.name}

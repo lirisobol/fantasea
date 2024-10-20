@@ -34,13 +34,13 @@ export const ManagerSearch = ({onSubmit, loading}: ManagerSearchProps): JSX.Elem
               name="manager-search"
               type="text"
               placeholder="Manager ID"
-              className="block w-full rounded-md py-1.5 text-gray-900 shadow-sm"
+              className="block w-full rounded-md py-1 text-gray-900 shadow-sm"
               value={managerId}
               onChange={(e) => setManagerId(e.target.value)}
             />
             <button
               type="submit"
-              className="block w-full border px-4 py-1.5 rounded-md bg-gray-900 text-white hover:bg-white hover:text-gray-900 hover:border hover:border-gray-900 transition"
+              className="block w-full border px-4 py-1 rounded-md bg-gray-900 text-white hover:bg-white hover:text-gray-900 hover:border hover:border-gray-900 transition"
               disabled={loading}
 
             >

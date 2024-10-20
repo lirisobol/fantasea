@@ -6,6 +6,7 @@ import ErrorBanner from "../components/Banners/ErrorBanner";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner/LoadingSpinner";
 import { ManagerStats } from "../components/MyFPL/Manager/ManagerDetails";
 import { ManagerCharts } from "../components/MyFPL/Manager/ManagerCharts";
+import ManagerLeagues from "../components/MyFPL/Manager/ManagerLeagues";
 
 export const MyFPL = ():JSX.Element => {
     const [managerDetails, setManagerDetails] = useState<ManagerDetails | null>(null);
@@ -29,27 +30,29 @@ export const MyFPL = ():JSX.Element => {
             setLoading(false);
         }
     }
+    
     return (
         <div className="w-full h-full flex flex-col items-center gap-2">
             {error && (
                 <ErrorBanner message={error}/>
             )}
-            <div className="flex justify-center py-10">
+            <div className="flex justify-center py-2">
                 <ManagerSearch onSubmit={handleManagerSearch} loading={loading}/>
             </div>
             {loading && (
                 <LoadingSpinner />
             )}
             {managerDetails && (
-                <div className="flex flex-col items-center border rounded-lg w-full shadow">
-                    <div className="border w-full">
+                <div className="flex flex-col items-center rounded-lg w-full shadow">
+                    <div className="w-full">
                         <ManagerStats managerDetails={managerDetails}/>
                     </div>
-                    <div className="border w-full">
-                        <ManagerStats managerDetails={managerDetails}/>
-                    </div>
-                    <div className="border w-full">
+
+                    <div className="w-full">
                         <ManagerCharts managerDetails={managerDetails}/>
+                    </div>
+                    <div className="w-full">
+                        <ManagerLeagues leagues={managerDetails.leagues}/>
                     </div>
                 </div>
             )}
