@@ -8,6 +8,6 @@
       "forceConsistentCasingInFileNames": true,
       "outDir": "./dist"
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*", "../fantasea-clientv2/src/models/manager/ManagerHistory.ts"]
 }
   

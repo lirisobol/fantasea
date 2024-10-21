@@ -20,9 +20,6 @@ export const PerformanceTab = ({player, history}: PerformanceTabProps):JSX.Eleme
     const [pointsData, setPointsData] = useState<ChartDataPoint[]>([]);
     const [selectedData, setSelectedData] = useState<ChartDataPoint[]>([]);
     const [minutesData, setMinutesData] = useState<ChartDataPoint[]>([]);
-
-    
-
     useEffect(() => {
         const priceChartData: ChartDataPoint[] = history.map((item) => ({
             gameweek: item.round,
