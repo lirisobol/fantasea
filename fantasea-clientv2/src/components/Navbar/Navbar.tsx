@@ -6,7 +6,7 @@ export const Navbar = ():JSX.Element => {
             {/* Brand */}
             <div>
                 <NavLink to={"/"} className={"font-bold text-lg"}>
-                    Brand
+                    Fantasea
                 </NavLink>
             </div>
             <div className="flex gap-2">
