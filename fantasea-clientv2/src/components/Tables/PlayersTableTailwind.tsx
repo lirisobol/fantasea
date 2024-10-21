@@ -39,33 +39,33 @@ export default function PlayersTableTailwind({
             <table className="min-w-full divide-y divide-gray-300 ">
               <thead>
                 <tr>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
                     Name
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
                     Selected
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Total Points
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    Total Pts
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    GW Points
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    GW{currentGameWeekId} Points
                   </th>
                   {/* Fixture headers */}
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    GW {currentGameWeekId}
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    GW{currentGameWeekId}
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    GW {currentGameWeekId + 1}
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    GW{currentGameWeekId + 1}
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    GW {currentGameWeekId + 2}
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    GW{currentGameWeekId + 2}
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    GW {currentGameWeekId + 3}
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    GW{currentGameWeekId + 3}
                   </th>
-                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    GW {currentGameWeekId + 4}
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    GW{currentGameWeekId + 4}
                   </th>
                 </tr>
               </thead>
