@@ -32,7 +32,6 @@ export const PlayersTableSelectable = ({onSelection}: PlayersTableSelectableProp
         if(teams && players  && currentGameWeekId) {
             const cols = playersTableHelpers.setColDef(teams, players, currentGameWeekId, 5);
             setColumnDefs(cols);
-
         }
         else {
             dispatch(fetchGeneralInfo());
