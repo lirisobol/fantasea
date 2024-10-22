@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Players as PlayersPageComponent } from '../../pages/Players';
-import { Clubs as ClubsPageComponent } from '../../pages/Clubs';
+import { FDR as FDRPageComponent } from '../../pages/FDR';
 import { Compare as PlayerComparePageComponent } from '../../pages/Compare';
 
 const tabComponents = {
   'Players': PlayersPageComponent,
-  'Clubs': ClubsPageComponent,
+  'FDR': FDRPageComponent,
   'Compare': PlayerComparePageComponent,
 };
 
 const tabs = [
   { name: 'Players', current: true },
-  { name: 'Clubs', current: false },
+  { name: 'FDR', current: false },
   { name: 'Compare', current: false },
 ];
 
