@@ -36,17 +36,17 @@ class GeneralHelpers {
         
         switch (difficulty) {
             case 1:
-                return "green-600";  // Easiest
+                return "green-700";  // Easiest
             case 2:
-                return "green-500";
+                return "emerald-400";
             case 3:
-                return "gray-400";  // Moderate
+                return "gray-200";  // Moderate
             case 4:
                 return "red-400";
             case 5:
                 return "red-500";    // Hardest
             default:
-                return "gray-200";   // Fallback for unexpected values
+                return "gray-100";   // Fallback for unexpected values
         }
     }
 

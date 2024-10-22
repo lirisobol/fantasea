@@ -110,17 +110,14 @@ export default function PlayersTableTailwind({
                           fixture,
                           playerTeamId
                         );
-                        console.log("difficulty", difficulty);
 
                         // Get difficulty color
                         const difficultyColor =
                           generalHelpers.getDifficultyColor(difficulty);
-                        console.log("difficulty color", difficultyColor);
 
                         // Get text color based on background color
                         const textColor =
                           generalHelpers.getTextColor(difficultyColor);
-                        console.log("text color", textColor);
 
                         return (
                           <td

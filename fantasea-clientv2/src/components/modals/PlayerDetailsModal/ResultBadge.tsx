@@ -12,7 +12,7 @@ export const ResultBadge = ({ result, home_score, away_score }: ResultBadgeProps
             case "Lose":
                 return "red";
             case "Draw":
-                return "blue";
+                return "gray";
             default:
                 return "blue"; // Default case for unexpected results
         }
@@ -21,7 +21,7 @@ export const ResultBadge = ({ result, home_score, away_score }: ResultBadgeProps
     const color = getColor(result);
 
     return (
-        <div className={`flex items-center justify-center rounded-md bg-${color}-100 w-20 py-1 text-xs font-medium text-${color}-700`}>
+        <div className={`flex items-center justify-center bg-${color}-400 w-20 py-1 text-xs font-medium text-${color}-900`}>
             {home_score} - {away_score}
         </div>
     );
