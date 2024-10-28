@@ -1,3 +1,5 @@
+import { MostTransferredIn } from "../components/Tables/MostTransferredIn";
+import { MostTransferredOut } from "../components/Tables/MostTransferredOut";
 import { FDR } from "./FDR";
 import { Players } from "./Players";
 
@@ -8,18 +10,19 @@ export const Home = (): JSX.Element => {
                 <Players />
             </div>
             <div className="w-full md:px-12 gap-4 grid grid-cols-1 md:grid-cols-2 h-full">
-                <div className="h-[40rem]">
+                <div className="h-[42rem] py-4">
+                    <MostTransferredIn />
+                </div>
+                <div className="h-[42rem] py-4">
+                    <MostTransferredOut />
+                </div>
+                <div className="h-[42rem] py-4">
                     <FDR />
                 </div>
-                <div className="h-[40rem]">
+                <div className="h-[42rem] py-4">
                     <FDR />
                 </div>
-                <div className="h-[40rem]">
-                    <FDR />
-                </div>
-                <div className="h-[40rem]">
-                    <FDR />
-                </div>
+
             </div>
         </div>
   );
