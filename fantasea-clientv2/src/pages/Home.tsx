@@ -7,11 +7,17 @@ export const Home = (): JSX.Element => {
             <div className="w-full h-5/6 md:px-12">
                 <Players />
             </div>
-            <div className="w-full flex h-screen flex-col md:flex-row md:px-12 gap-4">
-                <div className="w-full h-5/6 md:w-2/4">
+            <div className="w-full md:px-12 gap-4 grid grid-cols-1 md:grid-cols-2 h-full">
+                <div className="h-[40rem]">
                     <FDR />
                 </div>
-                <div className="w-full h-5/6 md:w-2/4">
+                <div className="h-[40rem]">
+                    <FDR />
+                </div>
+                <div className="h-[40rem]">
+                    <FDR />
+                </div>
+                <div className="h-[40rem]">
                     <FDR />
                 </div>
             </div>

@@ -41,7 +41,7 @@ export default function FDRTable(): JSX.Element {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
-                {teams.map((team) => {
+                {teams && teams.map((team) => {
                   const teamFixtures = fixtures
                     ?.filter(
                       (fixture) =>
