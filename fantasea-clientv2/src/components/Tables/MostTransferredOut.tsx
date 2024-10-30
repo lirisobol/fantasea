@@ -19,7 +19,7 @@ export const MostTransferredOut = (): JSX.Element => {
     <div className="border rounded-lg shadow-lg bg-white flex flex-col h-full">
       {/* Table Header */}
       <div className="px-4 py-8 bg-gradient-to-r from-rose-500 to-red-500 border-b rounded-t-lg">
-        <h2 className="text-3xl font-semibold text-gray-100">Most Transferred Out Players</h2>
+        <h2 className="text-3xl font-semibold text-gray-100 truncate">Most Transferred Out Players</h2>
       </div>
       {/* Table Content */}
       <div className="flex-grow overflow-y-auto px-4">
