@@ -1,22 +1,31 @@
-export interface Fixture { // Game
-    // game ->
-    id: number; // game Id
-    event: number; // gameweek Id
+interface StatValue {
+    value: number;
+    element: number;
+  }
+  
+  interface FixtureStat {
+    identifier: string;
+    a: StatValue[];
+    h: StatValue[];
+  }
+  
+  export interface Fixture {
     code: number;
-    // game details ->
-    kickoff_time: string; // game date
-    finished: boolean; // did game end ?
+    event: number;
+    finished: boolean;
     finished_provisional: boolean;
+    id: number;
+    kickoff_time: string;
     minutes: number;
-    started: boolean; // did game start ?
-    provisional_start_time: string;
-    //  away team ->
-    team_a: number; // away team Id
-    team_a_score: string; // currently null !!!!!!
-    team_a_difficulty: number; // away team strength
-    // home team ->a
-    team_h: number; // home team Id
-    team_h_score: string; // currently null !!!!!!
-    team_h_difficulty: number; // home team strength
-    pulse_id:number; // ? 
-}
+    provisional_start_time: boolean;
+    started: boolean;
+    team_a: number;
+    team_a_score: number | null;
+    team_h: number;
+    team_h_score: number | null;
+    stats: FixtureStat[];
+    team_h_difficulty: number;
+    team_a_difficulty: number;
+    pulse_id: number;
+  }
+  

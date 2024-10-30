@@ -23,4 +23,5 @@ export interface Team {
     strength_defence_away: number;
     pulse_id: number;
     fixtures: Fixture[] | null;
+    clean_sheets?: number;
 }

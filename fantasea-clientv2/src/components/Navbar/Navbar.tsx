@@ -12,9 +12,9 @@ export default function Navbar() {
 
   return (
     <header className="bg-white">
-      <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
+      <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-16">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Fantasea</span>
             <img
               alt=""
@@ -33,14 +33,17 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
-            <div className='text-lg font-thin'>
+        <div className="hidden lg:flex lg:gap-x-6">
+            <div className='text-lg font-semibold px-4 rounded-md text-white py-2
+                bg-gray-900 hover:bg-gray-700 transition'>
                 <NavLink to={"/"}>Home</NavLink>
             </div>
-            <div className='text-lg font-thin'>
+            <div className='text-lg font-semibold px-4 rounded-md text-white py-2
+                bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-teal-500 hover:to-blue-600 transition'>
                 <NavLink to={"/myfpl"}>My Fantasy</NavLink>
             </div>
-            <div className='text-lg font-thin'>
+            <div className='text-lg font-semibold px-4 rounded-md text-white py-2
+                bg-gradient-to-r from-red-400 to-rose-500 hover:from-red-teal-500 hover:to-rose-600 transition'>
                 <NavLink to={"/draft"}>Draft</NavLink>
             </div>
         </div>

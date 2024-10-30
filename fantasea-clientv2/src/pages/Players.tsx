@@ -22,7 +22,7 @@ export const Players = (): JSX.Element => {
   return (
     <div className="border rounded-lg shadow-lg bg-white h-full flex flex-col">
       {/* Card Header */}
-      <div className="px-4 py-10 bg-gray-800 border-b rounded-t-lg">
+      <div className="px-4 py-8 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-green-400 to-90% border-b rounded-t-lg">
         <h2 className="text-3xl font-semibold text-gray-100">Players</h2>
       </div>
 
