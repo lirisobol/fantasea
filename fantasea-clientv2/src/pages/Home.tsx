@@ -32,8 +32,6 @@ export const Home = (): JSX.Element => {
                 <div className="h-[42rem] py-4">
                     <TableCard tableComponent={<CleanSheets />}/>
                 </div>  
-
-
             </div>
         </div>
   );
