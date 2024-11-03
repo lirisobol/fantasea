@@ -1,6 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { PlayersDraftTableSelectable } from '../../Tables/PlayersDraftTableSelectable';
 import { PlayersDraftTableFilterGroup } from '../../Filters/PlayersDraftTableFilterGroup';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 
@@ -58,7 +57,7 @@ export default function DraftPlayersModal({show, onHide, onSelection, preSetPosi
                   </Dialog.Title>
                   <div className="mt-2">
                     <PlayersDraftTableFilterGroup />
-                    <PlayersDraftTableSelectable  preSetPosition={preSetPosition} onSelection={onSelection}/>
+                    {/* <PlayersDraftTableSelectable  preSetPosition={preSetPosition} onSelection={onSelection}/> */}
                   </div>
 
                   <div className="mt-4">

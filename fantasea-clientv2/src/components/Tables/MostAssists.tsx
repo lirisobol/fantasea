@@ -15,13 +15,13 @@ export const MostAssists = (): JSX.Element => {
     .slice(0, 10);
     
   return (
-    <div className="border rounded-lg shadow-lg bg-white flex flex-col h-full">
+    <>
       {/* Table Header */}
       <div className="px-4 py-8 bg-gradient-to-r from-blue-500 to-emerald-500 border-b rounded-t-lg">
         <h2 className="text-3xl font-semibold text-gray-100">Leading By Assists</h2>
       </div>
       {/* Table Content */}
-      <div className="flex-grow overflow-y-auto px-4">
+      <div className="flex-grow px-4">
         <table className="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
@@ -61,6 +61,6 @@ export const MostAssists = (): JSX.Element => {
           </tbody>
         </table>
       </div>
-    </div>
+      </>
   );
 };

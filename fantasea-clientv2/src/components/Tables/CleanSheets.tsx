@@ -4,20 +4,17 @@ import { CustomClubName } from "./CustomCells/CustomClubName/CustomClubName";
 
 export const CleanSheets = (): JSX.Element => {
   const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
-  console.log(teams);
   const mostCleanSheets = teams?.slice()
   .sort((a,b) => b.clean_sheets - a.clean_sheets)
   .slice(0,10);
-  console.log(mostCleanSheets);
-  
   return (
-    <div className="border rounded-lg shadow-lg bg-white flex flex-col h-full">
+    <>
       {/* Table Header */}
       <div className="px-4 py-8 bg-gradient-to-r from-cyan-500 to-teal-500 border-b rounded-t-lg">
         <h2 className="text-3xl font-semibold text-gray-100">Leading By Clean Sheets</h2>
       </div>
       {/* Table Content */}
-      <div className="flex-grow overflow-y-auto px-4">
+      <div className="flex-grow px-4">
         <table className="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
@@ -46,6 +43,6 @@ export const CleanSheets = (): JSX.Element => {
           </tbody>
         </table>
       </div>
-    </div>
+      </>
   );
 };
