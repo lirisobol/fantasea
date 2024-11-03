@@ -87,5 +87,4 @@ export interface Element {
     selected_rank_type: number;
     starts_per_90: number;
     clean_sheets_per_90: number;
-    isPlaceholder?: boolean; // to indicate it's a placeholder
 }
