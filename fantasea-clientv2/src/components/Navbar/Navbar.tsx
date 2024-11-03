@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faUsersGear } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -42,10 +44,6 @@ export default function Navbar() {
                 bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-teal-500 hover:to-blue-600 transition'>
                 <NavLink to={"/myfpl"}>My Fantasy</NavLink>
             </div>
-            <div className='text-lg font-semibold px-4 rounded-md text-white py-2
-                bg-gradient-to-r from-red-400 to-rose-500 hover:from-red-teal-500 hover:to-rose-600 transition'>
-                <NavLink to={"/draft"}>Draft</NavLink>
-            </div>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -72,14 +70,13 @@ export default function Navbar() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6 flex flex-col gap-4">
-                <div className='text-2xl font-thin'>
+                <div className='text-xl font-thin'>
+                    <FontAwesomeIcon icon={faHome} style={{marginRight:20, width:18}}/>
                     <NavLink to={"/"}>Home</NavLink>
                 </div>
-                <div className='text-2xl font-thin'>
+                <div className='text-xl font-thin'>
+                    <FontAwesomeIcon icon={faUsersGear} style={{marginRight:20, width:18}}/>
                     <NavLink to={"/myfpl"}>My Fantasy</NavLink>
-                </div>
-                <div className='text-2xl font-thin'>
-                    <NavLink to={"/draft"}>Draft</NavLink>
                 </div>
               </div>
             </div>
