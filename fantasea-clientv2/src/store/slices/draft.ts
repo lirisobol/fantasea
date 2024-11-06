@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Element } from "../../models/gen-info/Element";
 
-interface DraftElement {
+export interface DraftElement {
   positionType: number; // 0 = GK, 1 = DEF, 2 = MID, 3 = ATT, -1 = Unassigned
   draftPosition: number; // 0 - 14
   isPicked: boolean;
