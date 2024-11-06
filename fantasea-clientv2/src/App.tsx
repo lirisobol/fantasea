@@ -22,12 +22,11 @@ function App() {
         <div className="flex flex-col h-screen"> {/* Ensure the app fills the entire screen */}
             {status === 'loading' && <LoaderBar />}
 
-            <nav className="h-7vh"> {/* Navbar */}
+            <nav className="p-2"> {/* Navbar */}
                 <Navbar />
             </nav>
-            <main className="flex-1 overflow-hidden"> {/* Content area now prevents overflow */}
-
-                <div className="h-93vh overflow-y-auto"> {/* This div now correctly manages overflow */}
+            <main className="flex-1 overflow-y-auto"> {/* Content area now prevents overflow */}
+                <div className="h-full"> {/* This div now correctly manages overflow */}
                     {alert.isVisible && (
                         <Alert
                             message={alert.message}
