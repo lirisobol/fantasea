@@ -6,19 +6,19 @@ export const Board = (): JSX.Element => {
   const draftSquad = useAppSelector((state) => state.draft.squad);
   console.log(draftSquad);
   const startingGK = draftSquad.filter(
-    (player) => player.positionType === 0 && player.isStarter
-  );
-
-  const startingDEF = draftSquad.filter(
     (player) => player.positionType === 1 && player.isStarter
   );
 
-  const startingMID = draftSquad.filter(
+  const startingDEF = draftSquad.filter(
     (player) => player.positionType === 2 && player.isStarter
   );
 
-  const startingATT = draftSquad.filter(
+  const startingMID = draftSquad.filter(
     (player) => player.positionType === 3 && player.isStarter
+  );
+
+  const startingATT = draftSquad.filter(
+    (player) => player.positionType === 4 && player.isStarter
   );
 
   const benchPlayers = draftSquad.filter((player) => !player.isStarter);

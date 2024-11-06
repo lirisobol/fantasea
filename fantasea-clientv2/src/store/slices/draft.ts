@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Element } from "../../models/gen-info/Element";
 
 export interface DraftElement {
@@ -22,7 +22,7 @@ let draftPositionCounter = 0;
 
 // Starting Goalkeeper
 squad.push({
-  positionType: 0, // GK
+  positionType: 1, // GK
   draftPosition: draftPositionCounter++,
   isPicked: false,
   isCaptain: false,
@@ -32,7 +32,7 @@ squad.push({
 
 // Bench Goalkeeper
 squad.push({
-  positionType: 0, // GK
+  positionType: 1, // GK
   draftPosition: draftPositionCounter++,
   isPicked: false,
   isCaptain: false,
@@ -43,7 +43,7 @@ squad.push({
 // Defenders (4 starters)
 for (let i = 0; i < 4; i++) {
   squad.push({
-    positionType: 1, // DEF
+    positionType: 2, // DEF
     draftPosition: draftPositionCounter++,
     isPicked: false,
     isCaptain: false,
@@ -55,7 +55,7 @@ for (let i = 0; i < 4; i++) {
 // Midfielders (4 starters)
 for (let i = 0; i < 4; i++) {
   squad.push({
-    positionType: 2, // MID
+    positionType: 3, // MID
     draftPosition: draftPositionCounter++,
     isPicked: false,
     isCaptain: false,
@@ -67,7 +67,7 @@ for (let i = 0; i < 4; i++) {
 // Attackers (2 starters)
 for (let i = 0; i < 2; i++) {
   squad.push({
-    positionType: 3, // ATT
+    positionType: 4, // ATT
     draftPosition: draftPositionCounter++,
     isPicked: false,
     isCaptain: false,
@@ -95,11 +95,32 @@ const initialState: DraftState = {
 };
 
 const draftSlice = createSlice({
-    name: "draft",
-    initialState:initialState,
-    reducers: {
+  name: "draft",
+  initialState: initialState,
+  reducers: {
+    pickPlayer(
+      state,
+      action: PayloadAction<{ draftPosition: number; player: Element }>
+    ) {
+      const { draftPosition, player } = action.payload;
+      const slot = state.squad.find((s) => s.draftPosition === draftPosition);
 
-    }
+      if (slot && !slot.isPicked) {
+        const playerCost = player.now_cost / 10;
+        if (state.budget >= playerCost) {
+          slot.isPicked = true;
+          slot.stats = player;
+          state.budget -= playerCost;
+        } else {
+          // Handle insufficient budget
+          console.error("Insufficient budget to pick this player.");
+        }
+      } else {
+        // Handle slot not found or already picked
+        console.error("Slot not found or already occupied.");
+      }
+    },
+  },
 });
-
+export const { pickPlayer } = draftSlice.actions;
 export default draftSlice.reducer;

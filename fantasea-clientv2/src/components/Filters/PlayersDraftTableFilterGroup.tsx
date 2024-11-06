@@ -14,7 +14,7 @@ export const PlayersDraftTableFilterGroup = ():JSX.Element => {
         setModalShow(false)
     };
     return (
-        <div className="flex flex-col gap-0 sm:flex-row sm:gap-1 w-full shadow p-1 justify-between">
+        <div className="flex flex-col gap-0 sm:flex-row sm:gap-1 w-full p-1 justify-between">
                 <div className="flex flex-col gap-0 sm:flex-row sm:gap-1">
                     <PlayerSearch />
                     <ClubSelect />
