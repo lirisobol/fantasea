@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { PlayersTableFilterGroup } from "../components/Filters/PlayersTableFilterGroup";
-import PlayerDetailsModal from "../components/modals/PlayerDetailsModal/PlayerDetailsModal";
+import PlayerDetailsModal from "../components/modals/PlayerDetailsModal/PlayerDetailsModalDraft";
 import { Element } from "../models/gen-info/Element";
 import PlayersTableTailwind from "../components/Tables/PlayersTableTailwind";
 

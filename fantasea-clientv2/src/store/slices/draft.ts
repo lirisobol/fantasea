@@ -120,7 +120,28 @@ const draftSlice = createSlice({
         console.error("Slot not found or already occupied.");
       }
     },
+    removePick(state, action: PayloadAction<{ player: Element }>) {
+      const { player } = action.payload;
+      // Find the slot containing the player
+      const slot = state.squad.find(
+        (s) => s.isPicked && s.stats?.id === player.id
+      );
+      if (slot) {
+        // Add the player's cost back to the budget
+        const playerCost = player.now_cost / 10;
+        state.budget += playerCost;
+
+        // Reset the slot
+        slot.isPicked = false;
+        slot.stats = undefined;
+        slot.isCaptain = false;
+
+      } else {
+        // Handle player not found in squad
+        console.error("Player not found in squad.");
+      }
+    },
   },
 });
-export const { pickPlayer } = draftSlice.actions;
+export const { pickPlayer, removePick } = draftSlice.actions;
 export default draftSlice.reducer;

@@ -1,10 +1,8 @@
-// PlayerPickModal.tsx
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import PlayersTableTailwind from "../../Tables/PlayersTableTailwind";
-import { PlayersDraftTableFilterGroup } from "../../Filters/PlayersDraftTableFilterGroup";
-import { PlayersTableFilterGroup } from "../../Filters/PlayersTableFilterGroup";
+import { PlayersTableFilterGroupDraft } from "../../Filters/PlayersTableFilterGroupDraft";
 
 interface PlayerPickModalProps {
   show: boolean;
@@ -78,7 +76,7 @@ export default function PlayerPickModal({
                   {/* Body */}
                   <div className="flex flex-col gap-2">
                     <div>
-                        <PlayersDraftTableFilterGroup />
+                        <PlayersTableFilterGroupDraft />
                     </div>
                     <PlayersTableTailwind
                       onSelection={onSelection}
