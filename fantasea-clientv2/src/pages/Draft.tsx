@@ -1,11 +1,13 @@
 import { Board } from "../components/Draft/Board"
+import { DraftControls } from "../components/Draft/Controls/DraftControls"
 
 export const Draft = ():JSX.Element => {
     return (
         // Draft Page
         <div className="flex flex-col h-full">
-            {/* place holder for controls */}
-            <div className="bg-slate-300 h-24 flex justify-center items-center">CONTROLS</div>
+            <div className="h-24">
+                <DraftControls />
+            </div>
             <Board />
         </div>
     )
