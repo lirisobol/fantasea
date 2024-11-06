@@ -6,6 +6,7 @@ export interface DraftElement {
   draftPosition: number; // 0 - 14
   isPicked: boolean;
   isCaptain: boolean;
+  isViceCaptain?: boolean;
   isStarter: boolean; // true for starters, false for bench
   stats?: Element;
 }
@@ -13,6 +14,10 @@ export interface DraftElement {
 interface DraftState {
   budget: number;
   squad: DraftElement[]; // Array of 15 positions (11 starters + 4 bench)
+}
+interface SetSquadPayload {
+  squad: DraftElement[];
+  budget: number;
 }
 
 const squad: DraftElement[] = [];
@@ -135,13 +140,16 @@ const draftSlice = createSlice({
         slot.isPicked = false;
         slot.stats = undefined;
         slot.isCaptain = false;
-
       } else {
         // Handle player not found in squad
         console.error("Player not found in squad.");
       }
     },
+    setSquad(state, action: PayloadAction<SetSquadPayload>) {
+      state.squad = action.payload.squad;
+      state.budget = action.payload.budget;
+    },
   },
 });
-export const { pickPlayer, removePick } = draftSlice.actions;
+export const { pickPlayer, removePick, setSquad } = draftSlice.actions;
 export default draftSlice.reducer;
