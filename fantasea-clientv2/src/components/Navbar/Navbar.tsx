@@ -36,13 +36,14 @@ export default function Navbar() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-6">
-            <div className='text-lg font-semibold px-4 rounded-md text-white py-2
-                bg-gray-900 hover:bg-gray-700 transition'>
-                <NavLink to={"/"}>Home</NavLink>
-            </div>
+
             <div className='text-lg font-semibold px-4 rounded-md text-white py-2
                 bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-teal-500 hover:to-blue-600 transition'>
                 <NavLink to={"/myfpl"}>My Fantasy</NavLink>
+            </div>
+            <div className='text-lg font-semibold px-4 rounded-md text-white py-2
+                bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600 transition'>
+                <NavLink to={"/draft"}>Draft</NavLink>
             </div>
         </div>
       </nav>
