@@ -36,9 +36,9 @@ class GeneralHelpers {
         
         switch (difficulty) {
             case 1:
-                return "green-700";  // Easiest
+                return "green-300";  // Easiest
             case 2:
-                return "emerald-400";
+                return "green-400";
             case 3:
                 return "gray-200";  // Moderate
             case 4:

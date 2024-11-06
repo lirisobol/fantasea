@@ -28,7 +28,7 @@ export default {
     'bg-green-300','bg-green-400','bg-green-500','bg-red-100','bg-red-200',
     'bg-red-300','bg-red-400','bg-red-500',"bg-gray-200","bg-gray-600","bg-gray-400",
     'text-green-700', 'text-red-700', 'text-gray-700', 'text-blue-100','bg-green-700',
-    'bg-gray-200','bg-teal-400','bg-teal-100','bg-emerald-400'
+    'bg-gray-200','bg-teal-400','bg-teal-100','bg-emerald-400','bg-emerald-700','bg-emerald-600'
   ]
 
 }
