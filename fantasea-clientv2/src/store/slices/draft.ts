@@ -1,6 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Element } from "../../models/gen-info/Element";
 
+export interface ManagerStats {
+    bank: number;
+    event: number;
+    event_transfers: number;
+    event_transfers_cost: number;
+    overall_rank: number;
+    percentile_rank: number;
+    points: number;
+    points_on_bench: number;
+    rank: number;
+    rank_sort: number;
+    total_points:number;
+    value: number;
+}
 export interface DraftElement {
   positionType: number; // 0 = GK, 1 = DEF, 2 = MID, 3 = ATT, -1 = Unassigned
   draftPosition: number; // 0 - 14
@@ -12,12 +26,15 @@ export interface DraftElement {
 }
 
 interface DraftState {
+    isLive: boolean; // indicates if draft is imported or not.
   budget: number;
   squad: DraftElement[]; // Array of 15 positions (11 starters + 4 bench)
+  managerStats: ManagerStats;
 }
 interface SetSquadPayload {
-  squad: DraftElement[];
-  budget: number;
+    squad: DraftElement[];
+    budget: number;
+    managerStats: ManagerStats;
 }
 
 const squad: DraftElement[] = [];
@@ -95,9 +112,24 @@ for (let i = 0; i < 3; i++) {
 }
 
 const initialState: DraftState = {
-  budget: 100,
-  squad: squad,
-};
+    isLive: false,
+    budget: 100,
+    squad: squad,
+    managerStats: {
+      bank: 0,
+      event: 0,
+      event_transfers: 0,
+      event_transfers_cost: 0,
+      overall_rank: 0,
+      percentile_rank: 0,
+      points: 0,
+      points_on_bench: 0,
+      rank: 0,
+      rank_sort: 0,
+      total_points: 0,
+      value: 0,
+    },
+  };
 
 const draftSlice = createSlice({
   name: "draft",
@@ -146,8 +178,10 @@ const draftSlice = createSlice({
       }
     },
     setSquad(state, action: PayloadAction<SetSquadPayload>) {
-      state.squad = action.payload.squad;
-      state.budget = action.payload.budget;
+        state.isLive = true;
+        state.squad = action.payload.squad;
+        state.budget = action.payload.budget;
+        state.managerStats = action.payload.managerStats;
     },
   },
 });
