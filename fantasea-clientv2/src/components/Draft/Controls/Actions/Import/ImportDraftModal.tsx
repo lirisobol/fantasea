@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import { ManagerSearch } from "../../../../MyFPL/Manager/ManagerSearch";
-import { draftService } from "../../../../../services/Draft/Draft";
+import { draftService } from "../../../../../services/draft/Draft";
 import { useAppDispatch, useAppSelector } from "../../../../../store/store";
 import { setSquad } from "../../../../../store/slices/draft";
 import { Element } from "../../../../../models/gen-info/Element";
