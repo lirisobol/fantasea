@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import genInfoReducer from "./slices/gen-info";
 import filterReducer from "./slices/filters";
+import draftReducer from "./slices/draft"
 import alert from "./slices/alert";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
         genInfo: genInfoReducer,
         filters: filterReducer,
         alert: alert,
+        draft: draftReducer,
     }
 })
 export type RootState = ReturnType<typeof store.getState>;

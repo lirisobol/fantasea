@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <header className="bg-white">
-      <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-16">
+      <nav aria-label="Global" className="flex items-center justify-between p-2 lg:px-16">
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Fantasea</span>
@@ -36,13 +36,14 @@ export default function Navbar() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-6">
+
             <div className='text-lg font-semibold px-4 rounded-md text-white py-2
-                bg-gray-900 hover:bg-gray-700 transition'>
-                <NavLink to={"/"}>Home</NavLink>
+                bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-500 hover:to-blue-600 transition'>
+                <NavLink to={"/myfpl"}>My Fantasy</NavLink>
             </div>
             <div className='text-lg font-semibold px-4 rounded-md text-white py-2
-                bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-teal-500 hover:to-blue-600 transition'>
-                <NavLink to={"/myfpl"}>My Fantasy</NavLink>
+                bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600 transition'>
+                <NavLink to={"/draft"}>Draft</NavLink>
             </div>
         </div>
       </nav>

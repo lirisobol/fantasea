@@ -5,23 +5,28 @@ import { CustomPlayerName } from "./CustomCells/CustomPlayerName/CustomPlayerNam
 import { Team } from "../../models/gen-info/Team";
 import { generalHelpers } from "../../services/general-helpers/general-helpers";
 
+
 interface PlayersTableTailwindProps {
-  onSelection: (player: Element) => void;
-}
+    onSelection: (player: Element) => void;
+    preSetPosition?: number;
+  }
 export default function PlayersTableTailwind({
   onSelection,
+  preSetPosition
 }: PlayersTableTailwindProps): JSX.Element {
   const currentGameWeekId = useAppSelector<number>(
     (state) => state.genInfo.data?.currentGameWeekId
   );
+  
   const teams = useAppSelector<Team[]>((state) => state.genInfo.data?.teams);
   const fixtures = useAppSelector((state) => state.genInfo.data?.fixtures);
 
   const teamCode = useAppSelector((state) => state.filters.teamCode);
-  const positionType = useAppSelector((state) => state.filters.positionType);
+  const positionTypeFromFilter = useAppSelector((state) => state.filters.positionType);
   const searchQuery = useAppSelector((state) => state.filters.searchQuery);
   const minPrice = useAppSelector((state) => state.filters.minPrice);
   const maxPrice = useAppSelector((state) => state.filters.maxPrice);
+  const positionType = preSetPosition ?? positionTypeFromFilter;
 
   const players: Element[] = useFilteredPlayers(
     teamCode,
@@ -30,7 +35,7 @@ export default function PlayersTableTailwind({
     minPrice,
     maxPrice
   );
-
+  
   return (
     <div className="px-4 sm:px-6 lg:px-8 ">
       <div className="mt-8 flow-root">
@@ -43,10 +48,13 @@ export default function PlayersTableTailwind({
                     Name
                   </th>
                   <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
-                    Selected
+                    Price (m)
                   </th>
                   <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
-                    Total Pts
+                    Selected (%)
+                  </th>
+                  <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
+                    Total Points
                   </th>
                   <th className="px-3 py-3.5 text-left text-xs sm:text:sm font-semibold text-gray-900">
                     GW{currentGameWeekId} Points
@@ -87,14 +95,17 @@ export default function PlayersTableTailwind({
                       <td className="whitespace-nowrap px-3 py-4 text-xs sm:text-sm font-medium text-gray-900">
                         <CustomPlayerName player={player} />
                       </td>
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs sm:text-sm font-medium text-gray-900">
+                        {player.now_cost/10}
+                      </td>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs sm:text-sm text-gray-900">
                         {player.selected_by_percent}%
                       </td>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs sm:text-sm text-gray-900">
-                        {player.total_points}
+                        {player.total_points} pts
                       </td>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs sm:text-sm text-gray-900">
-                        {player.event_points}
+                        {player.event_points} pts
                       </td>
                       {/* Fixture cells */}
                       {teamFixtures?.map((fixture, index) => {
@@ -124,7 +135,7 @@ export default function PlayersTableTailwind({
                             key={index}
                             className={`whitespace-nowrap py-4 pl-4 pr-3 text-xs sm:text-sm bg-${difficultyColor} text-${textColor}`}
                           >
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center font-normal">
                               <span>
                                 {opponentTeam?.short_name || opponentTeam?.name}
                               </span>
