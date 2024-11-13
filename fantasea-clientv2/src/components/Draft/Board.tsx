@@ -24,37 +24,37 @@ export const Board = (): JSX.Element => {
   const benchPlayers = draftSquad.filter((player) => !player.isStarter);
   return (
     <div
-      className="w-full h-screen bg-cover bg-center"
+      className="w-full h-full bg-cover bg-center"
       style={{ backgroundImage: `url(${fieldImage})` }}
     >
       {/* squad */}
-      <div className="flex flex-col w-full h-full items-center justify-evenly pt-10">
+      <div className="flex flex-col w-full h-full items-center justify-evenly pt-10 gap-5">
         {/* GK */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly">
+        <div className="flex flex-row h-1/5 w-full justify-evenly p-2">
             {startingGK.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* DEF */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly">
+        <div className="flex flex-row h-1/5 w-full justify-evenly p-2">
         {startingDEF.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* MID */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly">
+        <div className="flex flex-row h-1/5 w-full justify-evenly p-2">
         {startingMID.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* ATT */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly">
+        <div className="flex flex-row h-1/5 w-full justify-evenly p-2">
         {startingATT.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* BENCH */}
-        <div className="flex flex-row bg-slate-500 items-center justify-evenly w-full h-1/5">
+        <div className="flex flex-row bg-slate-500 items-center justify-evenly w-full h-1/5 p-2">
             {benchPlayers.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player}/>
             ))}

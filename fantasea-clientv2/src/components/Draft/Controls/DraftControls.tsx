@@ -1,11 +1,9 @@
 import { ImportDraft } from "./Actions/Import/ImportDraft"
 import { ResetDraft } from "./Actions/ResetDraft"
 import { ShareDraft } from "./Actions/ShareDraft"
-import { BenchCounter } from "./Indicators/BenchCounter"
 import { Budget } from "./Indicators/Budget"
 import { EventPoints } from "./Indicators/EventPoints"
 import { OverallRank } from "./Indicators/OverallRank"
-import { SquadCounter } from "./Indicators/SquadCounter"
 import { TotalPoints } from "./Indicators/TotalPoints"
 
 interface DraftControlsProps {
@@ -13,26 +11,22 @@ interface DraftControlsProps {
 }
 export const DraftControls = ({isLive}:DraftControlsProps):JSX.Element => {
     return (
-        <div className="flex flex-row items-center h-full px-20 justify-between">
+        <div className="flex flex-row justify-center h-full py-1 gap-1 md:gap-4">
             {/* Indicators */}
-            <div className="flex flex-row gap-2">
-                <Budget />
-                <SquadCounter />
-                <BenchCounter />
-            </div>
+            <Budget />
             {isLive &&
-                <div className="flex flex-row gap-2">
-                    <OverallRank />
-                    <TotalPoints />
-                    <EventPoints />
-                </div>
+            <>
+                <OverallRank />
+                <TotalPoints />
+                <EventPoints />
+            </>
             }
             {/* Actions */}
-            <div className="flex flex-row gap-2">
-                <ResetDraft />
-                <ImportDraft />
-                <ShareDraft />
-            </div>
+                <div className="flex flex-row gap-2">
+                    <ResetDraft />
+                    <ImportDraft />
+                    <ShareDraft />
+                </div>
         </div>
     )
 }
