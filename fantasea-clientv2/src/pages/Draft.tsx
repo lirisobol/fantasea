@@ -1,6 +1,6 @@
 import { Board } from "../components/Draft/Board"
 import { DraftControls } from "../components/Draft/Controls/DraftControls"
-import ListView from "../components/Draft/ListView/ListView"
+import { KeySchedule } from "../components/Draft/KeySchedule/KeySchedule"
 import { useAppSelector } from "../store/store"
 
 export const Draft = ():JSX.Element => {
@@ -12,14 +12,11 @@ export const Draft = ():JSX.Element => {
                 <DraftControls isLive={isLive}/>
             </div>
             <div className="flex flex-row">
-                <div className="w-1/6 h-full">
-                    <ListView />
-                </div>
-                <div className="w-4/6 h-full">
+                <div className="w-3/4 h-full">
                     <Board />
                 </div>
-                <div className="bg-slate-100 w-1/6">
-                    Key Matches
+                <div className="w-2/6">
+                    <KeySchedule />
                 </div>
             </div>
         </div>

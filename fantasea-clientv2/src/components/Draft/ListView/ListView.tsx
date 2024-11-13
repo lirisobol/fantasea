@@ -28,7 +28,7 @@ export default function ListView(): JSX.Element {
   return (
     <div className="flex flex-col h-full">
       {/* List Content */}
-      <div className="max-h-[87vh] overflow-y-auto">
+      <div className="">
         <ul role="list" className="divide-y divide-gray-100 px-4">
           {draftTeam.map((player) => (
             <Disclosure key={player.stats?.id}>
@@ -75,14 +75,6 @@ export default function ListView(): JSX.Element {
                             Point Per Game:
                             <span className="font-semibold ml-2">
                               {player.stats?.points_per_game}pts
-                            </span>
-                          </span>
-                        </p>
-                        <p className="mt-1 flex text-xs text-gray-500">
-                          <span className="truncate">
-                            Fitness:
-                            <span className="font-semibold ml-2">
-                              {player.stats?.chance_of_playing_next_round}%
                             </span>
                           </span>
                         </p>
