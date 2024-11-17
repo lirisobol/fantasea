@@ -16,7 +16,8 @@ export const ImportDraft = (): JSX.Element => {
     <div
       onClick={openModal}
       className="
-      border shadow-sm rounded-br-md rounded-tl-xl px-8 py-1 text-white
+      flex items-center justify-center rounded-md
+      border shadow-sm px-6 py-2 text-white
       bg-gradient-to-r from-emerald-400 to-cyan-400
       hover:bg-gradient-to-r from-emerald-500 to-cyan-500
       hover:rounded"

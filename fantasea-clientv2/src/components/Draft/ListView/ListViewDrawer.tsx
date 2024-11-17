@@ -9,18 +9,18 @@ interface ListViewDrawerProps {
 
 export default function ListViewDrawer({ show, onHide }: ListViewDrawerProps): JSX.Element {
   return (
-    <Dialog open={show} onClose={onHide} className="relative z-10">
-      <div className="fixed inset-0" />
+    <Dialog open={show} onClose={onHide} className="relative z-10 opacity-95">
+      <div className="absolute inset-0" />
 
-      <div className="fixed inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           {/* Updated Positioning */}
-          <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-10">
+          <div className="pointer-events-none fixed inset-y-40 bottom-10 left-5 flex max-w-full rounded-lg">
             <DialogPanel
               transition
               className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:-translate-x-full sm:duration-700"
             >
-              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 rounded-lg shadow-xl">
                 <div className="px-4 sm:px-6">
                   <div className="flex items-start justify-between">
                     <DialogTitle className="text-base font-semibold text-gray-900">

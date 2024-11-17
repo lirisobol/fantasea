@@ -5,7 +5,8 @@ export const ShareDraft = (): JSX.Element => {
   return (
     <div
       className="
-        border shadow-sm rounded-br-xl rounded-tl-xl px-8 py-1 text-white
+      flex items-center justify-center rounded-md
+        border shadow-sm px-6 py-2 text-white
         bg-gradient-to-r from-sky-400 to-blue-400
         hover:bg-gradient-to-r from-sky-500 to-blue-500
         hover:rounded

@@ -40,6 +40,11 @@ export const KeySchedule = (): JSX.Element => {
   return (
     <div className="flex flex-col h-full">
       <div className="max-h-[87vh] overflow-y-auto">
+        <div className="flex justify-center bg-gradient-to-r from-emerald-400 to-cyan-400 py-5">
+            <h1 className="text-3xl font-semibold text-white">
+                Welcome To Gameweek {currentGameweek+1}
+            </h1>
+        </div>
         <ul role="list" className="divide-y divide-gray-100">
           {upcomingFixturesSortedByStartDate.map((fixture) => (
             <li key={fixture.id} className="flex py-6 px-2 justify-center">

@@ -1,24 +1,34 @@
-import { Board } from "../components/Draft/Board"
-import { DraftControls } from "../components/Draft/Controls/DraftControls"
-import { KeySchedule } from "../components/Draft/KeySchedule/KeySchedule"
-import { useAppSelector } from "../store/store"
+import { useState } from "react";
+import { Board } from "../components/Draft/Board";
+import { DraftControls } from "../components/Draft/Controls/DraftControls";
+import { KeySchedule } from "../components/Draft/KeySchedule/KeySchedule";
+import ListViewDrawer from "../components/Draft/ListView/ListViewDrawer"; // Import here
 
-export const Draft = ():JSX.Element => {
-    const isLive = useAppSelector<boolean>((state) => state.draft.isLive)
-    return (
-        // Draft Page
-        <div className="flex flex-col h-full">
-            <div className="">
-                <DraftControls isLive={isLive}/>
-            </div>
-            <div className="flex flex-row">
-                <div className="w-3/4 h-full">
-                    <Board />
-                </div>
-                <div className="w-2/6">
-                    <KeySchedule />
-                </div>
-            </div>
+export const Draft = (): JSX.Element => {
+  const [show, setShow] = useState<boolean>(false);
+
+  const openDrawer = () => {
+    setShow(true);
+  };
+  const closeDrawer = () => {
+    setShow(false);
+  };
+
+  return (
+    // Draft Page
+    <div className="flex flex-col h-full">
+      <div className="py-1 w-3/4">
+        <DraftControls openDrawer={openDrawer} />
+      </div>
+      <div className="flex flex-row h-full">
+        <div className="w-3/4 h-full relative z-0">
+          <Board />
+            <ListViewDrawer show={show} onHide={closeDrawer} />
         </div>
-    )
-}
+        <div className="w-1/4">
+          <KeySchedule />
+        </div>
+      </div>
+    </div>
+  );
+};

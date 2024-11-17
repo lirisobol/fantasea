@@ -1,10 +1,14 @@
 import fieldImage from "../../assets/field.jpg";
 import { useAppSelector } from "../../store/store";
+import { Budget } from "./Controls/Indicators/Budget";
+import { EventPoints } from "./Controls/Indicators/EventPoints";
+import { OverallRank } from "./Controls/Indicators/OverallRank";
+import { TotalPoints } from "./Controls/Indicators/TotalPoints";
 import { PlayerCard } from "./PlayerCard";
 
 export const Board = (): JSX.Element => {
+    const isLive = useAppSelector((state) => state.draft.isLive)
   const draftSquad = useAppSelector((state) => state.draft.squad);
-  console.log(draftSquad);
   const startingGK = draftSquad.filter(
     (player) => player.positionType === 1 && player.isStarter
   );
@@ -27,6 +31,19 @@ export const Board = (): JSX.Element => {
       className="w-full h-full bg-cover bg-center"
       style={{ backgroundImage: `url(${fieldImage})` }}
     >
+        <div className="py-2 px-2 absolute right-5">
+            <Budget />
+        </div>
+        <div className="py-2 px-2 absolute left-2 flex flex-row gap-2">
+        {isLive && (
+          <>
+            <OverallRank />
+            <TotalPoints />
+            <EventPoints />
+          </>
+        )}
+      </div>
+
       {/* squad */}
       <div className="flex flex-col w-full h-full items-center justify-evenly pt-10 gap-5">
         {/* GK */}
@@ -54,12 +71,13 @@ export const Board = (): JSX.Element => {
             ))}
         </div>
         {/* BENCH */}
-        <div className="flex flex-row bg-slate-500 items-center justify-evenly w-full h-1/5 p-2">
+        <div className="flex flex-row border-t-2 items-center justify-evenly w-full h-1/5 p-2">
             {benchPlayers.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player}/>
             ))}
         </div>
       </div>
+
     </div>
   );
 };
