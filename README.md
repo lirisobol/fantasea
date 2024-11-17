@@ -46,7 +46,9 @@ Fantasea is a comprehensive web application designed for Fantasy Premier League 
 
 ## Demo
 
-Soon...
+![Fantasea Demo](https://i.imgur.com/VcN5wRn.png)
+_Screenshot: Main dashboard of Fantasea._
+
 
 ## Installation
 
