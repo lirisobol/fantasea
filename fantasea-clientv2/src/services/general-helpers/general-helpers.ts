@@ -66,6 +66,10 @@ class GeneralHelpers {
                 .sort((a, b) => a.event - b.event)
                 .slice(0, 5);
         }
+
+        public getNextGameForClub(team: Team, gameweekId:number):Fixture {
+            return team.fixtures?.find((f) => f.event === gameweekId+1) as Fixture;
+        }
     
         // Get Shortname by team code
         public getTeamShortNameById(teamId: number, teams: Team[]): string {
@@ -78,7 +82,7 @@ class GeneralHelpers {
             const teamId = player.team_code;
             return teams.find(t => t.code === teamId) as Team;
         }
-    
+
         // get opponent teamId
         public getOpponentTeamId(fixture:Fixture, playerTeam: Team): number {
             let opponentId = 0;
@@ -116,6 +120,11 @@ class GeneralHelpers {
             }
 
             return (year+'-' + month + '-'+ dt)
+        }
+
+        public isOpponentHome(fixture:Fixture, opponentId: number):boolean {
+            if(fixture.team_a === opponentId) return false;
+            if(fixture.team_h === opponentId) return true;
         }
 
         
