@@ -8,7 +8,7 @@ import { setSquad } from "../../../../../store/slices/draft";
 import { Element } from "../../../../../models/gen-info/Element";
 import { LoadingSpinner } from "../../../../Loading/LoadingSpinner/LoadingSpinner";
 import { ManagerIdGuide } from "./ManagerIdGuide";
-import Logo from "../../../../../assets/FantaseaSVGS/TextDown.svg";
+import Logo from "../../../../../assets/FantaseaSVGS/LogoFullNoText.svg";
 
 interface ImportDraftModalProps {
   show: boolean;
@@ -112,21 +112,22 @@ export default function ImportDraftModal({
                     className="
                         flex flex-col items-center justify-center
                         p-2 text-gray-900
-                        text-xl
+                        text-sm
+                        lg:text-lg
                         font-semibold
                         "
                   >
                     <img
                       alt="Fantasea Logo"
                       src={Logo}
-                      className="h-14 w-auto sm:h-16 md:h-20 lg:h-32"
+                      className="h-24"
                     />
                     Import Your Own FPL Team
                   </Dialog.Title>
 
                   {/* Body */}
-                  <div className="flex flex-col justify-center items-center p-12 gap-12">
-                    <div>
+                  <div className="flex flex-col justify-center items-center lg:p-12 lg:gap-12 p-2 gap-4">
+                    <div className="w-full">
                       <ManagerSearch
                         onSubmit={handleManagerSearch}
                         loading={loading}

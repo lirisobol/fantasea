@@ -9,7 +9,7 @@ interface ListViewDrawerProps {
 
 export default function ListViewDrawer({ show, onHide }: ListViewDrawerProps): JSX.Element {
   return (
-    <Dialog open={show} onClose={onHide} className="relative z-10 opacity-95">
+    <Dialog open={show} onClose={onHide} className="relative z-10">
       <div className="absolute inset-0" />
 
       <div className="absolute inset-0 overflow-hidden">

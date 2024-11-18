@@ -6,7 +6,7 @@ import { Bars3Icon, Square3Stack3DIcon, XMarkIcon } from "@heroicons/react/24/ou
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHammer, faHome, faUsersGear } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../../assets/FantaseaSVGS/LogoFull.svg";
+import Logo from "../../assets/FantaseaSVGS/LogoFullNoText.svg";
 import LogoFull from "../../assets/FantaseaSVGS/TextDown.svg"
 import { SparklesIcon } from "@heroicons/react/20/solid";
 
@@ -51,12 +51,12 @@ export default function Navbar() {
         <div className="hidden lg:flex">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="inline-flex items-center gap-x-1.5 rounded-md bg-white text-black px-4 py-2 lg:px-4 lg:py-4 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-black hover:text-white transition"
+            className="inline-flex items-center gap-x-1.5 rounded-md bg-gradient-to-r from-emerald-400 to-cyan-400 text-white hover:bg-gradient-to-r hover:from-emerald-400 hover:to-cyan-400 hover:scale-105 hover:text-black px-4 py-2 lg:px-4 lg:py-4 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset transition"
           >
             My Fantasy
             <SparklesIcon
               aria-hidden="true"
-              className="-mr-1 w-4 h-4 lg:w-5 lg:h-5 transition"
+              className="-mr-1 w-4 h-4 lg:w-5 lg:h-5"
             />
           </button>
         </div>
@@ -73,7 +73,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             <a href="/" className="">
               <span className="sr-only">Fantasea</span>
-              <img alt="" src={LogoFull} className="h-40 w-40" />
+              <img alt="" src={Logo} className="h-16 w-16" />
             </a>
             <button
               type="button"
