@@ -31,7 +31,7 @@ export const Board = (): JSX.Element => {
       className="w-full h-full bg-cover bg-center"
       style={{ backgroundImage: `url(${fieldImage})` }}
     >
-        <div className="lg:py-2 lg:px-2 absolute top-14 md:top-0 lg:right-5 md:right-5 p-1">
+        <div className="lg:py-2 lg:px-2 absolute top-14 md:top-0 lg:right-5 md:right-5 p-2">
             <Budget />
         </div>
         <div className="lg:py-2 lg:px-2 absolute lg:left-2 flex flex-row gap-2 p-1">

@@ -17,7 +17,7 @@ export const Draft = (): JSX.Element => {
   return (
     // Draft Page
     <div className="flex flex-col h-full">
-      <div className="py-1 w-3/4">
+      <div className="py-1  w-full px-4">
         <DraftControls openDrawer={openDrawer} />
       </div>
       <div className="flex flex-row h-full">

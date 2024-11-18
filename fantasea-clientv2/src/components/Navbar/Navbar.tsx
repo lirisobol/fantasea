@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, Square3Stack3DIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUsersGear } from "@fortawesome/free-solid-svg-icons";
+import { faHammer, faHome, faUsersGear } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../assets/FantaseaSVGS/LogoFull.svg";
+import LogoFull from "../../assets/FantaseaSVGS/TextDown.svg"
+import { SparklesIcon } from "@heroicons/react/20/solid";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,7 +19,8 @@ export default function Navbar() {
         aria-label="Global"
         className="flex items-center justify-between p-2 lg:px-6"
       >
-        <div className="flex lg:flex-1">
+        {/* Left side: Logo and Navigation Links */}
+        <div className="flex items-center space-x-6">
           <a href="/" className="">
             <span className="sr-only">Fantasea</span>
             <img
@@ -26,7 +29,13 @@ export default function Navbar() {
               className="h-14 w-auto sm:h-16 md:h-20 lg:h-20"
             />
           </a>
+          <div className="hidden lg:flex lg:gap-x-6">
+            <NavLink to={"/myfpl"}>My Fantasy</NavLink>
+            <NavLink to={"/draft"}>Draft</NavLink>
+          </div>
         </div>
+
+        {/* Mobile menu button */}
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -37,36 +46,34 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-6">
-          <div
-            className="text-lg font-semibold px-4 rounded-md text-white py-2
-                bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-500 hover:to-blue-600 transition"
+
+        {/* Right side: Button */}
+        <div className="hidden lg:flex">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="inline-flex items-center gap-x-1.5 rounded-md bg-white text-black px-4 py-2 lg:px-4 lg:py-4 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-black hover:text-white transition"
           >
-            <NavLink to={"/myfpl"}>My Fantasy</NavLink>
-          </div>
-          <div
-            className="text-lg font-semibold px-4 rounded-md text-white py-2
-                bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600 transition"
-          >
-            <NavLink to={"/draft"}>Draft</NavLink>
-          </div>
+            My Fantasy
+            <SparklesIcon
+              aria-hidden="true"
+              className="-mr-1 w-4 h-4 lg:w-5 lg:h-5 transition"
+            />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile menu dialog */}
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white pl-2 pr-10 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+            <a href="/" className="">
+              <span className="sr-only">Fantasea</span>
+              <img alt="" src={LogoFull} className="h-40 w-40" />
             </a>
             <button
               type="button"
@@ -77,7 +84,7 @@ export default function Navbar() {
               <XMarkIcon aria-hidden="true" className="h-6 w-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
+          <div className="mt-6 flow-root px-12">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6 flex flex-col gap-4">
                 <div className="text-xl font-thin">
@@ -93,6 +100,13 @@ export default function Navbar() {
                     style={{ marginRight: 20, width: 18 }}
                   />
                   <NavLink to={"/myfpl"}>My Fantasy</NavLink>
+                </div>
+                <div className="text-xl font-thin">
+                  <FontAwesomeIcon
+                    icon={faHammer}
+                    style={{ marginRight: 20, width: 18 }}
+                  />
+                  <NavLink to={"/draft"}>Draft</NavLink>
                 </div>
               </div>
             </div>

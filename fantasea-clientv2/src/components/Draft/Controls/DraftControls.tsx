@@ -1,8 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ImportDraft } from "./Actions/Import/ImportDraft";
-import { ResetDraft } from "./Actions/ResetDraft";
-import { ShareDraft } from "./Actions/ShareDraft";
-import { faListUl } from "@fortawesome/free-solid-svg-icons";
+import { Square3Stack3DIcon } from "@heroicons/react/20/solid";
+import ActionsDropDown from "./Actions/ActionsDropDown";
 
 interface DraftControlsProps {
   openDrawer: () => void;
@@ -12,21 +9,19 @@ export const DraftControls = ({
   openDrawer,
 }: DraftControlsProps): JSX.Element => {
   return (
-    <div className="flex flex-row justify-between items-center px-4 gap-4">
-      <div className="border border-black text-sm py-2 px-6 rounded-md hover:bg-black hover:text-white transition flex flex-row items-center justify-center">
+    <div className="flex flex-row justify-between px-2 py-1.5">
+      <div className="">
         <button
           onClick={openDrawer}
-          className=""
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-black text-white px-2 py-1.5 lg:px-3 lg:py-2 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-white hover:text-black transition"
         >
-          <FontAwesomeIcon icon={faListUl} style={{marginRight:12}}/>
           List View
+        <Square3Stack3DIcon aria-hidden="true" className="-mr-1 size-4 lg:size-5 transition" />
+
         </button>
       </div>
-      {/* Actions */}
-      <div className="flex flex-row gap-2">
-        <ResetDraft />
-        <ImportDraft />
-        <ShareDraft />
+      <div className="">
+        <ActionsDropDown />
       </div>
     </div>
   );
