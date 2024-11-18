@@ -9,7 +9,7 @@ import { Players } from "./Players";
 
 export const Home = (): JSX.Element => {
     return (
-        <div className="flex flex-wrap h-screen justify-center gap-4">
+        <div className="flex flex-wrap h-screen justify-center gap-4 mt-4">
             <div className="w-full h-5/6 md:px-12">
                 <Players />
             </div>

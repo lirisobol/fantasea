@@ -35,23 +35,23 @@ export const DraftedPlayerCard = ({player}:DraftedPlayerCardProps):JSX.Element =
 
 
     return (
-        <div className="flex flex-col w-full gap-2" onClick={openDetailsModal}>
+        <div className="flex flex-col" onClick={openDetailsModal}>
             <div className="flex justify-center">
-                <img src={jerseyImagePath} alt="jersey" style={{ width: '60px', height: '80px' }} />
+                <img src={jerseyImagePath} alt="jersey" className="md:w-[60px] md:h-[80px] w-[40px] h-[60px]" />
             </div>
-            <div className="w-full flex-1 flex flex-col">
-                <div className="font-semibold p-0.5 bg-white rounded-t-lg text-sm">
+            <div className="w-full flex flex-col">
+                <div className="font-semibold p-0.5 md:px-2 md:py-1 bg-white rounded-t-lg text-xs truncate">
                     {stats.web_name}
                 </div>
-                <div className="text-xs flex justify-evenly items-center bg-violet-950 flex-1 p-0.5 text-white">
-                    <div className="font-semibold">
-                        {stats.now_cost/10}m
+                <div className="text-xs flex justify-around items-center bg-violet-950 flex-1 p-0.5 md:px-2 md:py-1 text-white text-xs">
+                    <div className="font-semibold truncate">
+                        {stats.now_cost/10}
                     </div>
-                    <div className="font-semibold">
-                        {stats.points_per_game} ppg
+                    <div className="font-semibold truncate">
+                        {stats.points_per_game}
                     </div>
                 </div>
-                <div className={`text-xs flex justify-center items-center gap-2 flex-1 p-0.5 rounded-b-lg bg-${difficultyColor} text-${textColor}`}>
+                <div className={`text-xs flex justify-center items-center gap-2 flex-1 p-1 md:px-2 md:py-1 rounded-b-lg bg-${difficultyColor} text-${textColor}`}>
                     {opponentShortName}
                     <span className="font-semibold">{isOpponentHome ? "(A)" : "(H)"}</span>
                 </div>

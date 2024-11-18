@@ -21,11 +21,12 @@ export const Draft = (): JSX.Element => {
         <DraftControls openDrawer={openDrawer} />
       </div>
       <div className="flex flex-row h-full">
-        <div className="w-3/4 h-full relative z-0">
+        <div className="lg:w-3/4 w-full h-full relative z-0">
           <Board />
             <ListViewDrawer show={show} onHide={closeDrawer} />
         </div>
-        <div className="w-1/4">
+
+        <div className="lg:w-1/4 hidden lg:block">
           <KeySchedule />
         </div>
       </div>
