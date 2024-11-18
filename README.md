@@ -46,8 +46,17 @@ Fantasea is a comprehensive web application designed for Fantasy Premier League 
 
 ## Demo
 
-![Fantasea Demo](https://i.imgur.com/VcN5wRn.png)
+![Fantasea Demo](https://imgur.com/RCGZwn5)
 _Screenshot: Main dashboard of Fantasea._
+![Fantasea Demo](https://imgur.com/3gF3wIu)
+_Screenshot: Main dashboard of Fantasea - Options Menu._
+![Fantasea Demo](https://imgur.com/jrRqW8l)
+_Screenshot: Main dashboard of Fantasea - Team Import._
+![Fantasea Demo](https://imgur.com/lrjm7hF)
+_Screenshot: Main dashboard of Fantasea - Mobile._
+![Fantasea Demo](https://imgur.com/JyyGeR0)
+_Screenshot: Main dashboard of Fantasea - Mobile - Schedule._
+
 
 
 ## Installation
