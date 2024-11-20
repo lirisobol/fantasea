@@ -31,7 +31,7 @@ export const Board = (): JSX.Element => {
       className="w-full bg-cover bg-center h-screen max-h-[80vh] md:max-h-[87.7vh]"
       style={{ backgroundImage: `url(${fieldImage})` }}
     >
-        <div className="flex flex-row gap-2 justify-center p-1">
+        <div className="flex flex-row gap-2 justify-center p-2">
             <Budget />
         {isLive && (
           <>
