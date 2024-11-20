@@ -7,7 +7,7 @@ interface PlayerCardProps {
 }
 export const PlayerCard = ({player}:PlayerCardProps):JSX.Element => {
     return (
-        <div className="w-32 h-40 border text-center flex justify-center">
+        <div className="w-20 h-24 md:w-32 md:h-40 text-center flex justify-center">
             {player.isPicked ? (
                 <DraftedPlayerCard player={player}/>
             ): (

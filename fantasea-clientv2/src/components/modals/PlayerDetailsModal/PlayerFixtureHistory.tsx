@@ -47,14 +47,19 @@ export const PlayerFixtureHistory = ({
   }, [player, fixture, playerTeam, teams, playerHistory]);
 
   return (
-    <div className="border-b py-1 flex flex-col gap-1 items-center sm:flex-row sm:gap-6">
+    <div className="border-b py-1 flex flex-row gap-6">
       {/* Event and Date */}
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-start items-start">
         <div className="font-semibold text-xs sm:text-sm">
           {`GW${fixture.event}`}
         </div>
-        <div className="text-xs">
-          {generalHelpers.formatKickoffTime(fixture.kickoff_time)}
+        <div className="flex flex-col text-xs items-start">
+            <span>
+            {new Date(fixture.kickoff_time).toTimeString().split("G", 1)}
+            </span>
+            <span>
+            {new Date(fixture.kickoff_time).toDateString()}
+            </span>
         </div>
       </div>
 

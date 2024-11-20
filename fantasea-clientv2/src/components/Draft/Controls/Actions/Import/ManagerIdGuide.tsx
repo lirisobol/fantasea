@@ -1,4 +1,4 @@
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Disclosure,
@@ -11,9 +11,9 @@ export const ManagerIdGuide = (): JSX.Element => {
   return (
     <div>
       <Disclosure as="div" className="w-full">
-        <DisclosureButton className="w-full border-b pb-2 text-left font-light text-xl">
-            Help me find my manager id
-            <FontAwesomeIcon icon={faArrowRight} className="ml-12"/>
+        <DisclosureButton className="w-full border-b pb-2 text-left font-light text-sm lg:text-lg flex items-center justify-between">
+            Find My Manager Id
+            <FontAwesomeIcon icon={faArrowDown} className="ml-12"/>
         </DisclosureButton>
         <div className="overflow-hidden py-2 w-full">
           <DisclosurePanel

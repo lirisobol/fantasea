@@ -23,16 +23,15 @@ export const PlayerSelectedChart = ({ data }: PlayerSelectedChartProps): JSX.Ele
       <div className="w-full h-56">
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 20, right: 30, bottom: 20, left: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="0 11" />
             <XAxis
                 dataKey="gameweek"
-                tickFormatter={(value) => `GW${value}`}
                 label={{ value: 'Gameweek', position: 'insideBottom', offset: -10 }}
-                tick={{ fontSize: 12 }}
+                tick={{ fontSize: 10 }}
                 interval={0}
             />
             <YAxis
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
               domain={['dataMin', 'dataMax']}
             />
             <Tooltip

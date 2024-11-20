@@ -22,7 +22,7 @@ function App() {
         <div className="flex flex-col h-screen"> {/* Ensure the app fills the entire screen */}
             {status === 'loading' && <LoadingSpinner />}
 
-            <nav className="p-2"> {/* Navbar */}
+            <nav className="h-20"> {/* Navbar */}
                 <Navbar />
             </nav>
             <main className="flex-1 overflow-y-auto"> {/* Content area now prevents overflow */}

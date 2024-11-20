@@ -26,7 +26,7 @@ export const ManagerSearch = ({onSubmit, loading, setError}: ManagerSearchProps)
   
     return (
     <div>
-        <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-row gap-2">
+        <form onSubmit={handleSubmit} className="w-full flex flex-col justify-center items-center lg:flex-row gap-2">
             <label htmlFor="manager-search" className="sr-only">
               Manager ID
             </label>

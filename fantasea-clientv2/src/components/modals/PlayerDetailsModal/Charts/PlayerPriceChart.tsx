@@ -22,17 +22,16 @@ export const PlayerPriceChart = ({ data }: PlayerPriceChartProps): JSX.Element =
       <div className="w-full h-56">
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 20, right: 30, bottom: 20, left: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="0 1" />
             <XAxis
                 dataKey="gameweek"
-                tickFormatter={(value) => `GW${value}`}
                 label={{ value: 'Gameweek', position: 'insideBottom', offset: -10 }}
                 tick={{ fontSize: 12 }}
                 interval={0}
             />
             <YAxis
               label={{ value: 'Price (£m)', angle: -90, position: 'insideLeft', offset: 10 }}
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
               domain={['dataMin', 'dataMax']}
             />
             <Tooltip
