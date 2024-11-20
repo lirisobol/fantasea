@@ -14,11 +14,11 @@ export const DraftControls = ({
   openSchedule,
 }: DraftControlsProps): JSX.Element => {
   return (
-    <div className="flex flex-row justify-between px-2 py-1.5">
+    <div className="flex flex-row justify-between px-2 py-1">
       <div
-      onClick={openListView}
+        onClick={openListView}
         className="
-      flex flex-col justify-center items-center text-xs gap-1
+      flex flex-col justify-center items-center text-xs gap-0.5 text-slate-700
       md:flex-row-reverse md:ring-1 md:ring-gray-400 md:px-4 md:py-2
        rounded-md    
       "
@@ -27,9 +27,9 @@ export const DraftControls = ({
           onClick={openListView}
           className="
           rounded-md
-          px-5 py-5 md:px-0 md:py-0
+          px-5 py-2 md:px-0 md:py-0
           ring-1 ring-gray-400 ring-inset md:ring-0
-          hover:bg-gray-100
+          hover:bg-slate-100
           transition
           "
         >
@@ -38,13 +38,13 @@ export const DraftControls = ({
             className="size-4 lg:size-4 transition"
           />
         </button>
-        List View
+        <span className="text-[9px] md:text-xs md:mr-2">List View</span>
       </div>
 
       <div
-      onClick={openSchedule}
+        onClick={openSchedule}
         className="
-      flex flex-col justify-center items-center text-xs gap-1
+      flex flex-col justify-center items-center text-xs gap-0.5 text-slate-700
         md:flex-row md:ring-1 md:ring-gray-400 md:px-4 md:py-2
         rounded-md
         lg:hidden
@@ -55,8 +55,10 @@ export const DraftControls = ({
           onClick={openSchedule}
           className="
           rounded-md
-          px-5 py-5 md:px-0 md:py-0
+          px-5 py-2 md:px-0 md:py-0
           ring-1 ring-gray-400 ring-inset md:ring-0
+                    hover:bg-slate-100
+
           transition"
         >
           <CalendarDateRangeIcon
@@ -64,7 +66,7 @@ export const DraftControls = ({
             className="size-4 lg:size-4 transition"
           />
         </button>
-        Schedule
+        <span className="text-[9px] md:text-sm">Schedule</span>
       </div>
 
       <div className="flex gap-2">

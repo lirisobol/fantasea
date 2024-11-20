@@ -22,7 +22,7 @@ export default function ActionsDropDown(): JSX.Element {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div
-        className="flex flex-col justify-center items-center text-xs gap-1
+        className="flex flex-col justify-center items-center text-xs gap-0.5 text-slate-700
         md:flex-row-reverse md:ring-1 md:ring-gray-400 md:px-4 md:py-2
         rounded-md
 "
@@ -30,9 +30,9 @@ export default function ActionsDropDown(): JSX.Element {
         <MenuButton
           className="
           rounded-md
-          px-5 py-5 md:px-0 md:py-0
+          px-5 py-2 md:px-0 md:py-0
           ring-1 ring-gray-400 ring-inset md:ring-0
-        hover:bg-gray-100
+        hover:bg-slate-100
           transition
         "
         >
@@ -49,7 +49,7 @@ export default function ActionsDropDown(): JSX.Element {
             size-4 lg:size-5 transition"
           />
         </MenuButton>
-        Options
+        <span className="text-[9px] md:text-xs md:mr-2">Options</span>
       </div>
 
       <MenuItems

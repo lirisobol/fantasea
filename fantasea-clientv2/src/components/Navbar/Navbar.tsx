@@ -13,7 +13,7 @@ export default function Navbar() {
     <header className="bg-white">
       <nav
         aria-label="Global"
-        className="flex items-center justify-between p-2 lg:px-6"
+        className="flex items-center justify-between p-1 lg:px-6"
       >
         {/* Left side: Logo and Navigation Links */}
         <div className="flex items-center space-x-6">
@@ -22,7 +22,7 @@ export default function Navbar() {
             <img
               alt="Fantasea Logo"
               src={Logo}
-              className="h-14 w-auto sm:h-16 md:h-20 lg:h-20"
+              className="h-10 w-auto sm:h-16 md:h-20 lg:h-20"
             />
           </a>
           <div className="hidden lg:flex lg:gap-x-6">

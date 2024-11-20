@@ -44,7 +44,7 @@ export const EmptyCard = ({ player }: EmptyCardProps): JSX.Element => {
       className="cursor-pointer bg-slate-100 opacity-80 w-full h-full flex justify-center items-center"
     >
       <div className="text-gray-400">
-        <FontAwesomeIcon icon={faPlus} size="2xl" />
+        <FontAwesomeIcon icon={faPlus} size="1xl" />
       </div>
       <PlayerPickModal
         show={playerPickModalShow}

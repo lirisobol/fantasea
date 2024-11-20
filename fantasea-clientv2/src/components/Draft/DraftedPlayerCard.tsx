@@ -37,14 +37,14 @@ export const DraftedPlayerCard = ({player}:DraftedPlayerCardProps):JSX.Element =
     return (
         <div className="flex flex-col" onClick={openDetailsModal}>
             <div className="flex justify-center">
-                <img src={jerseyImagePath} alt="jersey" className="md:w-[100px] md:h-[90px] w-[60px] h-[60px]" />
+                <img src={jerseyImagePath} alt="jersey" className="md:w-[100px] md:h-[90px] w-[40px] h-[40px]" />
             </div>
 
             <div className="w-full flex flex-col">
                 <div className="font-semibold p-0.5 md:px-2 md:py-1 bg-white rounded-t-lg text-xs truncate">
                     {stats.web_name}
                 </div>
-                <div className="text-xs flex justify-around items-center bg-violet-950 flex-1 p-0.5 md:px-2 md:py-1 text-white text-xs">
+                <div className="text-xs/3 flex justify-around items-center bg-violet-950 flex-1 p-0.5 md:px-2 md:py-1 text-white text-xs">
                     <div className="font-semibold truncate">
                         {stats.now_cost/10}
                     </div>
@@ -52,7 +52,7 @@ export const DraftedPlayerCard = ({player}:DraftedPlayerCardProps):JSX.Element =
                         {stats.points_per_game}
                     </div>
                 </div>
-                <div className={`text-xs flex justify-center items-center gap-2 flex-1 p-1 md:px-2 md:py-1 rounded-b-lg bg-${difficultyColor} text-${textColor}`}>
+                <div className={`text-xs/3 flex justify-center items-center gap-2 flex-1 px-1 py-0.5 md:px-2 md:py-1 rounded-b-lg bg-${difficultyColor} text-${textColor}`}>
                     {opponentShortName}
                     <span className="font-semibold">{isOpponentHome ? "(A)" : "(H)"}</span>
                 </div>

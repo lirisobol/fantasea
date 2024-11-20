@@ -41,8 +41,8 @@ export const KeyScheduleForDrawer = (): JSX.Element => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="max-h-[87vh] overflow-y-auto">
+    <div className="flex flex-col">
+      <div className="overflow-y-auto">
         <ul role="list" className="divide-y divide-gray-100">
           {upcomingFixturesSortedByStartDate.map((fixture) => {
             const homeTeamColorClass = generalHelpers.getDifficultyColor(fixture.team_h_difficulty);

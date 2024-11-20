@@ -26,16 +26,16 @@ export const Draft = (): JSX.Element => {
   return (
     // Draft Page
     <div className="flex flex-col h-full">
-      <div className="py-1  w-full px-4">
+      <div className="py-1 w-full px-4">
         <DraftControls openListView={openListView} openSchedule={openSchedule}/>
       </div>
-      <div className="flex flex-row h-full">
-        <div className="lg:w-3/4 w-full h-full relative z-0">
+      <div className="flex flex-row">
+        <div className="lg:w-3/4 w-full relative">
           <Board />
             <ListViewDrawer show={listViewShow} onHide={closeListView} />
         </div>
 
-        <div className="lg:w-1/4 hidden lg:block">
+        <div className="lg:w-1/4 hidden lg:block md:max-h-[86vh]">
           <KeySchedule />
           <ScheduleDrawer show={scheduleShow} onHide={closeSchedule}/>
         </div>

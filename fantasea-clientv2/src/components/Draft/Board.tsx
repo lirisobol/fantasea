@@ -28,13 +28,11 @@ export const Board = (): JSX.Element => {
   const benchPlayers = draftSquad.filter((player) => !player.isStarter);
   return (
     <div
-      className="w-full h-full bg-cover bg-center"
+      className="w-full bg-cover bg-center h-screen max-h-[80vh] md:max-h-[87.7vh]"
       style={{ backgroundImage: `url(${fieldImage})` }}
     >
-        <div className="lg:py-2 lg:px-2 absolute top-14 md:top-0 lg:right-5 md:right-5 p-2">
+        <div className="flex flex-row gap-2 justify-center p-1">
             <Budget />
-        </div>
-        <div className="lg:py-2 lg:px-2 absolute lg:left-2 flex flex-row gap-2 p-1">
         {isLive && (
           <>
             <OverallRank />
@@ -42,36 +40,36 @@ export const Board = (): JSX.Element => {
             <EventPoints />
           </>
         )}
-      </div>
+        </div>
 
       {/* squad */}
-      <div className="flex flex-col w-full h-full items-center justify-evenly pt-16 md:gap-2">
+      <div className="flex flex-col w-full justify-evenly pt-2 md:gap-10 gap-10">
         {/* GK */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
+        <div className="flex flex-row h-2/12 w-full justify-evenly md:p-2 gap-1">
             {startingGK.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* DEF */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
+        <div className="flex flex-row h-2/12 w-full justify-evenly md:p-2 gap-1">
         {startingDEF.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* MID */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
+        <div className="flex flex-row h-2/12 w-full justify-evenly md:p-2 gap-1">
         {startingMID.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* ATT */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
+        <div className="flex flex-row h-2/12 w-full justify-evenly md:p-2 gap-1">
         {startingATT.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* BENCH */}
-        <div className="flex flex-row border-t-2 items-center justify-evenly w-full h-1/5 md:p-2 gap-1">
+        <div className="flex flex-row border-t-2 justify-evenly w-full h-1/12 md:p-2 gap-2 pt-5">
             {benchPlayers.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player}/>
             ))}
