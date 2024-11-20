@@ -16,10 +16,11 @@ export const DraftControls = ({
   return (
     <div className="flex flex-row justify-between px-2 py-1.5">
       <div
+      onClick={openListView}
         className="
       flex flex-col justify-center items-center text-xs gap-1
-      md:flex-row md:ring-1 md:ring-gray-400 md:px-4 md:py-2
-      rounded-md    
+      md:flex-row-reverse md:ring-1 md:ring-gray-400 md:px-4 md:py-2
+       rounded-md    
       "
       >
         <button
@@ -41,6 +42,7 @@ export const DraftControls = ({
       </div>
 
       <div
+      onClick={openSchedule}
         className="
       flex flex-col justify-center items-center text-xs gap-1
         md:flex-row md:ring-1 md:ring-gray-400 md:px-4 md:py-2

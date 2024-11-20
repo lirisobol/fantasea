@@ -37,8 +37,9 @@ export const DraftedPlayerCard = ({player}:DraftedPlayerCardProps):JSX.Element =
     return (
         <div className="flex flex-col" onClick={openDetailsModal}>
             <div className="flex justify-center">
-                <img src={jerseyImagePath} alt="jersey" className="md:w-[60px] md:h-[80px] w-[40px] h-[60px]" />
+                <img src={jerseyImagePath} alt="jersey" className="md:w-[100px] md:h-[90px] w-[60px] h-[60px]" />
             </div>
+
             <div className="w-full flex flex-col">
                 <div className="font-semibold p-0.5 md:px-2 md:py-1 bg-white rounded-t-lg text-xs truncate">
                     {stats.web_name}
@@ -56,6 +57,7 @@ export const DraftedPlayerCard = ({player}:DraftedPlayerCardProps):JSX.Element =
                     <span className="font-semibold">{isOpponentHome ? "(A)" : "(H)"}</span>
                 </div>
             </div>
+            
             <PlayerDetailsModalDraft 
                 show={detailsModalShow}
                 onHide={HideDetailsModal}

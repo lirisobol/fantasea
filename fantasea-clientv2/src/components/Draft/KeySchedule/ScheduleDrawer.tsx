@@ -17,13 +17,13 @@ export default function ScheduleDrawer({
     (state) => state.genInfo.data?.currentGameWeekId
   );
   return (
-    <Dialog open={show} onClose={onHide} className="relative z-10 opacity-95">
+    <Dialog open={show} onClose={onHide} className="relative z-10">
       <div className="absolute inset-0" />
 
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           {/* Updated Positioning */}
-          <div className="pointer-events-none fixed inset-y-40 bottom-10 right-0 md:right-5 flex max-w-full rounded-lg px-2 sm:px-0">
+          <div className="pointer-events-none fixed inset-y-48 bottom-10 top-30 right-0 md:right-5 flex max-w-full rounded-lg px-2 sm:px-0">
             <DialogPanel
               transition
               className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"

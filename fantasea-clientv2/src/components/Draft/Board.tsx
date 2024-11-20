@@ -47,31 +47,31 @@ export const Board = (): JSX.Element => {
       {/* squad */}
       <div className="flex flex-col w-full h-full items-center justify-evenly pt-16 md:gap-2">
         {/* GK */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2">
+        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
             {startingGK.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* DEF */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2">
+        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
         {startingDEF.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* MID */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2">
+        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
         {startingMID.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* ATT */}
-        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2">
+        <div className="flex flex-row h-1/5 w-full justify-evenly md:p-2 gap-1">
         {startingATT.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player} />
             ))}
         </div>
         {/* BENCH */}
-        <div className="flex flex-row border-t-2 items-center justify-evenly w-full h-1/5 md:p-2">
+        <div className="flex flex-row border-t-2 items-center justify-evenly w-full h-1/5 md:p-2 gap-1">
             {benchPlayers.map((player) => (
                 <PlayerCard key={player.draftPosition} player={player}/>
             ))}
