@@ -1,4 +1,7 @@
-import { Square3Stack3DIcon } from "@heroicons/react/20/solid";
+import {
+  CalendarDateRangeIcon,
+  Square3Stack3DIcon,
+} from "@heroicons/react/20/solid";
 import ActionsDropDown from "./Actions/ActionsDropDown";
 
 interface DraftControlsProps {
@@ -8,30 +11,61 @@ interface DraftControlsProps {
 
 export const DraftControls = ({
   openListView,
-  openSchedule
+  openSchedule,
 }: DraftControlsProps): JSX.Element => {
   return (
     <div className="flex flex-row justify-between px-2 py-1.5">
-      <div className="">
+      <div
+        className="
+      flex flex-col justify-center items-center text-xs gap-1
+      md:flex-row md:ring-1 md:ring-gray-400 md:px-4 md:py-2
+      rounded-md    
+      "
+      >
         <button
           onClick={openListView}
-          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-black text-white px-2 py-1.5 lg:px-3 lg:py-2 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-white hover:text-black transition"
+          className="
+          rounded-md
+          px-5 py-5 md:px-0 md:py-0
+          ring-1 ring-gray-400 ring-inset md:ring-0
+          hover:bg-gray-100
+          transition
+          "
         >
-          List View
-        <Square3Stack3DIcon aria-hidden="true" className="-mr-1 size-4 lg:size-5 transition" />
-
+          <Square3Stack3DIcon
+            aria-hidden="true"
+            className="size-4 lg:size-4 transition"
+          />
         </button>
+        List View
       </div>
-      <div className="flex gap-2">
-        
+
+      <div
+        className="
+      flex flex-col justify-center items-center text-xs gap-1
+        md:flex-row md:ring-1 md:ring-gray-400 md:px-4 md:py-2
+        rounded-md
+        lg:hidden
+
+      "
+      >
         <button
           onClick={openSchedule}
-          className="lg:hidden inline-flex w-full justify-center gap-x-1.5 rounded-md bg-black text-white px-2 py-1.5 lg:px-3 lg:py-2 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-white hover:text-black transition"
+          className="
+          rounded-md
+          px-5 py-5 md:px-0 md:py-0
+          ring-1 ring-gray-400 ring-inset md:ring-0
+          transition"
         >
-          Schedule
-        <Square3Stack3DIcon aria-hidden="true" className="-mr-1 size-4 lg:size-5 transition" />
-
+          <CalendarDateRangeIcon
+            aria-hidden="true"
+            className="size-4 lg:size-4 transition"
+          />
         </button>
+        Schedule
+      </div>
+
+      <div className="flex gap-2">
         <ActionsDropDown />
       </div>
     </div>

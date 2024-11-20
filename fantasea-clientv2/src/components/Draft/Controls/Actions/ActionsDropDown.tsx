@@ -3,6 +3,7 @@ import {
   ArrowDownOnSquareIcon,
   ArrowPathIcon,
   ChevronDownIcon,
+  Cog8ToothIcon,
   HeartIcon,
   ShareIcon,
   TrashIcon,
@@ -20,14 +21,34 @@ export default function ActionsDropDown(): JSX.Element {
   };
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-black text-white px-2 py-1.5 lg:px-3 lg:py-2 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-600 hover:bg-white hover:text-black transition">
-          Options
+      <div
+        className="flex flex-col justify-center items-center text-xs gap-1
+        md:flex-row md:ring-1 md:ring-gray-400 md:px-4 md:py-2 rounded-md
+"
+      >
+        <MenuButton
+          className="
+          rounded-md
+          px-5 py-5 md:px-0 md:py-0
+          ring-1 ring-gray-400 ring-inset
+          ring-1 ring-gray-400 ring-inset md:ring-0
+          transition
+        "
+        >
           <ChevronDownIcon
             aria-hidden="true"
-            className="-mr-1 size-4 lg:size-5 transition"
+            className="
+            hidden lg:inline-block
+            size-4 lg:size-5 transition"
+          />
+          <Cog8ToothIcon
+            aria-hidden="true"
+            className="
+            lg:hidden
+            size-4 lg:size-5 transition"
           />
         </MenuButton>
+        Options
       </div>
 
       <MenuItems

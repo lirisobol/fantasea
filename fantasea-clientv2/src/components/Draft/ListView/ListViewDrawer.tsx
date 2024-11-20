@@ -15,7 +15,7 @@ export default function ListViewDrawer({ show, onHide }: ListViewDrawerProps): J
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           {/* Updated Positioning */}
-          <div className="pointer-events-none fixed inset-y-40 bottom-10 left-5 flex max-w-full rounded-lg">
+          <div className="pointer-events-none fixed inset-y-48 top-30 bottom-10 md:left-5 flex max-w-full rounded-lg">
             <DialogPanel
               transition
               className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:-translate-x-full sm:duration-700"

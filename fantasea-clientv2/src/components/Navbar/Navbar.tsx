@@ -1,14 +1,10 @@
-"use client";
-
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, Square3Stack3DIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, SparklesIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHammer, faHome, faUsersGear } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../assets/FantaseaSVGS/LogoFullNoText.svg";
-import LogoFull from "../../assets/FantaseaSVGS/TextDown.svg"
-import { SparklesIcon } from "@heroicons/react/20/solid";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,7 +47,7 @@ export default function Navbar() {
         <div className="hidden lg:flex">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="inline-flex items-center gap-x-1.5 rounded-md bg-gradient-to-r from-emerald-400 to-cyan-400 text-white hover:bg-gradient-to-r hover:from-emerald-400 hover:to-cyan-400 hover:scale-105 hover:text-black px-4 py-2 lg:px-4 lg:py-4 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset transition"
+            className="inline-flex items-center gap-x-1.5 rounded-md bg-gradient-to-r from-emerald-400 to-cyan-400 text-white hover:bg-gradient-to-r hover:from-emerald-400 hover:to-cyan-400 hover:scale-105 px-4 py-2 lg:px-4 lg:py-4 text-xs lg:text-sm font-semibold shadow-sm ring-1 ring-inset transition"
           >
             My Fantasy
             <SparklesIcon
